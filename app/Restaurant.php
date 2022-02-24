@@ -13,4 +13,8 @@ class Restaurant extends Model
     public function typology(){
         return $this->belongsTo('App\Typology');
     }
+
+    public function plates(){
+        return $this->hasMany('App\Plate');
+    }
 }
