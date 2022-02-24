@@ -61,6 +61,48 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="address" type="address" class="form-control @error('address') is-invalid @enderror" name="address" required autocomplete="off">
+
+                                @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="vat_number" class="col-md-4 col-form-label text-md-right">{{ __('vat_number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="vat_number" type="vat_number" class="form-control @error('vat_number') is-invalid @enderror" name="vat_number" required autocomplete="off">
+
+                                @error('vat_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="cover" class="col-md-4 col-form-label text-md-right">{{ __('cover') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="cover" type="cover" class="form-control @error('cover') is-invalid @enderror" name="cover" required autocomplete="off">
+
+                                @error('cover')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
