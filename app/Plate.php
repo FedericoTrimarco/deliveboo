@@ -13,4 +13,8 @@ class Plate extends Model
     public function catgeory(){
         return $this->belongsTo('App\Category');
     }
+
+    public function orders(){
+        return $this->belongsToMany('App\Order');
+    }
 }
