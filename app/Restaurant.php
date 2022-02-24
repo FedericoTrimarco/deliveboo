@@ -10,8 +10,8 @@ class Restaurant extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function typology(){
-        return $this->belongsTo('App\Typology');
+    public function typologies(){
+        return $this->belongsToMany('App\Typology');
     }
 
     public function plates(){
