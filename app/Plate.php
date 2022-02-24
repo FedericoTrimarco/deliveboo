@@ -6,15 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plate extends Model
 {
-    public function restaurant(){
+    protected $fillable = ['name', 'description', 'price', 'image', 'visible', 'ingredients', 'category_id', 'restaurant_id'];
+
+    public function restaurant()
+    {
         return $this->belongsTo('App\Restaurant');
     }
 
-    public function catgeory(){
+    public function catgeory()
+    {
         return $this->belongsTo('App\Category');
     }
 
-    public function orders(){
+    public function orders()
+    {
         return $this->belongsToMany('App\Order');
     }
 }

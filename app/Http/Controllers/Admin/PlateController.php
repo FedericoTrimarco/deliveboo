@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Plate;
 
 class PlateController extends Controller
 {
@@ -14,7 +18,9 @@ class PlateController extends Controller
      */
     public function index()
     {
-        //
+        $id = Auth::user()->id;
+        $plates = Plate::find($id);
+        return view('admin.plates.index', compact('plates'));
     }
 
     /**
@@ -24,7 +30,9 @@ class PlateController extends Controller
      */
     public function create()
     {
-        //
+        $plates = Plate::all();
+        $categories = Category::all();
+        return view('admin.plates.create', compact('plates', 'categories'));
     }
 
     /**
@@ -35,7 +43,6 @@ class PlateController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
