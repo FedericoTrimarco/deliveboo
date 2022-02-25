@@ -43,16 +43,7 @@ class PlateController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:50',
-            'description' => 'nullable',
-            'price' => 'required|numeric',
-            'visible' => 'boolean',
-            'ingredients' => 'nullable',
-            'restaurant_id' => 'nullable|exists:restaurants,id',
-            'category_id' => 'nullable|exists:categories,id',
-            'image' => 'nullable|file|mimes:png,jpg'
-        ]);
+        $request->validate($this->plateValidation());
 
         $data = $request->all();
         $data['restaurant_id'] = Auth::user()->id;
@@ -89,7 +80,10 @@ class PlateController extends Controller
      */
     public function edit($id)
     {
-        //
+        $plate = Plate::find($id);
+        $categories = Category::all();
+        if (!$plate) abort(404);
+        return view('admin.plates.edit', compact('plate', 'categories'));
     }
 
     /**
@@ -101,7 +95,20 @@ class PlateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate($this->plateValidation());
+
+        $data = $request->all();
+        $plate = Plate::find($id);
+
+        if (array_key_exists('image', $data)) {
+            if ($plate->image) {
+                Storage::delete($plate->image);
+            }
+            $data['image'] = Storage::put('uploads', $data['image']);
+        }
+        $plate->update($data);
+
+        return redirect()->route('admin.plates.show', $plate->id);
     }
 
     /**
@@ -113,5 +120,19 @@ class PlateController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function plateValidation()
+    {
+        return      [
+            'name' => 'required|string|max:50',
+            'description' => 'nullable',
+            'price' => 'required|numeric',
+            'visible' => 'boolean',
+            'ingredients' => 'nullable',
+            'restaurant_id' => 'nullable|exists:restaurants,id',
+            'category_id' => 'nullable|exists:categories,id',
+            'image' => 'nullable|file|mimes:png,jpg'
+        ];
     }
 }

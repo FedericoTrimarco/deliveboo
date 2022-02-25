@@ -30,7 +30,8 @@
                     <ul class="list-group list-group-horizontal">
                         <li class="list-unstyled ml-3"><a href="{{route('admin.plates.show', $plate->id)}}">Show</a>
                         </li>
-                        <li class="list-unstyled ml-3"><a href="">Edit</a></li>
+                        <li class="list-unstyled ml-3"><a href="{{route('admin.plates.edit', $plate->id)}}">Edit</a>
+                        </li>
                         <li class="list-unstyled ml-3"><a href="">Delete</a></li>
                     </ul>
                 </td>
