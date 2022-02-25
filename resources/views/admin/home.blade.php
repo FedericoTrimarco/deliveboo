@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div>
+    <img class="img-fluid" src="{{ asset('storage/' . $user->restaurant->cover) }}" alt="">
+</div>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

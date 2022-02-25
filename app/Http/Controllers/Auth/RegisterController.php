@@ -9,6 +9,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+
 
 class RegisterController extends Controller
 {
@@ -56,7 +58,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'address' => ['required', 'string', 'max:100'],
             'vat_number' => ['required', 'string', 'max:20'],
-            'cover' => ['nullable'],
+            'cover' => ['nullable', 'file', 'mimes:jpeg,png,jpg'],
         ]);
     }
 
@@ -81,8 +83,8 @@ class RegisterController extends Controller
         
         $restaurant = Restaurant::create([
             'vat_number' => $data['vat_number'],
-            'cover' => $data['cover'],
-            'user_id' => $user_id
+            'cover' => Storage::put('uploads/', $data['cover']),
+            'user_id' => $user_id,
         ]);
 
         $restaurant->save();
