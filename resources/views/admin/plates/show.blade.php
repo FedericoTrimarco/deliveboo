@@ -2,9 +2,7 @@
 
 @section('content')
 <div class="container">
-    @if ($plate->visible == 0)
-    <p>Questo contenuto non è visibile. Controlla la sua visibilità e riprova!</p>
-    @else
+    
     <div class="row">
         @if ($plate->image)
         <div class="col-6">
@@ -24,6 +22,6 @@
             <p><strong>Ingredients: </strong>{{$plate->ingredients}}</p>
         </div>
     </div>
-    @endif
+
 </div>
 @endsection
