@@ -19,7 +19,7 @@ class PlateController extends Controller
     public function index()
     {
         $id = Auth::user()->id;
-        $plates = Plate::find($id);
+        $plates = Plate::where('restaurant_id', $id)->get();
         return view('admin.plates.index', compact('plates'));
     }
 
@@ -43,6 +43,28 @@ class PlateController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:50',
+            'description' => 'nullable',
+            'price' => 'required|numeric',
+            'visible' => 'boolean',
+            'ingredients' => 'nullable',
+            'restaurant_id' => 'nullable|exists:restaurants,id',
+            'category_id' => 'nullable|exists:categories,id',
+            'image' => 'nullable|file|mimes:png,jpg'
+        ]);
+
+        $data = $request->all();
+        $data['restaurant_id'] = Auth::user()->id;
+
+        if (array_key_exists('image', $data)) {
+            $data['image'] = Storage::put('uploads/', $data['image']);
+        }
+
+        $plate = new Plate();
+        $plate->fill($data)->save();
+
+        return redirect()->route('admin.plates.show', $plate->id);
     }
 
     /**
@@ -53,7 +75,10 @@ class PlateController extends Controller
      */
     public function show($id)
     {
-        //
+        $plate = Plate::find($id);
+        if (!$plate) abort(404);
+
+        return view('admin.plates.show', compact('plate'));
     }
 
     /**

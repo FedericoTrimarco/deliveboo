@@ -53,6 +53,8 @@
 
         <div class="mb-3">
             <div class="form-check">
+                <input type="hidden" name="visible" class="switch-input" value="0" {{ old('visible')
+                    ? 'checked="checked"' : '' }} />
                 <input type="checkbox" name="visible" class="switch-input" value="1" {{ old('visible')
                     ? 'checked="checked"' : '' }} />
                 <label class="form-check-label" for="visible">Visible</label>
