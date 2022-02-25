@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,11 +20,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
 Route::middleware('auth')
     ->namespace('Admin')
     ->name('admin.')
     ->prefix('admin')
-    ->group(function() {
+    ->group(function () {
         Route::get('/', 'HomeController@index')->name('home');
+        Route::resource('/plates', 'PlateController');
     });

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Plate;
 
 class PlateController extends Controller
 {
@@ -14,7 +18,9 @@ class PlateController extends Controller
      */
     public function index()
     {
-        //
+        $id = Auth::user()->id;
+        $plates = Plate::where('restaurant_id', $id)->get();
+        return view('admin.plates.index', compact('plates'));
     }
 
     /**
@@ -24,7 +30,9 @@ class PlateController extends Controller
      */
     public function create()
     {
-        //
+        $plates = Plate::all();
+        $categories = Category::all();
+        return view('admin.plates.create', compact('plates', 'categories'));
     }
 
     /**
@@ -35,7 +43,19 @@ class PlateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->plateValidation());
+
+        $data = $request->all();
+        $data['restaurant_id'] = Auth::user()->id;
+
+        if (array_key_exists('image', $data)) {
+            $data['image'] = Storage::put('uploads/', $data['image']);
+        }
+
+        $plate = new Plate();
+        $plate->fill($data)->save();
+
+        return redirect()->route('admin.plates.show', $plate->id);
     }
 
     /**
@@ -46,7 +66,10 @@ class PlateController extends Controller
      */
     public function show($id)
     {
-        //
+        $plate = Plate::find($id);
+        if (!$plate) abort(404);
+
+        return view('admin.plates.show', compact('plate'));
     }
 
     /**
@@ -57,7 +80,10 @@ class PlateController extends Controller
      */
     public function edit($id)
     {
-        //
+        $plate = Plate::find($id);
+        $categories = Category::all();
+        if (!$plate) abort(404);
+        return view('admin.plates.edit', compact('plate', 'categories'));
     }
 
     /**
@@ -69,7 +95,20 @@ class PlateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate($this->plateValidation());
+
+        $data = $request->all();
+        $plate = Plate::find($id);
+
+        if (array_key_exists('image', $data)) {
+            if ($plate->image) {
+                Storage::delete($plate->image);
+            }
+            $data['image'] = Storage::put('uploads', $data['image']);
+        }
+        $plate->update($data);
+
+        return redirect()->route('admin.plates.show', $plate->id);
     }
 
     /**
@@ -80,6 +119,25 @@ class PlateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $plate = Plate::find($id);
+        if ($plate->image) {
+            Storage::delete($plate->image);
+        }
+        $plate->delete();
+        return redirect()->route('admin.plates.index')->with('deleted', $plate->name);
+    }
+
+    public function plateValidation()
+    {
+        return      [
+            'name' => 'required|string|max:50',
+            'description' => 'nullable',
+            'price' => 'required|numeric',
+            'visible' => 'boolean',
+            'ingredients' => 'required',
+            'restaurant_id' => 'nullable|exists:restaurants,id',
+            'category_id' => 'nullable|exists:categories,id',
+            'image' => 'nullable|file|mimes:png,jpg'
+        ];
     }
 }
