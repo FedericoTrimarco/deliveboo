@@ -119,7 +119,12 @@ class PlateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $plate = Plate::find($id);
+        if ($plate->image) {
+            Storage::delete($plate->image);
+        }
+        $plate->delete();
+        return redirect()->route('admin.plates.index')->with('deleted', $plate->name);
     }
 
     public function plateValidation()
@@ -129,7 +134,7 @@ class PlateController extends Controller
             'description' => 'nullable',
             'price' => 'required|numeric',
             'visible' => 'boolean',
-            'ingredients' => 'nullable',
+            'ingredients' => 'required',
             'restaurant_id' => 'nullable|exists:restaurants,id',
             'category_id' => 'nullable|exists:categories,id',
             'image' => 'nullable|file|mimes:png,jpg'
