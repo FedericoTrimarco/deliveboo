@@ -8,10 +8,10 @@
     @endif
 
     <nav class="d-flex align-items-center justify-content-between my-5">
-        <h1>
+        <h2>
             Elenco piatti
-        </h1>
-        <a class="btn btn-warning" href="{{route('admin.plates.create')}}">Add New</a>
+        </h2>
+        <a class="site-primary-btn" href="{{route('admin.plates.create')}}">Add New</a>
     </nav>
 
     {{-- <table class="table table-bordered">
