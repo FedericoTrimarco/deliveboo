@@ -56,12 +56,12 @@
     </table> --}}
 
     {{-- Plates Cards --}}
-    <section class="row plates-cards justify-content-between">
+    <section class="row plates-cards">
         @foreach($plates as $plate)
             <div class="col-4 mb-4">
                 <Card
                 class="mb-5 h-100"
-                img="{{$plate->image}}"
+                img="{{asset('storage/' .$plate->image)}}"
                 name="{{$plate->name}}"
                 price="{{$plate->price}}"
                 description="{{$plate->ingredients}}"
