@@ -1,0 +1,19 @@
+header {
+    nav {
+        background-color: $site-primary-col;
+    }
+    .site-link {
+        color: #126782;
+        text-transform: uppercase;
+        
+        &:hover {
+            color: #126782;
+            text-decoration: none;
+        }
+    }
+
+    .site-toggle {
+        font-size: 2rem;
+        color: $site-item-col;
+    }
+}
