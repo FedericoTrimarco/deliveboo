@@ -16,7 +16,7 @@
             </div>
 
             <!-- link for show plate -->
-            <a :href="showProduct" class="py-2 px-3 position-absolute">View Details</a>
+            <a :href="link" class="py-2 px-3 position-absolute">View Details</a>
         </div>
     </div>
 </template>
@@ -30,6 +30,7 @@ export default {
         price: String,
         description: String,
         // showProduct: String,
+        link: String,
     }
 }
 </script>
