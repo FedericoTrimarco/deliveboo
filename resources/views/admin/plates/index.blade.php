@@ -1,18 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-
-    @if (session('deleted'))
-    <div class="alert alert-success">Il piatto: {{session('deleted')}} è stato rimosso con successo</div>
-    @endif
-
+<div class="mx-5">
     <nav class="d-flex align-items-center justify-content-between my-5">
         <h2>
             Elenco piatti
         </h2>
         <a class="site-primary-btn" href="{{route('admin.plates.create')}}">Add New</a>
     </nav>
+</div>
+
+<div class="container">
+
+    @if (session('deleted'))
+    <div class="alert alert-success">Il piatto: {{session('deleted')}} è stato rimosso con successo</div>
+    @endif
+
 
     {{-- <table class="table table-bordered">
         <thead>
