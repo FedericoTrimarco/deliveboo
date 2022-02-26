@@ -13,7 +13,7 @@ class Plate extends Model
         return $this->belongsTo('App\Restaurant');
     }
 
-    public function catgeory()
+    public function category()
     {
         return $this->belongsTo('App\Category');
     }
