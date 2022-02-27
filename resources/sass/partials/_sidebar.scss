@@ -14,5 +14,10 @@
             color: #126782;
             text-decoration: none;
         }
+
+        &.active {
+            color: $site-tertiary-col;
+            background: #126782;
+        }
     }
 }
