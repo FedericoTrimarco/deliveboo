@@ -6,12 +6,11 @@
 
     .site-link {
         color: #126782;
-        margin-top: 16px;
         font-weight: 700;
-        text-transform: uppercase;
         
         &:hover {
-            color: #126782;
+            color: $site-tertiary-col;
+            background: #126782;
             text-decoration: none;
         }
 

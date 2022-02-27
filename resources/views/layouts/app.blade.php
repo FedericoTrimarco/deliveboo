@@ -92,11 +92,11 @@
             <aside class="navbar navbar-expand-md flex-column p-0">
                 <div class="site-aside collapse navbar-collapse navbarSupportedContent flex-column site-aside px-5">
                     <div class="d-flex flex-column align-items-center px-lg-5">
-                        <a class="site-link text-uppercase p-1  @if (Request::route()->getName() == 'admin.home') active @endif" href="{{ route('admin.home') }}">
+                        <a class="site-link text-uppercase p-1 mt-3 @if (Request::route()->getName() == 'admin.home') active @endif" href="{{ route('admin.home') }}">
                             Dashbord
                         </a>
-                        <a class="site-link text-uppercase p-1 @if (Request::route()->getName() == 'admin.plates.index') active @endif" href="{{ route('admin.plates.index') }}">Plates</a>
-                        <a class="site-link text-uppercase p-1" href="#">Orders</a>
+                        <a class="site-link text-uppercase p-1 mt-3 @if (Request::route()->getName() == 'admin.plates.index') active @endif" href="{{ route('admin.plates.index') }}">Plates</a>
+                        <a class="site-link text-uppercase p-1 mt-3" href="#">Orders</a>
                     </div>
                 </div>
             </aside>
