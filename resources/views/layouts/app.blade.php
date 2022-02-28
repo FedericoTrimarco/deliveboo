@@ -36,11 +36,11 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="pr-3">
-                            <a class="site-link text-uppercase" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="site-text text-uppercase" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="pr-3">
-                            <a class="site-link text-uppercase" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="site-text text-uppercase" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         @endif
                         @else
