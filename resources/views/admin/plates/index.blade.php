@@ -61,17 +61,12 @@
     {{-- Plates Cards --}}
     <section class="row plates-cards">
         @foreach($plates as $plate)
-            <div class="col-4 mb-4">
-                <Card
-                class="mb-5 h-100"
-                img="{{asset('storage/' .$plate->image)}}"
-                name="{{$plate->name}}"
-                price="{{$plate->price}}"
-                description="{{$plate->ingredients}}"
-                {{-- :showProduct="{{route('admin.plates.show', $plate->id)}}" --}}
-                > 
-                </Card>
-            </div>
+        <div class="col-4 mb-4">
+            <Card class="mb-5 h-100" img="{{asset('storage/' .$plate->image)}}" name="{{$plate->name}}"
+                price="{{$plate->price}}" description="{{$plate->ingredients}}"
+                link="{{route('admin.plates.show', $plate->id)}}">
+            </Card>
+        </div>
         @endforeach
     </section>
 

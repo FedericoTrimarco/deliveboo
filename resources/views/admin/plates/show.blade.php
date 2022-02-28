@@ -7,7 +7,7 @@
         <div class="header__content">
             <h1 class="header__content-title">{{$plate->name}}</h1>
             <ul class="header__content-list">
-                <li>{{$plate->category->name}}</li>
+                {{-- <li>{{$plate->category->name}}</li> --}}
             </ul>
         </div>
         <div class="header__content header__content--right">
