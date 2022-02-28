@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="h-100 card-plate">
+        <div class="h-100 card-plate position-relative">
 
             <!-- plate-img -->
             <figure class="h-50 position-relative">
@@ -19,9 +19,7 @@
                 </div>
 
                 <!-- link for show plate -->
-                <div class="p-3 d-flex justify-content-end">
-                    <a :href="show" class="show py-2 px-3">Dettagli</a>
-                </div>
+                <a :href="show" class="show py-2 px-3 position-absolute">Dettagli</a>
             </div>
 
         </div>
@@ -54,7 +52,8 @@ export default {
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     .show{
-        
+        bottom: 20px;
+        right: 30px;
         font-size: 1rem;
         font-weight: bold;
         text-decoration: none;
