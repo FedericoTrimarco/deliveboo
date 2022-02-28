@@ -56,7 +56,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:10', 'confirmed'],
+            'password' => ['required', 'string', 'min:10', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/', 'confirmed'],
             'address' => ['required', 'string', 'max:100'],
             'vat_number' => ['required', 'numeric', 'digits:11'],
             'cover' => ['required', 'file', 'mimes:jpeg,png,jpg'],
@@ -67,6 +67,7 @@ class RegisterController extends Controller
             'password.min' => 'La password deve contenere almeno :min caratteri',
             'password.confirmed' => 'Le password inserite non sono uguali',
             'address.required' => 'Questo campo è obbligatorio',
+            'password.regex' => 'Inserisci almeno una maiuscola, un numero e un carattere speciale',
             'vat_number.required' => 'Questo campo è obbligatorio',
             'vat_number.numeric' => 'Questo campo non può contenere lettere',
             'vat_number.digits' => 'Questo campo deve contentere :digits caratteri',
