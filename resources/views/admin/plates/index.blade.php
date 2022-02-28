@@ -3,20 +3,47 @@
 @section('content')
 <div class="mx-5">
     <nav class="d-flex align-items-center justify-content-between my-5">
-        <h2>
+        <h2 class="my-3">
             Elenco piatti
         </h2>
-        <a class="site-primary-btn" href="{{route('admin.plates.create')}}">Add New</a>
+        <a class="site-primary-btn" href="{{route('admin.plates.create')}}">Aggiungi Piatto</a>
     </nav>
 </div>
 
-<div class="container">
 
+<div class="container-fluid card-container">
+    
     @if (session('deleted'))
     <div class="alert alert-success">Il piatto: {{session('deleted')}} è stato rimosso con successo</div>
     @endif
-
-
+    
+    {{-- Verify if plates are present --}}
+    @if(!$plates->isEmpty() )
+            {{-- Plates Cards --}}
+            <section class="row plates-cards justify-content-start">
+                @foreach($plates as $plate)
+                    <div class="col-3 mb-5">
+                        <Card
+                        class="mb-5 h-100"
+                        img="{{asset('storage/' .$plate->image)}}"
+                        name="{{$plate->name}}"
+                        price="{{$plate->price}}"
+                        description="{{$plate->ingredients}}"
+                        show="{{route('admin.plates.show', $plate->id)}}"
+                        plate="{{$plate->image}}"
+                        visible="{{$plate->visible}}"
+                        > 
+                        </Card>
+                    </div>
+                @endforeach
+            </section>
+    @else
+            <section class="no-plates p-3">
+                <h3 class="mb-3">Nessun piatto inserito</h3>
+                <p>Al momento non hai inserito nessun piatto. Clicca su "Aggiungi Piatto" per aggiungerne uno, oppure <a href="{{route('admin.plates.create')}}">clicca su questo link</a>.</p>
+            </section>
+    @endif
+    
     {{-- <table class="table table-bordered">
         <thead>
             <tr>
@@ -57,19 +84,5 @@
             @endforeach
         </tbody>
     </table> --}}
-
-    {{-- Plates Cards --}}
-    <section class="row plates-cards">
-        @foreach($plates as $plate)
-        <div class="col-4 mb-4">
-            <Card class="mb-5 h-100" img="{{asset('storage/' .$plate->image)}}" name="{{$plate->name}}"
-                price="{{$plate->price}}" description="{{$plate->ingredients}}"
-                link="{{route('admin.plates.show', $plate->id)}}">
-            </Card>
-        </div>
-        @endforeach
-    </section>
-
-
 </div>
 @endsection
