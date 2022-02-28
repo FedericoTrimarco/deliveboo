@@ -32,6 +32,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="form-box">
                         <div class="form-box-header">
                             <h1 class="form-box-header-title">P.Iva <strong>*</strong></h1>
@@ -103,9 +104,9 @@
                         <div class="form-box-header">
                             <h1 class="form-box-header-title">Conferma Password <strong>*</strong></h1>
                             <div class="form-box-header-content">
-                                <label class="input" for="password_confermation">
+                                <label class="input" for="password_confirmation">
                                     <div class="input-field">
-                                        <input type="password" id="password_confermation" name="password_confermation"
+                                        <input type="password" id="password_confirmation" name="password_confirmation"
                                             placeholder="Conferma la tua password" autocomplete="off" />
                                     </div>
                                 </label>

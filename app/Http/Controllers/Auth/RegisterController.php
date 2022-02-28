@@ -56,23 +56,21 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'min:10', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/', 'confirmed'],
-            'password_confirmation' => ['confirmed'],
+            'password' => ['required', 'string', 'min:10', 'confirmed'],
             'address' => ['required', 'string', 'max:100'],
-            'vat_number' => ['required', 'numeric', 'max:11'],
-            'cover' => ['nullable', 'file', 'mimes:jpeg,png,jpg'],
+            'vat_number' => ['required', 'numeric', 'digits:11'],
+            'cover' => ['required', 'file', 'mimes:jpeg,png,jpg'],
         ], [
             'name.required' => 'Questo campo è obbligatorio',
             'email.required' => 'Questo campo è obbligatorio',
             'password.required' => 'Questo è un campo obbligatorio',
-            'password.min' => 'La password deve contenere almeno 10 caratteri',
-            'password.regex' => 'Inserisci almeno una maiuscola, un numero e un carattere speciale',
+            'password.min' => 'La password deve contenere almeno :min caratteri',
             'password.confirmed' => 'Le password inserite non sono uguali',
             'address.required' => 'Questo campo è obbligatorio',
             'vat_number.required' => 'Questo campo è obbligatorio',
             'vat_number.numeric' => 'Questo campo non può contenere lettere',
-            'vat_number.max' => 'Questo campo deve contentere 11 caratteri',
-            'cover' => ['nullable', 'file', 'mimes:jpeg,png,jpg'],
+            'vat_number.digits' => 'Questo campo deve contentere :digits caratteri',
+            'cover.required' => 'Questo campo è obbligatorio',
         ]);
     }
 
