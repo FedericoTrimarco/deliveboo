@@ -1,18 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="mx-5">
+    <nav class="d-flex align-items-center justify-content-between my-5">
+        <h2>
+            Elenco piatti
+        </h2>
+        <a class="site-primary-btn" href="{{route('admin.plates.create')}}">Add New</a>
+    </nav>
+</div>
+
 <div class="container">
 
     @if (session('deleted'))
     <div class="alert alert-success">Il piatto: {{session('deleted')}} è stato rimosso con successo</div>
     @endif
 
-    <nav class="d-flex align-items-center justify-content-between mb-5">
-        <div></div>
-        <a href="{{route('admin.plates.create')}}">Add New</a>
-    </nav>
 
-    <table class="table table-bordered">
+    {{-- <table class="table table-bordered">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -51,6 +56,25 @@
             </tr>
             @endforeach
         </tbody>
-    </table>
+    </table> --}}
+
+    {{-- Plates Cards --}}
+    <section class="row plates-cards">
+        @foreach($plates as $plate)
+            <div class="col-4 mb-4">
+                <Card
+                class="mb-5 h-100"
+                img="{{asset('storage/' .$plate->image)}}"
+                name="{{$plate->name}}"
+                price="{{$plate->price}}"
+                description="{{$plate->ingredients}}"
+                {{-- :showProduct="{{route('admin.plates.show', $plate->id)}}" --}}
+                > 
+                </Card>
+            </div>
+        @endforeach
+    </section>
+
+
 </div>
 @endsection

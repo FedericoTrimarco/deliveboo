@@ -10962,3 +10962,24 @@ a.text-dark:focus {
   }
 }
 
+.site-primary-btn {
+  font-size: 18px;
+  color: #023047;
+  background-color: #FFB703;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.site-primary-btn:hover {
+  color: white;
+  text-decoration: none;
+  background-color: #c78f00;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.site-primary-btn:focus {
+  outline: 3px solid #b88400;
+}
+
