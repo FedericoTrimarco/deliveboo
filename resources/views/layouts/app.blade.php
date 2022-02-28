@@ -26,8 +26,8 @@
         <header>
             <nav class="d-flex justify-content-between align-items-center p-3">
                 {{-- Left Side Of Navbar --}}
-                <a class="site-link text-uppercase" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="site-logo text-uppercase" href="{{ url('/') }}">
+                    <img src="{{ asset('images/deliveboo-logo.png') }}" alt="deliveboo-logo">
                 </a>
 
                 {{-- Right Side Of Navbar --}}
@@ -45,7 +45,7 @@
                         @endif
                         @else
                         <li class="dropdown pr-3 d-none d-md-block">
-                            <a id="navbarDropdown" class="site-link text-uppercase dropdown-toggle" href="#" role="button"
+                            <a id="navbarDropdown" class="site-text text-uppercase dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
@@ -65,10 +65,10 @@
                                 </button>
                                 <div class="dropdown-menu site-drpdown-menu" aria-labelledby="dropdownMenu">
                                     <a class="dropdown-item site-link @if (Request::route()->getName() == 'admin.home') active @endif" href="{{ route('admin.home') }}">
-                                        Dashbord
+                                        Dashboard
                                     </a>
-                                    <a class="dropdown-item site-link @if (Request::route()->getName() == 'admin.plates.index') active @endif" href="{{ route('admin.plates.index') }}">Plates</a>
-                                    <a class="dropdown-item site-link" href="#">Orders</a>
+                                    <a class="dropdown-item site-link @if (Request::route()->getName() == 'admin.plates.index') active @endif" href="{{ route('admin.plates.index') }}">Piatti</a>
+                                    <a class="dropdown-item site-link" href="#">Ordini</a>
                                     <div class="dropdown-divider"></div>
                                     <div>
                                         <a class="dropdown-item site-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -93,15 +93,15 @@
                 <div class="site-aside collapse navbar-collapse navbarSupportedContent flex-column site-aside px-5">
                     <div class="d-flex flex-column align-items-center px-lg-5">
                         <a class="site-link text-uppercase p-1 mt-3 @if (Request::route()->getName() == 'admin.home') active @endif" href="{{ route('admin.home') }}">
-                            Dashbord
+                            Dashboard
                         </a>
-                        <a class="site-link text-uppercase p-1 mt-3 @if (Request::route()->getName() == 'admin.plates.index') active @endif" href="{{ route('admin.plates.index') }}">Plates</a>
-                        <a class="site-link text-uppercase p-1 mt-3" href="#">Orders</a>
+                        <a class="site-link text-uppercase p-1 mt-3 @if (Request::route()->getName() == 'admin.plates.index') active @endif" href="{{ route('admin.plates.index') }}">Piatti</a>
+                        <a class="site-link text-uppercase p-1 mt-3" href="#">Ordini</a>
                     </div>
                 </div>
             </aside>
             @endauth
-            <section class="flex-grow-1">
+            <section class="flex-grow-1 p-4">
                 @yield('content')
             </section>
         </main>
