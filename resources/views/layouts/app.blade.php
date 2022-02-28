@@ -22,65 +22,88 @@
 </head>
 
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+    <div id="app" class="d-flex flex-column vh-100">
+        <header>
+            <nav class="d-flex justify-content-between align-items-center p-3">
+                {{-- Left Side Of Navbar --}}
+                <a class="site-link text-uppercase" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link @if (Request::route()->getName() === 'admin.plates.index') active @endif "
-                                href="{{ route('admin.plates.index') }}">Plates</a>
-                        </li>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                {{-- Right Side Of Navbar --}}
+                <div class="">
+                    <ul class="d-flex m-0">
                         <!-- Authentication Links -->
                         @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <li class="pr-3">
+                            <a class="site-link text-uppercase" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <li class="pr-3">
+                            <a class="site-link text-uppercase" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         @endif
                         @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        <li class="dropdown pr-3 d-none d-md-block">
+                            <a id="navbarDropdown" class="site-link text-uppercase dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                            <div class="dropdown-menu dropdown-menu-right site-drpdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item site-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </div>
                         </li>
+                        <li class="d-md-none">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" data-display="static" aria-expanded="false">
+                                Menu
+                                </button>
+                                <div class="dropdown-menu site-drpdown-menu" aria-labelledby="dropdownMenu">
+                                    <a class="dropdown-item site-link @if (Request::route()->getName() == 'admin.home') active @endif" href="{{ route('admin.home') }}">
+                                        Dashbord
+                                    </a>
+                                    <a class="dropdown-item site-link @if (Request::route()->getName() == 'admin.plates.index') active @endif" href="{{ route('admin.plates.index') }}">Plates</a>
+                                    <a class="dropdown-item site-link" href="#">Orders</a>
+                                    <div class="dropdown-divider"></div>
+                                    <div>
+                                        <a class="dropdown-item site-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
 
-        <main class="py-4">
-            @yield('content')
+        <main  class="d-flex flex-grow-1">
+            @auth    
+            <aside class="navbar navbar-expand-md flex-column p-0">
+                <div class="site-aside collapse navbar-collapse navbarSupportedContent flex-column site-aside px-5">
+                    <div class="d-flex flex-column align-items-center px-lg-5">
+                        <a class="site-link text-uppercase p-1 mt-3 @if (Request::route()->getName() == 'admin.home') active @endif" href="{{ route('admin.home') }}">
+                            Dashbord
+                        </a>
+                        <a class="site-link text-uppercase p-1 mt-3 @if (Request::route()->getName() == 'admin.plates.index') active @endif" href="{{ route('admin.plates.index') }}">Plates</a>
+                        <a class="site-link text-uppercase p-1 mt-3" href="#">Orders</a>
+                    </div>
+                </div>
+            </aside>
+            @endauth
+            <section class="flex-grow-1">
+                @yield('content')
+            </section>
         </main>
     </div>
 </body>

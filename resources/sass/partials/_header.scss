@@ -1,0 +1,29 @@
+header {
+    nav {
+        background-color: $site-primary-col;
+    }
+    .site-link {
+        color: #126782;
+        
+        &:hover {
+            color: $site-tertiary-col;
+            background: #126782;
+            text-decoration: none;
+        }
+
+        &.active {
+            color: $site-tertiary-col;
+            background: #126782;
+        }
+    }
+
+    // .site-toggle {
+    //     font-size: 2rem;
+    //     color: $site-item-col;
+    // }
+
+    .site-drpdown-menu {
+        left: -75px;
+        background: $site-tertiary-col;
+    }
+}

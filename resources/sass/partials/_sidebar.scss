@@ -1,0 +1,22 @@
+
+.site-aside {
+    // width: 320px;
+    background: $site-tertiary-col;
+
+
+    .site-link {
+        color: #126782;
+        font-weight: 700;
+        
+        &:hover {
+            color: $site-tertiary-col;
+            background: #126782;
+            text-decoration: none;
+        }
+
+        &.active {
+            color: $site-tertiary-col;
+            background: #126782;
+        }
+    }
+}
