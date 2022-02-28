@@ -60,7 +60,7 @@
                         </li>
                         <li class="d-md-none">
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" data-display="static" aria-expanded="false">
+                                <button class="site-primary-btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" data-display="static" aria-expanded="false">
                                 Menu
                                 </button>
                                 <div class="dropdown-menu site-drpdown-menu" aria-labelledby="dropdownMenu">
