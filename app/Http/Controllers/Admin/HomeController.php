@@ -14,7 +14,8 @@ class HomeController extends Controller
     {
         $id = Auth::user()->id;
         $user = User::where('id', $id)->first();
-        $plates = Plate::where('id', $id)->get();
+        $plates = Plate::where('restaurant_id', $user->id)->get();
+        dump($plates);
         return view('admin.home', compact('user', 'plates'));
     }
 }
