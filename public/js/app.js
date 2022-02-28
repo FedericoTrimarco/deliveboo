@@ -1937,8 +1937,9 @@ __webpack_require__.r(__webpack_exports__);
     img: String,
     name: String,
     price: String,
-    description: String // showProduct: String,
-
+    description: String,
+    // showProduct: String,
+    link: String
   }
 });
 
@@ -38203,7 +38204,7 @@ var render = function () {
         "a",
         {
           staticClass: "py-2 px-3 position-absolute",
-          attrs: { href: _vm.showProduct },
+          attrs: { href: _vm.link },
         },
         [_vm._v("View Details")]
       ),

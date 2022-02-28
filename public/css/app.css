@@ -1,5 +1,63 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+header nav {
+  background-color: #023047;
+}
+
+header .site-link {
+  color: #126782;
+}
+
+header .site-link:hover {
+  color: #8ECAE6;
+  background: #126782;
+  text-decoration: none;
+}
+
+header .site-link.active {
+  color: #8ECAE6;
+  background: #126782;
+}
+
+header .site-drpdown-menu {
+  left: -75px;
+  background: #8ECAE6;
+}
+
+.site-aside {
+  background: #8ECAE6;
+}
+
+.site-aside .site-link {
+  color: #126782;
+  font-weight: 700;
+}
+
+.site-aside .site-link:hover {
+  color: #8ECAE6;
+  background: #126782;
+  text-decoration: none;
+}
+
+.site-aside .site-link.active {
+  color: #8ECAE6;
+  background: #126782;
+}
+
+.container-fluid.card-container,
+.card-container.container-xl,
+.card-container.container-lg,
+.card-container.container-md,
+.card-container.container-sm {
+  padding-left: 3rem;
+  padding-right: 15rem;
+}
+
+.no-plates {
+  background-color: #8ECAE6;
+  border-radius: 8px;
+}
+
 /*!
  * Bootstrap v4.6.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
