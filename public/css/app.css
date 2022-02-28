@@ -11021,10 +11021,10 @@ a.text-dark:focus {
 }
 
 .site-primary-btn {
-  font-size: 18px;
+  font-size: 17px;
   color: #023047;
   background-color: #FFB703;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1.2rem;
   border-radius: 5px;
   text-decoration: none;
   transition: all 0.3s ease-in-out;

@@ -17,6 +17,7 @@
     <div class="alert alert-success">Il piatto: {{session('deleted')}} è stato rimosso con successo</div>
     @endif
     
+    {{-- Verify if plates are present --}}
     @if(!$plates->isEmpty() )
             {{-- Plates Cards --}}
             <section class="row plates-cards justify-content-start">
@@ -28,7 +29,9 @@
                         name="{{$plate->name}}"
                         price="{{$plate->price}}"
                         description="{{$plate->ingredients}}"
-                        link="{{route('admin.plates.show', $plate->id)}}"
+                        show="{{route('admin.plates.show', $plate->id)}}"
+                        plate="{{$plate->image}}"
+                        visible="{{$plate->visible}}"
                         > 
                         </Card>
                     </div>
@@ -36,7 +39,7 @@
             </section>
     @else
             <section class="no-plates p-3">
-                <h3>Nessun piatto inserito</h3>
+                <h3 class="mb-3">Nessun piatto inserito</h3>
                 <p>Al momento non hai inserito nessun piatto. Clicca su "Aggiungi Piatto" per aggiungerne uno, oppure <a href="{{route('admin.plates.create')}}">clicca su questo link</a>.</p>
             </section>
     @endif
