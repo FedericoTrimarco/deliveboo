@@ -11,15 +11,16 @@
 </div>
 
 
-<div class="container-fluid card-container">
-    
-    @if (session('deleted'))
-    <div class="alert alert-success">Il piatto: {{session('deleted')}} è stato rimosso con successo</div>
-    @endif
-    
-    {{-- Verify if plates are present --}}
-    @if(!$plates->isEmpty() )
-            {{-- Plates Cards --}}
+<div class="card-container">
+    <div class="container-fluid">
+
+        @if (session('deleted'))
+        <div class="alert alert-success">Il piatto: {{session('deleted')}} è stato rimosso con successo</div>
+        @endif
+        
+        {{-- Verify if plates are present --}}
+        @if(!$plates->isEmpty() )
+                {{-- Plates Cards --}}
             <section class="row plates-cards justify-content-start">
                 @foreach($plates as $plate)
                     <div class="col-3 mb-5">
@@ -37,52 +38,54 @@
                     </div>
                 @endforeach
             </section>
-    @else
+        @else
             <section class="no-plates p-3">
                 <h3 class="mb-3">Nessun piatto inserito</h3>
                 <p>Al momento non hai inserito nessun piatto. Clicca su "Aggiungi Piatto" per aggiungerne uno, oppure <a href="{{route('admin.plates.create')}}">clicca su questo link</a>.</p>
             </section>
-    @endif
+        @endif
+        
+        {{-- <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Visible</th>
+                    <th scope="col">Ingredients</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($plates as $plate)
+                <tr>
+                    <th scope="row">{{$plate->id}}</th>
+                    <td>{{$plate->name}}</td>
+                    <td>{{$plate->price}}</td>
+                    <td>{{$plate->visible}}</td>
+                    <td>{{$plate->ingredients}}</td>
+                    <td>
+                        <ul class="list-group list-group-horizontal">
+                            <li class="list-unstyled ml-3"><a class="btn btn-link p-0 m-0"
+                                    href="{{route('admin.plates.show', $plate->id)}}">Show</a>
+                            </li>
+                            <li class="list-unstyled ml-3"><a class="btn btn-link p-0 m-0"
+                                    href="{{route('admin.plates.edit', $plate->id)}}">Edit</a>
+                            </li>
+                            <li class="list-unstyled ml-3">
+                                <form action="{{route('admin.plates.destroy', $plate->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-link p-0 m-0" type="submit">Delete</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table> --}}
+    </div>
     
-    {{-- <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Visible</th>
-                <th scope="col">Ingredients</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($plates as $plate)
-            <tr>
-                <th scope="row">{{$plate->id}}</th>
-                <td>{{$plate->name}}</td>
-                <td>{{$plate->price}}</td>
-                <td>{{$plate->visible}}</td>
-                <td>{{$plate->ingredients}}</td>
-                <td>
-                    <ul class="list-group list-group-horizontal">
-                        <li class="list-unstyled ml-3"><a class="btn btn-link p-0 m-0"
-                                href="{{route('admin.plates.show', $plate->id)}}">Show</a>
-                        </li>
-                        <li class="list-unstyled ml-3"><a class="btn btn-link p-0 m-0"
-                                href="{{route('admin.plates.edit', $plate->id)}}">Edit</a>
-                        </li>
-                        <li class="list-unstyled ml-3">
-                            <form action="{{route('admin.plates.destroy', $plate->id)}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-link p-0 m-0" type="submit">Delete</button>
-                            </form>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table> --}}
 </div>
 @endsection
