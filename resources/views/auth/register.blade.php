@@ -128,7 +128,8 @@
                                             <li class="input-field-dropdown-item">
                                                 <label class="form-checkbox" for="typ-{{$typology->id}}">
                                                     <input type="checkbox" name="typologies[]" value="{{$typology->id}}"
-                                                        id="typ-{{$typology->id}}">
+                                                        id="typ-{{$typology->id}}" @if (in_array($typology->id,
+                                                    old('typologies', []))) checked @endif >
                                                     <div class="checkbox">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">

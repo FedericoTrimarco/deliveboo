@@ -9,6 +9,11 @@ window.onload = () => {
     const checkedItems = [];
 
     if (dropdown) {
+        checkedItems.push(...ul.querySelectorAll("input:checked"));
+        if (checkedItems.length > 0) {
+            dropdownPlaceholder.textContent = `${checkedItems.length} delle tipologie disponibili selezionate`;
+        }
+
         dropdown.addEventListener("click", (event) => {
             if (event.target.tagName === "INPUT") {
                 if (event.target.checked) checkedItems.push(event.target);
