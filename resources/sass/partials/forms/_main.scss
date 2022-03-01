@@ -104,47 +104,7 @@ body {
     background-color: #000000;
 }
 
-.form .form-box .form-checkbox {
-    width: 100%;
-    display: flex;
-    user-select: none;
-    align-items: center;
-
-    > input {
-        display: none;
-        line-height: 1.5rem;
-
-        &:checked + .checkbox {
-            background-color: #000000;
-            border: 2px solid transparent;
-            > svg {
-                color: white;
-                display: flex;
-            }
-        }
-    }
-
-    > span {
-        margin-left: 0.5rem;
-    }
-
-    .checkbox {
-        width: 18px;
-        height: 18px;
-        display: flex;
-        position: relative;
-        align-items: center;
-        transition: 100ms ease;
-        justify-content: center;
-        background-color: #ffffff;
-        border: 2px solid #545454;
-        > svg {
-            display: none;
-        }
-    }
-}
-
-.form-box.invisible {
+.form .form-box .form-box.invisible {
     display: none;
 }
 
@@ -193,7 +153,12 @@ body {
     align-items: center;
     margin-bottom: 0.5rem;
     justify-content: center;
+    transition: border-color 0.2s ease;
     border: 2px solid var(--border-color);
+
+    &.focused {
+        --border-color: #000000;
+    }
 }
 
 .form-box .form-box-header .form-box-header-content > .input > .input-field {
