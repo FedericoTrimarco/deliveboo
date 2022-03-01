@@ -1,0 +1,39 @@
+.form-checkbox {
+    width: 100%;
+    display: flex;
+    user-select: none;
+    align-items: center;
+
+    > input {
+        display: none;
+        line-height: 1.5rem;
+
+        &:checked + .checkbox {
+            background-color: #000000;
+            border: 2px solid transparent;
+            > svg {
+                color: white;
+                display: flex;
+            }
+        }
+    }
+
+    > span {
+        margin-left: 0.5rem;
+    }
+
+    .checkbox {
+        width: 18px;
+        height: 18px;
+        display: flex;
+        position: relative;
+        align-items: center;
+        transition: 100ms ease;
+        justify-content: center;
+        background-color: #ffffff;
+        border: 2px solid #545454;
+        > svg {
+            display: none;
+        }
+    }
+}
