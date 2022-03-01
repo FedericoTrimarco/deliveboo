@@ -8,12 +8,16 @@
     </div>
 
     {{--My Plates--}}
+    <button id="gennarino" >
+        ciao
+        {{-- <i class="fa-solid fa-angle-right arrow"></i> --}}
+    </button>
     
     <div class="container myPlates">
         <h1>I MIEI PIATTI</h1>
-        <div class="myCards multiple-items" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
+        <div class="myCards" >
             @foreach($plates as $plate)
-            <div class="col-2 mb-5">
+            <div class="col-2 mb-5 pics">
                 <Card
                     class="mb-5 h-100"
                     img="{{asset('storage/' .$plate->image)}}"
@@ -28,10 +32,8 @@
             </div>
             @endforeach
         </div>
-        <button>
-            <i class="fa-solid fa-angle-right arrow"></i>
-        </button>
-     </div>  
+
+    </div>  
 </div>
 @endsection
 

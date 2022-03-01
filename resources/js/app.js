@@ -3,9 +3,9 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
+require('./carousel');
 require('./bootstrap');
-require('js/carousel');
+
 
 import Vue from 'vue';
 //import Card from './components/Card';
