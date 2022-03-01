@@ -104,11 +104,12 @@
                 </div>
             </aside>
             @endauth
-            <section class="flex-grow-1 p-4">
+            <section class="flex-grow-1 ">
                 @yield('content')
             </section>
         </main>
     </div>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 
 </html>

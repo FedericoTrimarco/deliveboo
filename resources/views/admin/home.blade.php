@@ -7,8 +7,10 @@
         <h1 class="mb-5">{{ $user->name }}</h1>
     </div>
 
-    <div class="container-fluid">
-        <div class="row">
+    {{--My Plates--}}
+    <h1>I MIEI PIATTI</h1>
+    <div class="container myPlates">
+        <div>
             @foreach($plates as $plate)
             <div class="col-2 mb-5">
                 <Card
