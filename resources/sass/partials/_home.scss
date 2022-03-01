@@ -18,13 +18,27 @@
 }
 
 .myPlates{
-    display: flex;
-    flex-wrap: nowrap;
     h1{
         color: $site-col-3;
         font-size: 40px;
         font-weight: 700;
         margin: 50px 0;
+    }
+    .myCards{
+        display: flex;
+        flex-wrap: nowrap;
+    }
+}
+
+button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $site-col-3;
+    border: 2px solid $site-secondary-col;
+    .arrow{
+        color: $site-secondary-col;
+        font-size: 25px;
     }
 }
 

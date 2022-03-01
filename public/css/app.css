@@ -11033,16 +11033,29 @@ a.text-dark:focus {
   color: #fff;
 }
 
-.myPlates {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
 .myPlates h1 {
   color: #FB8500;
   font-size: 40px;
   font-weight: 700;
   margin: 50px 0;
+}
+
+.myPlates .myCards {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #FB8500;
+  border: 2px solid #219EBC;
+}
+
+button .arrow {
+  color: #219EBC;
+  font-size: 25px;
 }
 
 .header {

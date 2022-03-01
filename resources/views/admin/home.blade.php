@@ -8,9 +8,10 @@
     </div>
 
     {{--My Plates--}}
-    <h1>I MIEI PIATTI</h1>
+    
     <div class="container myPlates">
-        <div>
+        <h1>I MIEI PIATTI</h1>
+        <div class="myCards multiple-items" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
             @foreach($plates as $plate)
             <div class="col-2 mb-5">
                 <Card
@@ -27,6 +28,9 @@
             </div>
             @endforeach
         </div>
+        <button>
+            <i class="fa-solid fa-angle-right arrow"></i>
+        </button>
      </div>  
 </div>
 @endsection

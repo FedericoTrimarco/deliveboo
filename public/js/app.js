@@ -50470,6 +50470,8 @@ __webpack_require__.r(__webpack_exports__);
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module 'js/carousel'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
  //import Card from './components/Card';
 
 /**
