@@ -104,7 +104,7 @@
                 </div>
             </aside>
             @endauth
-            <section class="flex-grow-1 p-4">
+            <section class="flex-grow-1 ">
                 @yield('content')
             </section>
         </main>
