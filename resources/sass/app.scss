@@ -15,7 +15,6 @@
 @import "partials/forms/index";
 
 // General styles
-
 .site-primary-btn {
     font-size: 17px;
     color: $site-primary-col;
@@ -32,5 +31,19 @@
     }
     &:focus {
         outline: 3px solid #b88400;
+    }
+}
+
+@media all and (max-width: 576px) {
+    .site-primary-btn {
+    padding: 0.5rem 1rem;
+    }
+
+    .small-title {
+        font-size: 2rem;
+    }
+
+    .small-font {
+        font-size: 1rem;
     }
 }

@@ -70,7 +70,7 @@ export default {
         color: $site-primary-col;
     }
     figure{
-        height: 400px;
+        height: 50%;
         img{
             object-fit: cover;
             object-position: center;
