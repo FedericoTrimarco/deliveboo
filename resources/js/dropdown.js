@@ -50,6 +50,13 @@ window.onload = () => {
                 } else input.classList.remove("focused");
             });
 
+            input.addEventListener("focusin", (event) => {
+                inputs.forEach((input) => input.classList.remove("focused"));
+                if (!input.classList.contains("focused")) {
+                    input.classList.add("focused");
+                }
+            });
+
             document.addEventListener("click", (e) => {
                 inputs.forEach((input) => {
                     if (!input.contains(e.target)) {
