@@ -11,15 +11,15 @@
             </figure>
 
             <!-- plate details -->
-            <div class="p-4 d-flex flex-column justify-content-between border h-50">
+            <div class="p-4 d-flex flex-column justify-content-between h-50">
                 <div class="description">
-                    <span><strong>Prezzo</strong>: {{ price }}€</span>
-                    <h3 class="mt-4">Ingredienti</h3>
+                    <span><strong>Prezzo:</strong> {{ price }}€</span>
+                    <h3 class="mt-4">Ingredienti:</h3>
                     <p>{{ description }}</p>
                 </div>
 
                 <!-- link for show plate -->
-                <div class="border text-right">
+                <div class="text-right">
                     <a :href="show" class="show py-2 px-3">Dettagli</a>
                 </div>
             </div>
@@ -63,8 +63,7 @@ export default {
         background-color: $site-item-col;
     }
     i{
-       
-        font-size: 20px;
+       font-size: 20px;
     }
     h1, h3, strong{
         font-weight: bold;
@@ -83,7 +82,7 @@ export default {
             left: 0;
         }
         span{
-            border: 3px solid red;
+            border: 3px solid currentColor;
             top: 20px;
             left: 20px;
             filter: none;
@@ -100,8 +99,7 @@ export default {
             font-size: 25px;
         }
         p{
-            width: 80%;
-            border: 2px solid red;
+            width: 150px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
