@@ -11022,8 +11022,8 @@ a.text-dark:focus {
   height: 500px;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: top;
-     object-position: top;
+  -o-object-position: center;
+     object-position: center;
   position: relative;
   box-shadow: 20px 20px 50px #8ECAE6;
 }
@@ -11031,15 +11031,10 @@ a.text-dark:focus {
 .hero h1 {
   position: absolute;
   right: 70px;
-  bottom: -8px;
+  bottom: 80px;
   font-size: 100px;
   color: #fff;
-  z-index: 2;
-}
-
-.hero .waves {
-  position: absolute;
-  bottom: 35px;
+  text-shadow: -13px -6px 15px #000000;
 }
 
 .myPlates {
@@ -11073,11 +11068,6 @@ a.text-dark:focus {
 .nav .menù:hover {
   color: #fff;
   text-decoration: none;
-}
-
-.waves1 {
-  position: relative;
-  margin-top: 100px;
 }
 
 .header {
@@ -11576,52 +11566,7 @@ body {
   background-color: #000000;
 }
 
-.form .form-box .form-checkbox {
-  width: 100%;
-  display: flex;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  align-items: center;
-}
-
-.form .form-box .form-checkbox > input {
-  display: none;
-  line-height: 1.5rem;
-}
-
-.form .form-box .form-checkbox > input:checked + .checkbox {
-  background-color: #000000;
-  border: 2px solid transparent;
-}
-
-.form .form-box .form-checkbox > input:checked + .checkbox > svg {
-  color: white;
-  display: flex;
-}
-
-.form .form-box .form-checkbox > span {
-  margin-left: 0.5rem;
-}
-
-.form .form-box .form-checkbox .checkbox {
-  width: 18px;
-  height: 18px;
-  display: flex;
-  position: relative;
-  align-items: center;
-  transition: 100ms ease;
-  justify-content: center;
-  background-color: #ffffff;
-  border: 2px solid #545454;
-}
-
-.form .form-box .form-checkbox .checkbox > svg {
-  display: none;
-}
-
-.form-box.invisible {
+.form .form-box .form-box.invisible {
   display: none;
 }
 
@@ -11669,7 +11614,12 @@ body {
   align-items: center;
   margin-bottom: 0.5rem;
   justify-content: center;
+  transition: border-color 0.2s ease;
   border: 2px solid var(--border-color);
+}
+
+.form-box .form-box-header .form-box-header-content > .input.focused {
+  --border-color: #000000;
 }
 
 .form-box .form-box-header .form-box-header-content > .input > .input-field {
@@ -11709,6 +11659,104 @@ body {
   line-height: 1.25rem;
   margin-bottom: 0.5rem;
   color: #e54937;
+}
+
+.form-checkbox {
+  width: 100%;
+  display: flex;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  align-items: center;
+}
+
+.form-checkbox > input {
+  display: none;
+  line-height: 1.5rem;
+}
+
+.form-checkbox > input:checked + .checkbox {
+  background-color: #000000;
+  border: 2px solid transparent;
+}
+
+.form-checkbox > input:checked + .checkbox > svg {
+  color: white;
+  display: flex;
+}
+
+.form-checkbox > span {
+  margin-left: 0.5rem;
+}
+
+.form-checkbox .checkbox {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  transition: 100ms ease;
+  justify-content: center;
+  background-color: #ffffff;
+  border: 2px solid #545454;
+}
+
+.form-checkbox .checkbox > svg {
+  display: none;
+}
+
+.input-field.select {
+  width: 100%;
+  display: flex;
+  cursor: default;
+  position: relative;
+  line-height: 1.5rem;
+  padding: 10px 0px 10px 10px;
+  background-color: #eeeeee;
+}
+
+.input-field.select > .input-field-placeholder {
+  width: 100%;
+  font-size: 1rem;
+  color: #545454;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  line-height: 1.5rem;
+}
+
+.input-field.select > .input-field-dropdown {
+  top: 90%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: none;
+  list-style: none;
+  max-height: 240px;
+  position: absolute;
+  overflow-y: scroll;
+  flex-direction: column;
+  -ms-scroll-chaining: none;
+      overscroll-behavior: none;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+}
+
+.input-field.select > .input-field-dropdown > .input-field-dropdown-item {
+  width: 100%;
+  cursor: pointer;
+}
+
+.input-field.select > .input-field-dropdown > .input-field-dropdown-item > label {
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.input-field.select > .input-field-dropdown > .input-field-dropdown-item:hover {
+  background-color: #fafafa;
 }
 
 .site-primary-btn {

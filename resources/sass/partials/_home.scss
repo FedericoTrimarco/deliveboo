@@ -6,22 +6,18 @@
         width: 100%;
         height: 500px;
         object-fit: cover;
-        object-position:top;
+        object-position: center;
         position: relative;
         box-shadow: 20px 20px 50px $site-tertiary-col;
         }
     h1{
         position:absolute;
-        right: +70px;
-        bottom: -8px;
+        right: 70px;
+        bottom: 80px;
         font-size:100px;
         color: #fff;
-        z-index: 2;
+        text-shadow: -13px -6px 15px #000000;
        } 
-       .waves{
-        position: absolute;
-        bottom: +35px;
-    }       
 }
 
 .myPlates{
@@ -53,10 +49,6 @@
       }  
     }
 
-.waves1 {
-    position: relative;
-    margin-top:100px;
-}
 
 
 
