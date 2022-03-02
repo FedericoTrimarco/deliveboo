@@ -1936,6 +1936,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Card',
   props: {
@@ -6330,7 +6332,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".not-visible[data-v-b9bc2c0a] {\n  filter: grayscale(100);\n}\n.card-plate[data-v-b9bc2c0a] {\n  background-color: #E0F4FE;\n  border-radius: 10px;\n  overflow: hidden;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n}\n.card-plate .show[data-v-b9bc2c0a] {\n  bottom: 20px;\n  right: 30px;\n  font-size: 1rem;\n  font-weight: bold;\n  text-decoration: none;\n  cursor: pointer;\n  border-radius: 30px;\n  background-color: #FFB703;\n}\n.card-plate i[data-v-b9bc2c0a] {\n  font-size: 20px;\n}\n.card-plate h1[data-v-b9bc2c0a], .card-plate h3[data-v-b9bc2c0a], .card-plate strong[data-v-b9bc2c0a] {\n  font-weight: bold;\n  color: #023047;\n}\n.card-plate figure img[data-v-b9bc2c0a] {\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.card-plate figure h1[data-v-b9bc2c0a] {\n  border-top-right-radius: 10px;\n  background-color: #8ecae683;\n  padding: 15px;\n  bottom: 0;\n  left: 0;\n}\n.card-plate figure span[data-v-b9bc2c0a] {\n  top: 20px;\n  left: 20px;\n  filter: none;\n  z-index: 10;\n  background: rgba(0, 0, 0, 0.609);\n  padding: 10px;\n  font-weight: bold;\n  font-size: 20px;\n  border-radius: 10px;\n}\n.card-plate .description span[data-v-b9bc2c0a] {\n  font-size: 30px;\n}\n.card-plate .description p[data-v-b9bc2c0a] {\n  font-size: 1rem;\n}", ""]);
+exports.push([module.i, ".not-visible[data-v-b9bc2c0a] {\n  filter: grayscale(100);\n}\n.card-plate[data-v-b9bc2c0a] {\n  background-color: #E0F4FE;\n  border-radius: 10px;\n  overflow: hidden;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n}\n.card-plate .show[data-v-b9bc2c0a] {\n  font-size: 1rem;\n  font-weight: bold;\n  text-decoration: none;\n  cursor: pointer;\n  border-radius: 30px;\n  background-color: #FFB703;\n}\n.card-plate i[data-v-b9bc2c0a] {\n  font-size: 20px;\n}\n.card-plate h1[data-v-b9bc2c0a], .card-plate h3[data-v-b9bc2c0a], .card-plate strong[data-v-b9bc2c0a] {\n  font-weight: bold;\n  color: #023047;\n}\n.card-plate figure[data-v-b9bc2c0a] {\n  height: 50%;\n}\n.card-plate figure img[data-v-b9bc2c0a] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n}\n.card-plate figure h1[data-v-b9bc2c0a] {\n  border-top-right-radius: 10px;\n  background-color: #8ecae683;\n  padding: 15px;\n  bottom: 0;\n  left: 0;\n}\n.card-plate figure span[data-v-b9bc2c0a] {\n  border: 3px solid red;\n  top: 20px;\n  left: 20px;\n  filter: none;\n  z-index: 10;\n  background: rgba(0, 0, 0, 0.609);\n  padding: 10px;\n  font-weight: bold;\n  font-size: 20px;\n  border-radius: 10px;\n}\n.card-plate .description span[data-v-b9bc2c0a] {\n  font-size: 30px;\n}\n.card-plate .description p[data-v-b9bc2c0a] {\n  width: 200px;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  font-size: 1rem;\n}", ""]);
 
 // exports
 
@@ -38182,17 +38184,17 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "h-100 card-plate position-relative" }, [
-      _c("figure", { staticClass: "h-50 position-relative" }, [
+  return _c("div", { staticClass: "h-100" }, [
+    _c("div", { staticClass: "h-100 card-plate d-flex flex-column" }, [
+      _c("figure", { staticClass: "position-relative " }, [
         _vm.plate
           ? _c("img", {
-              staticClass: "w-100 h-100 img-flud",
+              staticClass: "w-100 h-100 img-flud ",
               class: { "not-visible": _vm.visible == "0" },
               attrs: { src: _vm.img, alt: _vm.name + "-image" },
             })
           : _c("img", {
-              staticClass: "w-100 h-100 img-flud",
+              staticClass: "w-100 h-100 img-flud ",
               attrs: {
                 src: "http://www.persefone.it/blog/wp-content/themes/photobook/images/blank.png",
                 alt: "img-not-found",
@@ -38210,27 +38212,30 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "p-3" }, [
-        _c("div", { staticClass: "p-3 description" }, [
-          _c("span", [
-            _c("strong", [_vm._v("Prezzo")]),
-            _vm._v(": " + _vm._s(_vm.price) + "€"),
+      _c(
+        "div",
+        { staticClass: "p-4 d-flex flex-column justify-content-center" },
+        [
+          _c("div", { staticClass: "description" }, [
+            _c("span", [
+              _c("strong", [_vm._v("Prezzo")]),
+              _vm._v(": " + _vm._s(_vm.price) + "€"),
+            ]),
+            _vm._v(" "),
+            _c("h3", { staticClass: "mt-4" }, [_vm._v("Ingredienti")]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(_vm.description))]),
           ]),
           _vm._v(" "),
-          _c("h3", { staticClass: "mt-4" }, [_vm._v("Ingredienti")]),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(_vm.description))]),
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "show py-2 px-3 position-absolute",
-            attrs: { href: _vm.show },
-          },
-          [_vm._v("Dettagli")]
-        ),
-      ]),
+          _c("div", [
+            _c(
+              "a",
+              { staticClass: "show py-2 px-3", attrs: { href: _vm.show } },
+              [_vm._v("Dettagli")]
+            ),
+          ]),
+        ]
+      ),
     ]),
   ])
 }
@@ -50470,6 +50475,8 @@ __webpack_require__.r(__webpack_exports__);
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./dropdown */ "./resources/js/dropdown.js");
+
  //import Card from './components/Card';
 
 /**
@@ -50489,9 +50496,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Card', __webpack_require__(/*! ./components/Card.vue */ "./resources/js/components/Card.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("Card", __webpack_require__(/*! ./components/Card.vue */ "./resources/js/components/Card.vue")["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  el: '#app'
+  el: "#app"
 });
 
 /***/ }),
@@ -50625,6 +50632,88 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Card_vue_vue_type_template_id_b9bc2c0a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/dropdown.js":
+/*!**********************************!*\
+  !*** ./resources/js/dropdown.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+window.onload = function () {
+  var isVisible = false;
+  var dropdown = document.getElementById("custom-dropdown");
+
+  var inputs = _toConsumableArray(document.querySelectorAll(".input"));
+
+  var dropdownPlaceholder = document.querySelector(".input-field-placeholder");
+  var checkedItems = [];
+
+  if (dropdown) {
+    var ul = dropdown.querySelector(".input-field-dropdown");
+    checkedItems.push.apply(checkedItems, _toConsumableArray(ul.querySelectorAll("input:checked")));
+
+    if (checkedItems.length > 0) {
+      dropdownPlaceholder.textContent = "".concat(checkedItems.length, " delle tipologie disponibili selezionate");
+    }
+
+    dropdown.addEventListener("click", function (event) {
+      if (event.target.tagName === "INPUT") {
+        if (event.target.checked) checkedItems.push(event.target);else checkedItems.splice(checkedItems.indexOf(event.target), 1);
+        if (checkedItems.length > 0) dropdownPlaceholder.textContent = "".concat(checkedItems.length, " delle tipologie disponibili selezionate");else dropdownPlaceholder.textContent = "Seleziona la tipologia";
+      }
+
+      if (!isVisible) {
+        ul.style.display = "flex";
+        isVisible = true;
+      } else {
+        ul.style.display = "none";
+        isVisible = false;
+      }
+    });
+    document.addEventListener("click", function (e) {
+      if (!dropdown.contains(e.target)) {
+        ul.style.display = "none";
+        isVisible = false;
+      }
+    });
+  }
+
+  if (inputs) {
+    inputs.forEach(function (input) {
+      input.addEventListener("click", function (event) {
+        inputs.forEach(function (input) {
+          return input.classList.remove("focused");
+        });
+
+        if (!input.classList.contains("focused")) {
+          input.classList.add("focused");
+        } else input.classList.remove("focused");
+      });
+      document.addEventListener("click", function (e) {
+        inputs.forEach(function (input) {
+          if (!input.contains(e.target)) {
+            input.classList.remove("focused");
+          }
+        });
+      });
+    });
+  }
+};
 
 /***/ }),
 
