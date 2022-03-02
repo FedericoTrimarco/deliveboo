@@ -1,7 +1,6 @@
 window.onload = () => {
     let isVisible = false;
     const dropdown = document.getElementById("custom-dropdown");
-    const ul = dropdown.querySelector(".input-field-dropdown");
     const inputs = [...document.querySelectorAll(".input")];
     const dropdownPlaceholder = document.querySelector(
         ".input-field-placeholder"
@@ -9,6 +8,7 @@ window.onload = () => {
     const checkedItems = [];
 
     if (dropdown) {
+        const ul = dropdown.querySelector(".input-field-dropdown");
         checkedItems.push(...ul.querySelectorAll("input:checked"));
         if (checkedItems.length > 0) {
             dropdownPlaceholder.textContent = `${checkedItems.length} delle tipologie disponibili selezionate`;

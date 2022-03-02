@@ -5,12 +5,11 @@
     <div class="form">
         <div class="form-header">
             <h1 class="form-header-title">{{ __('Login') }}</h1>
-            <p class="form-header-links"><span>Oppure</span><a href="{{route('register')}}">Registrati</a></p>
         </div>
         <div class="form-body">
             <form enctype="multipart/form-data" method="POST" action="{{ route('login') }}">
                 @csrf
-                <div class="form-row">
+                <div class="form-row focusin">
                     <div class="form-box">
                         <div class="form-box-header">
                             <h1 class="form-box-header-title">Indirizzo Email <strong>*</strong></h1>
@@ -18,7 +17,7 @@
                                 <label class="input" for="email">
                                     <div class="input-field">
                                         <input type="email" id="email" placeholder="Inserisci un indirizzo email"
-                                            autocomplete="off" value="{{ old('email') }}" name="email" />
+                                            autocomplete="off" value="{{ old('email') }}" required name="email" />
                                     </div>
                                 </label>
                                 <p class="error"> @error('email') {{ $message }} @enderror </p>
@@ -35,7 +34,7 @@
                                 <label class="input" for="password">
                                     <div class="input-field">
                                         <input type="password" id="password" name="password"
-                                            placeholder="Inserisci una password" autocomplete="off" />
+                                            placeholder="Inserisci una password" required autocomplete="off" />
                                     </div>
                                 </label>
                                 <p class="error"> @error('password') {{ $message }} @enderror </p>
@@ -62,7 +61,7 @@
 
                 <div class="form-row">
                     <div class="form-box">
-                        <button type="submit" class="form-box-button">{{ __('Login') }}</button>
+                        <button type="submit" class="form-box-button site-primary-btn">{{ __('Login') }}</button>
                     </div>
                 </div>
             </form>
