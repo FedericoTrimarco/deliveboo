@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="form-wrapper">
     <div class="form">
@@ -115,6 +114,43 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="form-row">
+                    <div class="form-box">
+                        <div class="form-box-header">
+                            <h1 class="form-box-header-title">Cucina <strong>*</strong></h1>
+                            <div class="form-box-header-content">
+                                <label class="input" for="typology" id="custom-dropdown">
+                                    <div class="input-field select">
+                                        <span class="input-field-placeholder">Seleziona la tipologia</span>
+                                        <ul class="input-field-dropdown">
+                                            @foreach ($typologies as $typology)
+                                            <li class="input-field-dropdown-item">
+                                                <label class="form-checkbox" for="typ-{{$typology->id}}">
+                                                    <input type="checkbox" name="typologies[]" value="{{$typology->id}}"
+                                                        id="typ-{{$typology->id}}" @if (in_array($typology->id,
+                                                    old('typologies', []))) checked @endif >
+                                                    <div class="checkbox">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M5 13l4 4L19 7" />
+                                                        </svg>
+                                                    </div>
+                                                    <span>{{$typology->name}}</span>
+                                                </label>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </label>
+                                <p class="error"> @error('typologies') {{ $message }} @enderror </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
 
                 <div class="form-row">
                     <div class="form-box">
