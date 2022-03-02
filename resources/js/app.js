@@ -7,7 +7,8 @@
 require("./bootstrap");
 require("./dropdown");
 
-import Vue from "vue";
+import Vue from 'vue';
+
 //import Card from './components/Card';
 
 /**

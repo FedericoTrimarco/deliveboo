@@ -1,25 +1,27 @@
 <template>
-    <div>
-        <div class="h-100 card-plate position-relative">
+    <div class="h-100">
+        <div class="h-100 card-plate d-flex flex-column">
 
             <!-- plate-img -->
-            <figure class="h-50 position-relative">
-                <img v-if="plate" :src="img" :alt="`${name}-image`" class="w-100 h-100 img-flud" :class="{'not-visible' : visible == '0' }">
-                <img v-else src="http://www.persefone.it/blog/wp-content/themes/photobook/images/blank.png" alt="img-not-found" class="w-100 h-100 img-flud">
+            <figure class="position-relative ">
+                <img v-if="plate" :src="img" :alt="`${name}-image`" class="w-100 h-100 img-flud " :class="{'not-visible' : visible == '0' }">
+                <img v-else src="http://www.persefone.it/blog/wp-content/themes/photobook/images/blank.png" alt="img-not-found" class="w-100 h-100 img-flud ">
                 <span v-if="visible == '0'" class="text-danger position-absolute">NON VISIBILE</span>
                 <h1 class="position-absolute m-0">{{ name }}</h1>
             </figure>
 
             <!-- plate details -->
-            <div class="p-3">
-                <div class="p-3 description">
+            <div class="p-4 d-flex flex-column justify-content-center">
+                <div class="description">
                     <span><strong>Prezzo</strong>: {{ price }}€</span>
                     <h3 class="mt-4">Ingredienti</h3>
                     <p>{{ description }}</p>
                 </div>
 
                 <!-- link for show plate -->
-                <a :href="show" class="show py-2 px-3 position-absolute">Dettagli</a>
+                <div>
+                    <a :href="show" class="show py-2 px-3">Dettagli</a>
+                </div>
             </div>
 
         </div>
@@ -52,8 +54,6 @@ export default {
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     .show{
-        bottom: 20px;
-        right: 30px;
         font-size: 1rem;
         font-weight: bold;
         text-decoration: none;
@@ -70,8 +70,10 @@ export default {
         color: $site-primary-col;
     }
     figure{
+        height: 400px;
         img{
             object-fit: cover;
+            object-position: center;
         }
         h1{
             border-top-right-radius: 10px;
@@ -81,6 +83,7 @@ export default {
             left: 0;
         }
         span{
+            border: 3px solid red;
             top: 20px;
             left: 20px;
             filter: none;
@@ -97,6 +100,10 @@ export default {
             font-size: 30px;
         }
         p{
+            width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             font-size: 1rem;
         }
     }

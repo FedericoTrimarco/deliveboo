@@ -2,11 +2,9 @@ window.onload = () => {
     let isVisible = false;
     const dropdown = document.getElementById("custom-dropdown");
     const inputs = [...document.querySelectorAll(".input")];
-    const dropdownPlaceholder = document.querySelector(
-        ".input-field-placeholder"
-    );
+    const dropdownPlaceholder = document.querySelector(".input-field-placeholder");
     const checkedItems = [];
-
+    
     if (dropdown) {
         const ul = dropdown.querySelector(".input-field-dropdown");
         checkedItems.push(...ul.querySelectorAll("input:checked"));
