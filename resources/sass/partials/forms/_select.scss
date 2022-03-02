@@ -1,0 +1,48 @@
+.input-field.select {
+    width: 100%;
+    display: flex;
+    cursor: default;
+    position: relative;
+    line-height: 1.5rem;
+    padding: 10px 0px 10px 10px;
+    background-color: rgb(238, 238, 238);
+
+    > .input-field-placeholder {
+        width: 100%;
+        font-size: 1rem;
+        color: #545454;
+        user-select: none;
+        line-height: 1.5rem;
+    }
+
+    > .input-field-dropdown {
+        top: 90%;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        display: none;
+        list-style: none;
+        max-height: 240px;
+        position: absolute;
+        overflow-y: scroll;
+        flex-direction: column;
+        overscroll-behavior: none;
+        background-color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+
+        > .input-field-dropdown-item {
+            width: 100%;
+            cursor: pointer;
+
+            > label {
+                margin: 0;
+                padding: 0.5rem;
+            }
+
+            &:hover {
+                background-color: #fafafa;
+            }
+        }
+    }
+}
