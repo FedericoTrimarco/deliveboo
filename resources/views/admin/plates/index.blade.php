@@ -2,16 +2,16 @@
 
 @section('content')
 <div class="mx-5">
-    <nav class="d-flex align-items-center justify-content-between my-5">
-        <h2 class="my-3">
+    <nav class="d-flex flex-column flex-md-row flex-wrap align-items-center justify-content-between my-5">
+        <h2 class="my-3 small-title">
             Elenco piatti
         </h2>
-        <a class="site-primary-btn" href="{{route('admin.plates.create')}}">Aggiungi Piatto</a>
+        <a class="site-primary-btn small-font" href="{{route('admin.plates.create')}}">Aggiungi Piatto</a>
     </nav>
 </div>
 
 
-<div class="card-container">
+<div class="card-container px-4 pl-md-4 pl-lg-4">
     <div class="container-fluid">
 
         @if (session('deleted'))
@@ -23,7 +23,7 @@
                 {{-- Plates Cards --}}
             <section class="row plates-cards justify-content-start">
                 @foreach($plates as $plate)
-                    <div class="col-3 mb-5">
+                    <div class="col-sm-6 col-md-6 col-lg-3 px-3 mb-5">
                         <Card
                         class="mb-5 h-100"
                         img="{{asset('storage/' .$plate->image)}}"
