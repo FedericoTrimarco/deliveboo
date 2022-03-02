@@ -23,7 +23,7 @@
                 {{-- Plates Cards --}}
             <section class="row plates-cards justify-content-start">
                 @foreach($plates as $plate)
-                    <div class="col-sm-6 col-md-6 col-lg-3 mb-5">
+                    <div class="col-sm-6 col-md-6 col-lg-3 px-3 mb-5">
                         <Card
                         class="mb-5 h-100"
                         img="{{asset('storage/' .$plate->image)}}"
