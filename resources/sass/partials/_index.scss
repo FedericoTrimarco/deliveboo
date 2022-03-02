@@ -1,0 +1,11 @@
+@import "./show/index";
+
+.card-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.no-plates {
+    background-color: $site-tertiary-col;
+    border-radius: 8px;
+}

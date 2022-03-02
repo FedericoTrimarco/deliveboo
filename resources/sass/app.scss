@@ -1,10 +1,49 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'partials/variables';
-@import 'partials/header';
-@import 'partials/sidebar';
+@import "partials/variables";
+@import "partials/header";
+@import "partials/sidebar";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+
+@import "partials/home";
+@import "partials/index";
+@import "partials/show/index";
+@import "partials/forms/index";
+
+// General styles
+.site-primary-btn {
+    font-size: 17px;
+    color: $site-primary-col;
+    background-color: $site-item-col;
+    padding: 0.5rem 1.2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        color: white;
+        text-decoration: none;
+        background-color: #c78f00;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    }
+    &:focus {
+        outline: 3px solid #b88400;
+    }
+}
+
+@media all and (max-width: 576px) {
+    .site-primary-btn {
+    padding: 0.5rem 1rem;
+    }
+
+    .small-title {
+        font-size: 2rem;
+    }
+
+    .small-font {
+        font-size: 1.2rem;
+    }
+}

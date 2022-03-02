@@ -4,9 +4,11 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require("./bootstrap");
+require("./dropdown");
 
 import Vue from 'vue';
+
 //import Card from './components/Card';
 
 /**
@@ -27,10 +29,7 @@ import Vue from 'vue';
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-Vue.component(
-    'Card',
-    require('./components/Card.vue').default
-);
+Vue.component("Card", require("./components/Card.vue").default);
 const app = new Vue({
-    el: '#app',
+    el: "#app",
 });

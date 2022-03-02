@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Restaurant;
 use App\User;
+use App\Typology;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
@@ -55,10 +57,24 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:10', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/', 'confirmed'],
             'address' => ['required', 'string', 'max:100'],
-            'vat_number' => ['required', 'string', 'max:20'],
-            'cover' => ['nullable', 'file', 'mimes:jpeg,png,jpg'],
+            'vat_number' => ['required', 'numeric', 'digits:11'],
+            'cover' => ['required', 'file', 'mimes:jpeg,png,jpg'],
+            'typologies' => ['required', 'exists:typologies,id']
+        ], [
+            'name.required' => 'Questo campo è obbligatorio',
+            'email.required' => 'Questo campo è obbligatorio',
+            'password.required' => 'Questo è un campo obbligatorio',
+            'password.min' => 'La password deve contenere almeno :min caratteri',
+            'password.confirmed' => 'Le password inserite non sono uguali',
+            'address.required' => 'Questo campo è obbligatorio',
+            'password.regex' => 'Inserisci almeno una maiuscola, un numero e un carattere speciale',
+            'vat_number.required' => 'Questo campo è obbligatorio',
+            'vat_number.numeric' => 'Questo campo non può contenere lettere',
+            'vat_number.digits' => 'Questo campo deve contentere :digits caratteri',
+            'cover.required' => 'Questo campo è obbligatorio',
+            'typologies.required' => 'Questo campo è obbligatorio',
         ]);
     }
 
@@ -77,10 +93,9 @@ class RegisterController extends Controller
             'address' => $data['address'],
         ]);
 
-        
         $user->save();
         $user_id = $user->id;
-        
+
         $restaurant = Restaurant::create([
             'vat_number' => $data['vat_number'],
             'cover' => Storage::put('uploads/', $data['cover']),
@@ -89,7 +104,16 @@ class RegisterController extends Controller
 
         $restaurant->save();
 
-        return $user;
+        if (array_key_exists('typologies', $data)) {
+            $restaurant->typologies()->attach($data['typologies']);
+        }
 
+        return $user;
+    }
+
+    public function showRegistrationForm()
+    {
+        $typologies = Typology::all();
+        return view('auth.register', compact('typologies'));
     }
 }

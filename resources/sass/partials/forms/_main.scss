@@ -1,0 +1,203 @@
+body {
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.form-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 4rem;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form {
+    display: flex;
+    padding: 2rem;
+    max-width: 100%;
+    min-width: 720px;
+    border-radius: 4px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+    box-shadow: 0 2px 16px rgba($color: #000000, $alpha: 0.16);
+}
+
+.form .form-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.form .form-header-title {
+    margin: 0;
+    width: 100%;
+    padding: 0.25rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    letter-spacing: 0.02rem;
+}
+
+.form .form-header-links {
+    margin: 0;
+    width: 100%;
+    padding: 0.25rem;
+    display: flex;
+    font-size: 0.875rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.form .form-header-links span {
+    margin-right: 0.25rem;
+    line-height: 1.5rem;
+}
+
+.form .form-header-links a {
+    line-height: 1.5rem;
+}
+
+.form .form-body {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.form .form-body form {
+    width: 100%;
+}
+
+.form-box {
+    flex-grow: 1;
+    display: flex;
+    min-width: 50%;
+    flex-shrink: 0;
+    padding: 0.25rem;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form .form-box-button {
+    border: 0;
+    width: 100%;
+    outline: none;
+    display: flex;
+    padding: 0.75rem;
+    appearance: none;
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+}
+
+.form .form-box .form-box.invisible {
+    display: none;
+}
+
+.form-box .form-box-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-box .form-box-header .form-box-header-title {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0 0 4px 0;
+    line-height: 1.5rem;
+    color: rgb(0, 0, 0);
+    letter-spacing: 0.02rem;
+
+    > strong {
+        color: rgb(229, 73, 55);
+    }
+}
+
+.form-box .form-box-header .form-box-header-message {
+    color: #545454;
+    font-weight: 400;
+    margin: 0 0 4px 0;
+    line-height: 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.02rem;
+
+    > strong {
+        color: rgb(229, 73, 55);
+    }
+}
+
+.form-box .form-box-header .form-box-header-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-box .form-box-header .form-box-header-content > .input {
+    --border-color: transparent;
+
+    cursor: text;
+    display: flex;
+    line-height: 24px;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    justify-content: center;
+    transition: border-color 0.2s ease;
+    border: 2px solid var(--border-color);
+
+    &.focused {
+        --border-color: #000000;
+    }
+}
+
+.form-box .form-box-header .form-box-header-content > .input > .input-field {
+    width: 100%;
+    display: flex;
+    line-height: 1.5rem;
+    padding: 10px 0px 10px 10px;
+    background-color: rgb(238, 238, 238);
+}
+
+.form-box
+    .form-box-header
+    .form-box-header-content
+    > .input
+    > .input-field
+    > input {
+    width: 100%;
+    color: #282828;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border: medium none;
+    outline: currentcolor none medium;
+    background-color: rgb(238, 238, 238);
+}
+
+.form-box
+    .form-box-header
+    .form-box-header-content
+    > .input
+    > .input-field
+    > input::placeholder {
+    color: #545454;
+}
+
+.form-box .form-box-header .form-box-header-content > .error {
+    display: flex;
+    font-size: 13px;
+    padding: 0px 4px;
+    line-height: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: rgb(229, 73, 55);
+}

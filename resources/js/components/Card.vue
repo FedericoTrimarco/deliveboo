@@ -1,22 +1,29 @@
 <template>
-    <div>
-        <div class="card-plate h-100 position-relative">
+    <div class="h-100">
+        <div class="h-100 card-plate d-flex flex-column">
 
             <!-- plate-img -->
-            <figure class="h-50 position-relative">
-                <img :src="img" :alt="`${name}-image`" class="w-100 h-100 img-flud">
+            <figure class="position-relative h-50">
+                <img v-if="plate" :src="img" :alt="`${name}-image`" class="w-100 h-100 img-flud " :class="{'not-visible' : visible == '0' }">
+                <img v-else src="http://www.persefone.it/blog/wp-content/themes/photobook/images/blank.png" alt="img-not-found" class="w-100 h-100 img-flud ">
+                <span v-if="visible == '0'" class="text-danger position-absolute">NON VISIBILE</span>
                 <h1 class="position-absolute m-0">{{ name }}</h1>
             </figure>
 
             <!-- plate details -->
-            <div class="p-3 description">
-                <span><strong>Prezzo</strong>: {{ price }}€</span>
-                <h3 class="mt-4">Description</h3>
-                <p>{{ description }}</p>
+            <div class="p-4 d-flex flex-column justify-content-between h-50">
+                <div class="description">
+                    <span><strong>Prezzo:</strong> {{ price }}€</span>
+                    <h3 class="mt-4">Ingredienti:</h3>
+                    <p>{{ description }}</p>
+                </div>
+
+                <!-- link for show plate -->
+                <div class="text-right">
+                    <a :href="show" class="show py-2 px-3">Dettagli</a>
+                </div>
             </div>
 
-            <!-- link for show plate -->
-            <a :href="showProduct" class="py-2 px-3 position-absolute">View Details</a>
         </div>
     </div>
 </template>
@@ -25,30 +32,38 @@
 export default {
     name: 'Card',
     props: {
+        plate: String,
+        visible: String,
         img: String,
         name: String,
         price: String,
         description: String,
-        // showProduct: String,
+        show: String,
     }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../../sass/partials/_variables.scss';
+.not-visible{
+    filter: grayscale(100);
+}
 .card-plate{
     background-color: $site-card-bg;
     border-radius: 10px;
     overflow: hidden;
-    a{
-        bottom: 20px;
-        right: 30px;
-        font-size: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    .show{
+        font-size: 1.4rem;
         font-weight: bold;
         text-decoration: none;
         cursor: pointer;
         border-radius: 30px;
+        text-align: end;
         background-color: $site-item-col;
+    }
+    i{
+       font-size: 20px;
     }
     h1, h3, strong{
         font-weight: bold;
@@ -57,6 +72,7 @@ export default {
     figure{
         img{
             object-fit: cover;
+            object-position: center;
         }
         h1{
             border-top-right-radius: 10px;
@@ -64,14 +80,29 @@ export default {
             padding: 15px;
             bottom: 0;
             left: 0;
-            
+        }
+        span{
+            border: 3px solid currentColor;
+            top: 20px;
+            left: 20px;
+            filter: none;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.609);
+            padding: 10px;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 10px;
         }
     }
     .description{
         span{
-            font-size: 30px;
+            font-size: 25px;
         }
         p{
+            width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             font-size: 1rem;
         }
     }

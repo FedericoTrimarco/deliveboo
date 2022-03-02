@@ -17,13 +17,23 @@ header {
         }
     }
 
+    .site-text {
+        font-size: 1rem;
+        color: #126782;
+    }
+
+    .site-logo {
+        padding-left: 1.2rem ;
+        text-decoration: none;
+    }
+
     // .site-toggle {
     //     font-size: 2rem;
     //     color: $site-item-col;
     // }
 
     .site-drpdown-menu {
-        left: -75px;
+        left: -45px;
         background: $site-tertiary-col;
     }
 }
