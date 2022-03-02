@@ -3,7 +3,7 @@
         <div class="h-100 card-plate d-flex flex-column">
 
             <!-- plate-img -->
-            <figure class="position-relative ">
+            <figure class="position-relative h-50">
                 <img v-if="plate" :src="img" :alt="`${name}-image`" class="w-100 h-100 img-flud " :class="{'not-visible' : visible == '0' }">
                 <img v-else src="http://www.persefone.it/blog/wp-content/themes/photobook/images/blank.png" alt="img-not-found" class="w-100 h-100 img-flud ">
                 <span v-if="visible == '0'" class="text-danger position-absolute">NON VISIBILE</span>
@@ -11,15 +11,15 @@
             </figure>
 
             <!-- plate details -->
-            <div class="p-4 d-flex flex-column justify-content-center">
+            <div class="p-4 d-flex flex-column justify-content-between h-50">
                 <div class="description">
-                    <span><strong>Prezzo</strong>: {{ price }}€</span>
-                    <h3 class="mt-4">Ingredienti</h3>
+                    <span><strong>Prezzo:</strong> {{ price }}€</span>
+                    <h3 class="mt-4">Ingredienti:</h3>
                     <p>{{ description }}</p>
                 </div>
 
                 <!-- link for show plate -->
-                <div>
+                <div class="text-right">
                     <a :href="show" class="show py-2 px-3">Dettagli</a>
                 </div>
             </div>
@@ -54,23 +54,22 @@ export default {
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     .show{
-        font-size: 1rem;
+        font-size: 1.4rem;
         font-weight: bold;
         text-decoration: none;
         cursor: pointer;
         border-radius: 30px;
+        text-align: end;
         background-color: $site-item-col;
     }
     i{
-       
-        font-size: 20px;
+       font-size: 20px;
     }
     h1, h3, strong{
         font-weight: bold;
         color: $site-primary-col;
     }
     figure{
-        height: 400px;
         img{
             object-fit: cover;
             object-position: center;
@@ -83,7 +82,7 @@ export default {
             left: 0;
         }
         span{
-            border: 3px solid red;
+            border: 3px solid currentColor;
             top: 20px;
             left: 20px;
             filter: none;
@@ -97,10 +96,10 @@ export default {
     }
     .description{
         span{
-            font-size: 30px;
+            font-size: 25px;
         }
         p{
-            width: 200px;
+            width: 150px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
