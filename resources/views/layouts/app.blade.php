@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'DeliveBoo') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -28,12 +28,17 @@
         <header>
             <nav class="d-flex justify-content-between align-items-center p-3">
                 {{-- Left Side Of Navbar --}}
+
+                <a class="site-link text-uppercase" href="{{ url('/') }}">
+                    {{ config('app.name', 'DeliveBoo') }}
+
                 <a class="site-logo text-uppercase" href="{{ url('/') }}">
                     <img src="{{ asset('images/deliveboo-logo.png') }}" alt="deliveboo-logo">
+
                 </a>
 
                 {{-- Right Side Of Navbar --}}
-                <div class="">
+                <div>
                     <ul class="d-flex m-0">
                         <!-- Authentication Links -->
                         @guest
