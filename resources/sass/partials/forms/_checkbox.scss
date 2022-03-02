@@ -9,7 +9,7 @@
         line-height: 1.5rem;
 
         &:checked + .checkbox {
-            background-color: #000000;
+            background-color: #023047;
             border: 2px solid transparent;
             > svg {
                 color: white;
@@ -34,6 +34,22 @@
         border: 2px solid #545454;
         > svg {
             display: none;
+        }
+    }
+}
+
+.form-checkbox.only {
+    > input:last-of-type {
+        display: none;
+        line-height: 1.5rem;
+
+        &:checked + .checkbox {
+            background-color: #023047;
+            border: 2px solid transparent;
+            > svg {
+                color: white;
+                display: flex;
+            }
         }
     }
 }
