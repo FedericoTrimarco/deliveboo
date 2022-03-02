@@ -11042,10 +11042,10 @@ a.text-dark:focus {
 
 .myPlates .myCards {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
-button {
+#nextBtn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -11053,7 +11053,7 @@ button {
   border: 2px solid #219EBC;
 }
 
-button .arrow {
+#nextBtn .arrow {
   color: #219EBC;
   font-size: 25px;
 }

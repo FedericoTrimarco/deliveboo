@@ -8,10 +8,6 @@
     </div>
 
     {{--My Plates--}}
-    <button id="gennarino" >
-        ciao
-        {{-- <i class="fa-solid fa-angle-right arrow"></i> --}}
-    </button>
     
     <div class="container myPlates">
         <h1>I MIEI PIATTI</h1>
@@ -32,7 +28,6 @@
             </div>
             @endforeach
         </div>
-
     </div>  
 </div>
 @endsection
