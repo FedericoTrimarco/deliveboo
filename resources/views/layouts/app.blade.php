@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'DeliveBoo') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -27,11 +27,11 @@
             <nav class="d-flex justify-content-between align-items-center p-3">
                 {{-- Left Side Of Navbar --}}
                 <a class="site-link text-uppercase" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'DeliveBoo') }}
                 </a>
 
                 {{-- Right Side Of Navbar --}}
-                <div class="">
+                <div>
                     <ul class="d-flex m-0">
                         <!-- Authentication Links -->
                         @guest
