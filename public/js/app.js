@@ -50468,8 +50468,6 @@ __webpack_require__.r(__webpack_exports__);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./carousel */ "./resources/js/carousel.js");
-
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
  //import Card from './components/Card';
@@ -50540,37 +50538,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/carousel.js":
-/*!**********************************!*\
-  !*** ./resources/js/carousel.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// const button = document.querySelector('#nextBtn');
-// button.addEventListener('click', function () {
-//     myPlates.scrollTo({
-//         top: 0,
-//         left:1000,
-//         behavior: 'smooth',
-//     });
-// })
-// const cardContainer = document.querySelector('.myCards');
-// document.getElementById('nextBtn').addEventListener('click', () =>{
-//     console.log('ciao');
-// })
-// document.onclick = function (e){
-//     if(!document.body.contains(next)){
-//         console.log(e.target);
-//     }
-// }
-// next.addEventListener('click', () => {
-//     // console.log(next);
-//     cardContainer.scrollLeft += 100+'px';
-// })
 
 /***/ }),
 

@@ -18,17 +18,16 @@
 }
 
 .myPlates{
+
     h1{
         color: $site-col-3;
         font-size: 40px;
         font-weight: 700;
-        margin: 50px 0;
+        margin: 50px 0;        
     }
     .myCards{
         display: flex;
-        flex-wrap: nowrap;
-        overflow-x: scroll;
-        
+        flex-wrap: wrap;
     }
 }
 
