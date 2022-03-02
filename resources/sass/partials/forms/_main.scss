@@ -14,6 +14,15 @@ body {
     justify-content: center;
 }
 
+.form-wrapper.create-form {
+    padding: 0;
+    align-items: unset;
+}
+
+.form.create-form {
+    width: 100%;
+}
+
 .form {
     display: flex;
     padding: 2rem;
@@ -199,4 +208,21 @@ body {
     line-height: 1.25rem;
     margin-bottom: 0.5rem;
     color: rgb(229, 73, 55);
+}
+
+.input > .input-field > textarea {
+    width: 100%;
+    resize: none;
+    outline: none;
+    font-size: 1rem;
+    appearance: none;
+    color: currentColor;
+    line-height: 1.5rem;
+    border: medium none;
+    outline: currentcolor none medium;
+    background-color: rgb(238, 238, 238);
+
+    &:focus {
+        outline: none;
+    }
 }

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Plate;
+use App\Typology;
 use App\Category;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Plate;
 
 class PlateController extends Controller
 {
@@ -31,8 +32,9 @@ class PlateController extends Controller
     public function create()
     {
         $plates = Plate::all();
+        $typologies = Typology::all();
         $categories = Category::all();
-        return view('admin.plates.create', compact('plates', 'categories'));
+        return view('admin.plates.create', compact('plates', 'categories', 'typologies'));
     }
 
     /**
