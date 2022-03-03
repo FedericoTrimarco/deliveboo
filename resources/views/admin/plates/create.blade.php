@@ -88,7 +88,7 @@
                                 <label class="input" for="price">
                                     <div class="input-field">
                                         <input id="price" type="text" name="price" value="{{old('price')}}"
-                                            autocomplete="off" required pattern="[0-9]+">
+                                            autocomplete="off" required pattern="[0-9.]+">
                                     </div>
                                 </label>
                                 <p class="error"> @error('price') {{ $message }} @enderror </p>
