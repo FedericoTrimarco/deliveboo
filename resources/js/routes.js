@@ -4,11 +4,13 @@ import VueRouter from 'vue-router'
 
 // COMPONENTI PER ROTTA
 import Home from './pages/Home';
+import Restaurant from './pages/Restaurant';
 
 // ATTIVAZIONE ROUTER IN VUE
-Vue.use(VueRouter)
 
 // DEFINIZIONE DELLE ROTTE
+Vue.use(VueRouter)
+
 const router = new VueRouter({
     mode: 'history',
     linkExactActiveClass: 'active',
@@ -17,6 +19,11 @@ const router = new VueRouter({
             path: '/',
             name: 'home',
             component: Home,
+        },
+        {
+            path: '/restaurant/:id',
+            name: 'restaurant',
+            component: Restaurant,
         },
     ]
 })
