@@ -16,11 +16,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    
-    {{-- Font-awesome --}}
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css' integrity='sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==' crossorigin='anonymous'/>
 
-   
+    {{-- Font-awesome --}}
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
+        integrity='sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=='
+        crossorigin='anonymous' />
+
+
 </head>
 
 <body>
@@ -28,9 +30,6 @@
         <header>
             <nav class="d-flex justify-content-between align-items-center p-3">
                 {{-- Left Side Of Navbar --}}
-
-                <a class="site-link text-uppercase" href="{{ url('/') }}">
-                    {{ config('app.name', 'DeliveBoo') }}
 
                 <a class="site-logo text-uppercase" href="{{ url('/') }}">
                     <img src="{{ asset('images/deliveboo-logo.png') }}" alt="deliveboo-logo">
@@ -52,12 +51,14 @@
                         @endif
                         @else
                         <li class="dropdown pr-3 d-none d-md-block">
-                            <a id="navbarDropdown" class="site-text text-uppercase dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="site-text text-uppercase dropdown-toggle" href="#"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right site-drpdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item site-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <div class="dropdown-menu dropdown-menu-right site-drpdown-menu"
+                                aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item site-link" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -67,21 +68,26 @@
                         </li>
                         <li class="d-md-none">
                             <div class="dropdown">
-                                <button class="site-primary-btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" data-display="static" aria-expanded="false">
-                                Menu
+                                <button class="site-primary-btn dropdown-toggle" type="button" id="dropdownMenu"
+                                    data-toggle="dropdown" data-display="static" aria-expanded="false">
+                                    Menu
                                 </button>
                                 <div class="dropdown-menu site-drpdown-menu" aria-labelledby="dropdownMenu">
-                                    <a class="dropdown-item site-link @if (Request::route()->getName() == 'admin.home') active @endif" href="{{ route('admin.home') }}">
+                                    <a class="dropdown-item site-link @if (Request::route()->getName() == 'admin.home') active @endif"
+                                        href="{{ route('admin.home') }}">
                                         Dashboard
                                     </a>
-                                    <a class="dropdown-item site-link @if (Request::route()->getName() == 'admin.plates.index') active @endif" href="{{ route('admin.plates.index') }}">Piatti</a>
+                                    <a class="dropdown-item site-link @if (Request::route()->getName() == 'admin.plates.index') active @endif"
+                                        href="{{ route('admin.plates.index') }}">Piatti</a>
                                     <a class="dropdown-item site-link" href="#">Ordini</a>
                                     <div class="dropdown-divider"></div>
                                     <div>
-                                        <a class="dropdown-item site-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <a class="dropdown-item site-link" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
                                             @csrf
                                         </form>
                                     </div>
@@ -94,15 +100,17 @@
             </nav>
         </header>
 
-        <main  class="d-flex flex-grow-1">
-            @auth    
+        <main class="d-flex flex-grow-1">
+            @auth
             <aside class="navbar navbar-expand-md flex-column p-0">
                 <div class="site-aside collapse navbar-collapse navbarSupportedContent flex-column site-aside px-5">
                     <div class="d-flex flex-column align-items-center px-lg-5">
-                        <a class="site-link text-uppercase p-1 mt-3 @if (Request::route()->getName() == 'admin.home') active @endif" href="{{ route('admin.home') }}">
+                        <a class="site-link text-uppercase p-1 mt-3 @if (Request::route()->getName() == 'admin.home') active @endif"
+                            href="{{ route('admin.home') }}">
                             Dashboard
                         </a>
-                        <a class="site-link text-uppercase p-1 mt-3 @if (Request::route()->getName() == 'admin.plates.index') active @endif" href="{{ route('admin.plates.index') }}">Piatti</a>
+                        <a class="site-link text-uppercase p-1 mt-3 @if (Request::route()->getName() == 'admin.plates.index') active @endif"
+                            href="{{ route('admin.plates.index') }}">Piatti</a>
                         <a class="site-link text-uppercase p-1 mt-3" href="#">Ordini</a>
                     </div>
                 </div>
@@ -112,11 +120,11 @@
                 @yield('content')
             </section>
         </main>
-    </div> 
+    </div>
 
 
 
-   
+
     {{--Scripts--}}
     <script src="{{ asset('js/app.js') }}" defer></script>
 </body>

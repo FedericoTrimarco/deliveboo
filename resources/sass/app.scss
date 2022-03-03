@@ -34,9 +34,21 @@
     }
 }
 
+.site-badge {
+    display: flex;
+    font-weight: 600;
+    line-height: 1rem;
+    font-size: 0.75rem;
+    align-items: center;
+    color: $site-card-bg;
+    letter-spacing: 0.02rem;
+    justify-content: center;
+    background-color: $site-primary-col;
+}
+
 @media all and (max-width: 576px) {
     .site-primary-btn {
-    padding: 0.5rem 1rem;
+        padding: 0.5rem 1rem;
     }
 
     .small-title {

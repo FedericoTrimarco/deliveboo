@@ -38,7 +38,7 @@
                             <div class="form-box-header-content">
                                 <label class="input" for="category_id">
                                     <div class="input-field">
-                                        <select name="categories" name="category_id" id="category_id">
+                                        <select name="category_id" id="category_id">
                                             <option value="">Nessuna Categoria</option>
                                             @foreach ($categories as $category)
                                             <option value="{{ $category->id }}" @if ($category->id ==
@@ -65,7 +65,7 @@
                 <div class="form-row">
                     <div class="form-box">
                         <div class="form-box-header">
-                            <h1 class="form-box-header-title">Descizione <strong>*</strong></h1>
+                            <h1 class="form-box-header-title">Descrizione <strong>*</strong></h1>
                             <div class="form-box-header-content">
                                 <label class="input" for="description">
                                     <div class="input-field">
@@ -133,7 +133,7 @@
                 <div class="form-row">
                     <div class="form-box">
                         <div class="form-box-header">
-                            <h1 class="form-box-header-title">Rendere Visibile?<strong>*</strong></h1>
+                            <h1 class="form-box-header-title">Rendere Visibile?</h1>
                             <div class="form-box-header-content">
                                 <label class="custom-switch" for="visible">
                                     <input type="hidden" name="visible" class="switch-input" value="0" {{ old('visible')
