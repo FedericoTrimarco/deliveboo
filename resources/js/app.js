@@ -6,6 +6,7 @@
 
 require("./bootstrap");
 require("./dropdown");
+require("./front-office");
 
 import Vue from 'vue';
 
