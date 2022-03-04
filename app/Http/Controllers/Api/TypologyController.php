@@ -19,10 +19,14 @@ class TypologyController extends Controller
         
         $restaurants = User::join('restaurants', 'user_id', '=', 'users.id')
                 ->join('restaurant_typology', 'restaurant_id', '=', 'restaurants.id')
+                ->join('typologies', 'typologies.id', '=', 'restaurant_typology.typology_id')
                 ->where('restaurant_typology.typology_id', '=', $id)
-                ->select('users.name', 'users.address', 'users.email', 'restaurants.cover','restaurant_typology.typology_id')
+                ->select('users.name', 'users.address', 'users.email', 'restaurants.cover', 'restaurants.id AS restaurant_id','restaurant_typology.typology_id', 'typologies.name AS name_typology')
                 ->get();
-                
+        
+        foreach ($restaurants as $restaurant) {
+            $restaurant->cover = url('storage/' . $restaurant->cover);
+        }
         
         return response()->json($restaurants);
     }

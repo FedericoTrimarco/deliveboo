@@ -1,12 +1,17 @@
 <template>
     <section class="typology-restaurant">
-
+      <TypologyRestaurant :mainArray="restaurants"/>
     </section>
 </template>
 
 <script>
+import axios from 'axios'
+import TypologyRestaurant from '../components/TypologyRestaurant.vue';
 export default {
-    name: 'Restauant',
+    name: 'Restaurant',
+    components: {
+      TypologyRestaurant,
+    },
     data() {
       return {
         typologies: null,
@@ -15,7 +20,7 @@ export default {
     },
     created() {
         this.getTypologies();
-        this.getRetaurants();
+        this.getRestaurants();
     },
 
     methods: {
@@ -25,7 +30,7 @@ export default {
                 /* if (res.data.not_found) {
                     this.$router.push({ name: 'not_found' })
                 } else { */
-                    this.product = res.data;
+                    this.restaurants = res.data;
                 // }
             })
             .catch(err => log.error(err));
