@@ -6332,7 +6332,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".not-visible[data-v-b9bc2c0a] {\n  filter: grayscale(100);\n}\n.card-plate[data-v-b9bc2c0a] {\n  background-color: #E0F4FE;\n  border-radius: 10px;\n  overflow: hidden;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n}\n.card-plate .show[data-v-b9bc2c0a] {\n  font-size: 1rem;\n  font-weight: bold;\n  text-decoration: none;\n  cursor: pointer;\n  border-radius: 30px;\n  background-color: #FFB703;\n}\n.card-plate i[data-v-b9bc2c0a] {\n  font-size: 20px;\n}\n.card-plate h1[data-v-b9bc2c0a], .card-plate h3[data-v-b9bc2c0a], .card-plate strong[data-v-b9bc2c0a] {\n  font-weight: bold;\n  color: #023047;\n}\n.card-plate figure[data-v-b9bc2c0a] {\n  height: 50%;\n}\n.card-plate figure img[data-v-b9bc2c0a] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n}\n.card-plate figure h1[data-v-b9bc2c0a] {\n  border-top-right-radius: 10px;\n  background-color: #8ecae683;\n  padding: 15px;\n  bottom: 0;\n  left: 0;\n}\n.card-plate figure span[data-v-b9bc2c0a] {\n  border: 3px solid red;\n  top: 20px;\n  left: 20px;\n  filter: none;\n  z-index: 10;\n  background: rgba(0, 0, 0, 0.609);\n  padding: 10px;\n  font-weight: bold;\n  font-size: 20px;\n  border-radius: 10px;\n}\n.card-plate .description span[data-v-b9bc2c0a] {\n  font-size: 30px;\n}\n.card-plate .description p[data-v-b9bc2c0a] {\n  width: 200px;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  font-size: 1rem;\n}", ""]);
+exports.push([module.i, ".not-visible[data-v-b9bc2c0a] {\n  filter: grayscale(100);\n}\n.card-plate[data-v-b9bc2c0a] {\n  background-color: #E0F4FE;\n  border-radius: 10px;\n  overflow: hidden;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n}\n.card-plate .show[data-v-b9bc2c0a] {\n  font-size: 1.4rem;\n  font-weight: bold;\n  text-decoration: none;\n  cursor: pointer;\n  border-radius: 30px;\n  text-align: end;\n  background-color: #FFB703;\n}\n.card-plate i[data-v-b9bc2c0a] {\n  font-size: 20px;\n}\n.card-plate h1[data-v-b9bc2c0a], .card-plate h3[data-v-b9bc2c0a], .card-plate strong[data-v-b9bc2c0a] {\n  font-weight: bold;\n  color: #023047;\n}\n.card-plate figure img[data-v-b9bc2c0a] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n}\n.card-plate figure h1[data-v-b9bc2c0a] {\n  border-top-right-radius: 10px;\n  background-color: #8ecae683;\n  padding: 15px;\n  bottom: 0;\n  left: 0;\n}\n.card-plate figure span[data-v-b9bc2c0a] {\n  border: 3px solid currentColor;\n  top: 20px;\n  left: 20px;\n  filter: none;\n  z-index: 10;\n  background: rgba(0, 0, 0, 0.609);\n  padding: 10px;\n  font-weight: bold;\n  font-size: 20px;\n  border-radius: 10px;\n}\n.card-plate .description span[data-v-b9bc2c0a] {\n  font-size: 25px;\n}\n.card-plate .description p[data-v-b9bc2c0a] {\n  width: 150px;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  font-size: 1rem;\n}", ""]);
 
 // exports
 
@@ -38186,7 +38186,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "h-100" }, [
     _c("div", { staticClass: "h-100 card-plate d-flex flex-column" }, [
-      _c("figure", { staticClass: "position-relative " }, [
+      _c("figure", { staticClass: "position-relative h-50" }, [
         _vm.plate
           ? _c("img", {
               staticClass: "w-100 h-100 img-flud ",
@@ -38214,20 +38214,20 @@ var render = function () {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "p-4 d-flex flex-column justify-content-center" },
+        { staticClass: "p-4 d-flex flex-column justify-content-between h-50" },
         [
           _c("div", { staticClass: "description" }, [
             _c("span", [
-              _c("strong", [_vm._v("Prezzo")]),
-              _vm._v(": " + _vm._s(_vm.price) + "€"),
+              _c("strong", [_vm._v("Prezzo:")]),
+              _vm._v(" " + _vm._s(_vm.price) + "€"),
             ]),
             _vm._v(" "),
-            _c("h3", { staticClass: "mt-4" }, [_vm._v("Ingredienti")]),
+            _c("h3", { staticClass: "mt-4" }, [_vm._v("Ingredienti:")]),
             _vm._v(" "),
             _c("p", [_vm._v(_vm._s(_vm.description))]),
           ]),
           _vm._v(" "),
-          _c("div", [
+          _c("div", { staticClass: "text-right" }, [
             _c(
               "a",
               { staticClass: "show py-2 px-3", attrs: { href: _vm.show } },
@@ -50703,6 +50703,15 @@ window.onload = function () {
         if (!input.classList.contains("focused")) {
           input.classList.add("focused");
         } else input.classList.remove("focused");
+      });
+      input.addEventListener("focusin", function (event) {
+        inputs.forEach(function (input) {
+          return input.classList.remove("focused");
+        });
+
+        if (!input.classList.contains("focused")) {
+          input.classList.add("focused");
+        }
       });
       document.addEventListener("click", function (e) {
         inputs.forEach(function (input) {
