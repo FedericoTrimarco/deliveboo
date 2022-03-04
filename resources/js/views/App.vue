@@ -4,10 +4,7 @@
 
         <main>
             <!-- component matched by the route will render here -->
-            <router-view
-                :typologies="typologies"
-                :restaurants="restaurants"
-            >
+            <router-view>
             </router-view>
         </main>
     </div>
@@ -21,7 +18,7 @@ export default {
     components: {
         Header,
     },
-    data(){
+    /* data(){
         return{
             typologies: null,
             restaurants: null,
@@ -50,7 +47,7 @@ export default {
                 console.log(error);
             })
         },
-    }
+    } */
 }
 </script>
 
