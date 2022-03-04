@@ -3424,23 +3424,38 @@ var staticRenderFns = [
           _c("div", { staticClass: "col-lg-3 d-none d-lg-block" }, [
             _c("ul", [
               _c("li", [
-                _c("a", { attrs: { href: "" } }, [_vm._v("Linkedin-Luigi")]),
+                _c("a", { attrs: { href: "" } }, [
+                  _c("i", { staticClass: "fa-brands fa-linkedin me-1" }),
+                  _vm._v("Linkedin-Luigi Ragusa"),
+                ]),
               ]),
               _vm._v(" "),
               _c("li", [
-                _c("a", { attrs: { href: "" } }, [_vm._v("Linkedin-Luigi")]),
+                _c("a", { attrs: { href: "" } }, [
+                  _c("i", { staticClass: "fa-brands fa-linkedin me-1" }),
+                  _vm._v("Linkedin-Luigi Russo"),
+                ]),
               ]),
               _vm._v(" "),
               _c("li", [
-                _c("a", { attrs: { href: "" } }, [_vm._v("Linkedin-Federico")]),
+                _c("a", { attrs: { href: "" } }, [
+                  _c("i", { staticClass: "fa-brands fa-linkedin me-1" }),
+                  _vm._v("Linkedin-Federico Trimarco"),
+                ]),
               ]),
               _vm._v(" "),
               _c("li", [
-                _c("a", { attrs: { href: "" } }, [_vm._v("Linkedin-Vittorio")]),
+                _c("a", { attrs: { href: "" } }, [
+                  _c("i", { staticClass: "fa-brands fa-linkedin me-1" }),
+                  _vm._v("Linkedin-Vittorio Sbardella"),
+                ]),
               ]),
               _vm._v(" "),
               _c("li", [
-                _c("a", { attrs: { href: "" } }, [_vm._v("Linkedin-Misia")]),
+                _c("a", { attrs: { href: "" } }, [
+                  _c("i", { staticClass: "fa-brands fa-linkedin me-1" }),
+                  _vm._v("Linkedin-Misia Pierobon"),
+                ]),
               ]),
             ]),
           ]),
