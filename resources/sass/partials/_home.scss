@@ -11,13 +11,23 @@
         box-shadow: 20px 20px 50px $site-tertiary-col;
     }
         
-    h1{
+    .smallTit{
+        color: white;
+        text-shadow: 0 1px 0 rgb(131, 128, 128),
+                     0 2px 0 rgb(68, 68, 68),
+                     0 3px 0 rgb(68, 68, 68),
+                     0 4px 0 rgb(68, 68, 68),
+                     0 5px 0 rgb(68, 68, 68),
+                     0 6px 1px rgba(0,0,0,.1),
+                     0 0 5px rgba(0,0,0,.1),
+                     0 1px 3px rgba(0,0,0,.3),
+                     0 3px 5px rgba(0,0,0,.2),
+                     0 5px 10px rgba(0,0,0,.25),
+                     0 10px 10px rgba(0,0,0,.2),
+                     0 20px 20px rgba(0,0,0,.15);
         position:absolute;
         right: 70px;
         bottom: 30px;
-        font-size:100px;
-        color: #fff;
-        text-shadow: -13px -6px 6px #000000;
        }   
 }
 
@@ -55,11 +65,19 @@
             margin: 0 auto;
         }
         .but{
-            margin: 15px auto;
+            margin: 25px auto;
         }
-        .smallTit {
+    }
+    @media all and(max-width: 576px){
+        .smallTit{
+            font-size: 3rem;
+            margin: 0 auto;
+        }
+    }
+    @media all and(min-width: 578px){
+        .smallTit{
+            font-size: 7rem;
             padding-left: 2rem;
-            font-size: 2rem;
         }
     }
 

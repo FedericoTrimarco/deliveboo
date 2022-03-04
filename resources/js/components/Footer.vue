@@ -57,7 +57,7 @@
         <!--Horizontal Rule-->
         <div class="hr mb-4 mt-5"></div>
  
-        <!--Down-->
+        <!--Bottom-->
         <div class="d-flex justify-content-between">
             <div>
                <ul class="d-flex social">
