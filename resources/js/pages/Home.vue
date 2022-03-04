@@ -36,52 +36,6 @@
                             <span>Scopri di più</span>
                         </div>
                     </router-link>
-
-                    <!-- <router-link
-                        class="custom-card custom-card-long"
-                        to="/card"
-                    >
-                        <div class="custom-card-container">
-                            <div class="custom-card-container-image">
-                                <span class="placeholder">
-                                    <span class="image-text">Dessert</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="custom-card-texts">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Assumenda, repellendus.
-                            <span>Scopri di più</span>
-                        </div>
-                    </router-link>
-                    <router-link class="custom-card custom-card-long" to="/">
-                        <div class="custom-card-container">
-                            <div class="custom-card-container-image">
-                                <span class="placeholder">
-                                    <span class="image-text">Dessert</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="custom-card-texts">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Assumenda, repellendus.
-                            <span>Scopri di più</span>
-                        </div>
-                    </router-link>
-                    <router-link class="custom-card" to="/">
-                        <div class="custom-card-container">
-                            <div class="custom-card-container-image">
-                                <span class="placeholder">
-                                    <span class="image-text">Dessert</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="custom-card-texts">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Assumenda, repellendus.
-                            <span>Scopri di più</span>
-                        </div>
-                    </router-link> -->
                 </div>
             </div>
         </section>
@@ -90,41 +44,30 @@
             <div class="custom-section-wrapper">
                 <h2>I vostri ristoranti preferiti</h2>
                 <ul class="card-list">
-                    <li class="custom-card">
-                        <a href="#">
+                    <li
+                        class="custom-card"
+                        v-for="(restaurant, index) in restaurants"
+                        :key="`restaurant-${index}`"
+                    >
+                        <router-link
+                            :to="{
+                                name: 'restaurantDetails',
+                                params: { id: restaurant.id },
+                            }"
+                        >
                             <div class="custom-card-image-container">
-                                <div class="custom-card-image"></div>
+                                <div
+                                    class="custom-card-image"
+                                    :style="`background-image: url('../storage/${restaurant.cover}')`"
+                                ></div>
                             </div>
-                            <h3 class="custom-card-name">Restaurant Name</h3>
-                            <p class="custom-card-description"></p>
-                        </a>
-                    </li>
-                    <li class="custom-card">
-                        <a href="#">
-                            <div class="custom-card-image-container">
-                                <div class="custom-card-image"></div>
-                            </div>
-                            <h3 class="custom-card-name">Restaurant Name</h3>
-                            <p class="custom-card-description"></p>
-                        </a>
-                    </li>
-                    <li class="custom-card">
-                        <a href="#">
-                            <div class="custom-card-image-container">
-                                <div class="custom-card-image"></div>
-                            </div>
-                            <h3 class="custom-card-name">Restaurant Name</h3>
-                            <p class="custom-card-description"></p>
-                        </a>
-                    </li>
-                    <li class="custom-card">
-                        <a href="#">
-                            <div class="custom-card-image-container">
-                                <div class="custom-card-image"></div>
-                            </div>
-                            <h3 class="custom-card-name">Restaurant Name</h3>
-                            <p class="custom-card-description"></p>
-                        </a>
+                            <h3 class="custom-card-name">
+                                {{ restaurant.name }}
+                            </h3>
+                            <p class="custom-card-description">
+                                {{ restaurant.id }}
+                            </p>
+                        </router-link>
                     </li>
                 </ul>
             </div>
@@ -139,16 +82,28 @@ export default {
     data() {
         return {
             typologies: null,
+            restaurants: null,
         };
     },
     created() {
         this.randomCategory();
+        this.randomRestaurant();
     },
     methods: {
         randomCategory() {
             Axios.get("http://127.0.0.1:8000/api/typologies")
                 .then((res) => {
                     this.typologies = res.data.splice(0, 4);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        randomRestaurant() {
+            Axios.get("http://127.0.0.1:8000/api/restaurants")
+                .then((res) => {
+                    this.restaurants = res.data.splice(0, 9);
+                    console.log(this.restaurants);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -282,7 +237,6 @@ export default {
                             height: 100%;
                             position: absolute;
                             background-size: cover;
-                            background-color: red;
                         }
                     }
 
