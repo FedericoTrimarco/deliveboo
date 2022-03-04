@@ -10,6 +10,7 @@
                         :key="`typology-${index}`"
                     >
                         <input
+                            :value="el.name"
                             v-model="checkedTypologies"
                             :name="el.name"
                             :id="el.name"
