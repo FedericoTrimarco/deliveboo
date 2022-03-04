@@ -1,12 +1,19 @@
 <template>
     <section class="typology-restaurant">
-
+      <Aside 
+        :mainArray="typologies"/>
     </section>
 </template>
 
 <script>
+import Aside from '../components/Aside';
+import axios from 'axios';
+
 export default {
-    name: 'Restauant',
+    name: 'Restaurant',
+    components: {
+      Aside,
+    },
     data() {
       return {
         typologies: null,
@@ -15,7 +22,7 @@ export default {
     },
     created() {
         this.getTypologies();
-        this.getRetaurants();
+        this.getRestaurants();
     },
 
     methods: {
