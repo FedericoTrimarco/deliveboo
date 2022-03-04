@@ -8,12 +8,12 @@
                         <img class="logo" src="../images/deliveboo-logo.png" alt="">
                     </div>
                     <div class="app" >
-                        <img class="me-3" src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/6a17d190539d6845b10955e8ba585d36.svg" alt="">
-                        <img src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/75a8c9ee29967730c0674e7fa870e582.png" alt="">
+                        <img class="me-3 mt-2" src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/6a17d190539d6845b10955e8ba585d36.svg" alt="">
+                        <img class="mt-2 me-3" src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/75a8c9ee29967730c0674e7fa870e582.png" alt="">
                     </div> 
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-3 d-none d-lg-block">
                     <ul>
                         <li>
                             <a href="">Aggiungi il tuo ristorante</a>
@@ -33,7 +33,7 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-3 d-none d-lg-block">
                     <ul>
                         <li>
                             <a href="">Linkedin-Luigi</a>
@@ -59,7 +59,7 @@
  
         <!--Bottom-->
         <div class="d-flex justify-content-between">
-            <div>
+            <div class="socialBox" >
                <ul class="d-flex social">
                    <li>
                        <a href=""><i class="fa-brands fa-facebook-square"></i></a>
@@ -74,7 +74,7 @@
             </div>
 
             <div>
-                <ul class="d-flex list">
+                <ul class="d-flex list d-none d-lg-block">
                    <li>
                        <a href="">Informativa sulla privacy</a>
                    </li>
@@ -89,7 +89,7 @@
           </div>
 
           <!--Privacy-->
-            <div>
+            <div class="d-none d-lg-block" >
                 <ul class="d-flex list justify-content-end">
                     <li>
                         Questo sito è protetto da reCAPTCHA. Si applicano 
@@ -166,6 +166,17 @@ footer{
         height: 2px;
         background-color: #fff;
     }
-}
 
+}
+    // Media Query
+    @media all and(max-width: 991.98px){
+        .top{
+            text-align: center;
+        }
+    }
+    @media all and(max-width: 991.98px) {
+        .socialBox {
+            margin: 0 auto;
+        }
+     }
 </style>

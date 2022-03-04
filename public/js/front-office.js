@@ -2182,7 +2182,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "footer[data-v-61a7c374] {\n  width: 100%;\n  height: 600px;\n  background-color: #000;\n  color: #fff;\n}\nfooter .foot[data-v-61a7c374] {\n  padding: 80px 70px;\n}\nfooter .foot .logo[data-v-61a7c374] {\n  width: 135px;\n}\nfooter .box[data-v-61a7c374] {\n  height: 250px;\n}\nfooter .box .top[data-v-61a7c374] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\nfooter .box .app img[data-v-61a7c374] {\n  width: 135px;\n}\nfooter li[data-v-61a7c374] {\n  list-style: none;\n  line-height: 40px;\n}\nfooter a[data-v-61a7c374] {\n  text-decoration: none;\n  color: #fff;\n}\nfooter a[data-v-61a7c374]:hover {\n  text-decoration: underline;\n  color: #fff;\n}\nfooter .social[data-v-61a7c374] {\n  padding-left: 0;\n}\nfooter .social a[data-v-61a7c374] {\n  font-size: 18px;\n  margin-right: 35px;\n}\nfooter .list li[data-v-61a7c374] {\n  margin-left: 35px;\n}\nfooter .hr[data-v-61a7c374] {\n  width: 100%;\n  height: 2px;\n  background-color: #fff;\n}", ""]);
+exports.push([module.i, "footer[data-v-61a7c374] {\n  width: 100%;\n  height: 600px;\n  background-color: #000;\n  color: #fff;\n}\nfooter .foot[data-v-61a7c374] {\n  padding: 80px 70px;\n}\nfooter .foot .logo[data-v-61a7c374] {\n  width: 135px;\n}\nfooter .box[data-v-61a7c374] {\n  height: 250px;\n}\nfooter .box .top[data-v-61a7c374] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\nfooter .box .app img[data-v-61a7c374] {\n  width: 135px;\n}\nfooter li[data-v-61a7c374] {\n  list-style: none;\n  line-height: 40px;\n}\nfooter a[data-v-61a7c374] {\n  text-decoration: none;\n  color: #fff;\n}\nfooter a[data-v-61a7c374]:hover {\n  text-decoration: underline;\n  color: #fff;\n}\nfooter .social[data-v-61a7c374] {\n  padding-left: 0;\n}\nfooter .social a[data-v-61a7c374] {\n  font-size: 18px;\n  margin-right: 35px;\n}\nfooter .list li[data-v-61a7c374] {\n  margin-left: 35px;\n}\nfooter .hr[data-v-61a7c374] {\n  width: 100%;\n  height: 2px;\n  background-color: #fff;\n}\n@media all and (max-width: 991.98px) {\n.top[data-v-61a7c374] {\n    text-align: center;\n}\n}\n@media all and (max-width: 991.98px) {\n.socialBox[data-v-61a7c374] {\n    margin: 0 auto;\n}\n}", ""]);
 
 // exports
 
@@ -3370,7 +3370,7 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("div", { staticClass: "app" }, [
               _c("img", {
-                staticClass: "me-3",
+                staticClass: "me-3 mt-2",
                 attrs: {
                   src: "https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/6a17d190539d6845b10955e8ba585d36.svg",
                   alt: "",
@@ -3378,6 +3378,7 @@ var staticRenderFns = [
               }),
               _vm._v(" "),
               _c("img", {
+                staticClass: "mt-2 me-3",
                 attrs: {
                   src: "https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/75a8c9ee29967730c0674e7fa870e582.png",
                   alt: "",
@@ -3386,7 +3387,7 @@ var staticRenderFns = [
             ]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-lg-3" }, [
+          _c("div", { staticClass: "col-lg-3 d-none d-lg-block" }, [
             _c("ul", [
               _c("li", [
                 _c("a", { attrs: { href: "" } }, [
@@ -3420,7 +3421,7 @@ var staticRenderFns = [
             ]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-lg-3" }, [
+          _c("div", { staticClass: "col-lg-3 d-none d-lg-block" }, [
             _c("ul", [
               _c("li", [
                 _c("a", { attrs: { href: "" } }, [_vm._v("Linkedin-Luigi")]),
@@ -3448,7 +3449,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "hr mb-4 mt-5" }),
         _vm._v(" "),
         _c("div", { staticClass: "d-flex justify-content-between" }, [
-          _c("div", [
+          _c("div", { staticClass: "socialBox" }, [
             _c("ul", { staticClass: "d-flex social" }, [
               _c("li", [
                 _c("a", { attrs: { href: "" } }, [
@@ -3471,7 +3472,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("div", [
-            _c("ul", { staticClass: "d-flex list" }, [
+            _c("ul", { staticClass: "d-flex list d-none d-lg-block" }, [
               _c("li", [
                 _c("a", { attrs: { href: "" } }, [
                   _vm._v("Informativa sulla privacy"),
@@ -3489,7 +3490,7 @@ var staticRenderFns = [
           ]),
         ]),
         _vm._v(" "),
-        _c("div", [
+        _c("div", { staticClass: "d-none d-lg-block" }, [
           _c("ul", { staticClass: "d-flex list justify-content-end" }, [
             _c("li", [
               _vm._v(
