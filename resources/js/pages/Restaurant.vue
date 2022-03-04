@@ -1,6 +1,6 @@
 <template>
-    <section class="typology-restaurant">
-      <Aside 
+    <section class="d-flex typology-restaurant vh-100">
+      <Aside class="flex-grow-1"
         :mainArray="typologies"/>
     </section>
 </template>
@@ -49,6 +49,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 
 </style>
