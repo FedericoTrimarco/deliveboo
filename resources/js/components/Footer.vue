@@ -10,9 +10,9 @@
                     <div class="app" >
                         <img class="me-3" src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/6a17d190539d6845b10955e8ba585d36.svg" alt="">
                         <img src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/75a8c9ee29967730c0674e7fa870e582.png" alt="">
-                    </div>
-    
+                    </div> 
                 </div>
+
                 <div class="col-lg-3">
                     <ul>
                         <li>
@@ -32,6 +32,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <div class="col-lg-3">
                     <ul>
                         <li>
@@ -52,9 +53,10 @@
                     </ul>
                 </div>
             </div>
-
-            <hr class="mt-5 mb-5">
         
+        <!--Horizontal Rule-->
+        <div class="hr mb-4 mt-5"></div>
+ 
         <!--Down-->
         <div class="d-flex justify-content-between">
             <div>
@@ -70,8 +72,9 @@
                    </li>
                </ul>
             </div>
+
             <div>
-               <ul class="d-flex list">
+                <ul class="d-flex list">
                    <li>
                        <a href="">Informativa sulla privacy</a>
                    </li>
@@ -84,6 +87,7 @@
                 </ul>
             </div>
           </div>
+
           <!--Privacy-->
             <div>
                 <ul class="d-flex list justify-content-end">
@@ -100,7 +104,6 @@
             </div>   
         </div> 
     </footer>
-  
 </template>
 
 <script>
@@ -138,7 +141,6 @@ footer{
         list-style: none;
         line-height: 40px;
     }
-
     a{
         text-decoration:none;
         color: #fff;
@@ -158,6 +160,11 @@ footer{
         li{
             margin-left: 35px;
         }
+    }
+    .hr{
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
     }
 }
 

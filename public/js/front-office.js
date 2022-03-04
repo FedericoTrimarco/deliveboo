@@ -2013,6 +2013,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Footer'
 });
@@ -2179,7 +2182,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "footer[data-v-61a7c374] {\n  width: 100%;\n  height: 600px;\n  background-color: #000;\n  color: #fff;\n}\nfooter .foot[data-v-61a7c374] {\n  padding: 80px 70px;\n}\nfooter .foot .logo[data-v-61a7c374] {\n  width: 135px;\n}\nfooter .box[data-v-61a7c374] {\n  height: 250px;\n}\nfooter .box .top[data-v-61a7c374] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\nfooter .box .app img[data-v-61a7c374] {\n  width: 135px;\n}\nfooter li[data-v-61a7c374] {\n  list-style: none;\n  line-height: 40px;\n}\nfooter a[data-v-61a7c374] {\n  text-decoration: none;\n  color: #fff;\n}\nfooter a[data-v-61a7c374]:hover {\n  text-decoration: underline;\n  color: #fff;\n}\nfooter .social[data-v-61a7c374] {\n  padding-left: 0;\n}\nfooter .social a[data-v-61a7c374] {\n  font-size: 18px;\n  margin-right: 35px;\n}\nfooter .list li[data-v-61a7c374] {\n  margin-left: 35px;\n}", ""]);
+exports.push([module.i, "footer[data-v-61a7c374] {\n  width: 100%;\n  height: 600px;\n  background-color: #000;\n  color: #fff;\n}\nfooter .foot[data-v-61a7c374] {\n  padding: 80px 70px;\n}\nfooter .foot .logo[data-v-61a7c374] {\n  width: 135px;\n}\nfooter .box[data-v-61a7c374] {\n  height: 250px;\n}\nfooter .box .top[data-v-61a7c374] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\nfooter .box .app img[data-v-61a7c374] {\n  width: 135px;\n}\nfooter li[data-v-61a7c374] {\n  list-style: none;\n  line-height: 40px;\n}\nfooter a[data-v-61a7c374] {\n  text-decoration: none;\n  color: #fff;\n}\nfooter a[data-v-61a7c374]:hover {\n  text-decoration: underline;\n  color: #fff;\n}\nfooter .social[data-v-61a7c374] {\n  padding-left: 0;\n}\nfooter .social a[data-v-61a7c374] {\n  font-size: 18px;\n  margin-right: 35px;\n}\nfooter .list li[data-v-61a7c374] {\n  margin-left: 35px;\n}\nfooter .hr[data-v-61a7c374] {\n  width: 100%;\n  height: 2px;\n  background-color: #fff;\n}", ""]);
 
 // exports
 
@@ -3442,7 +3445,7 @@ var staticRenderFns = [
           ]),
         ]),
         _vm._v(" "),
-        _c("hr", { staticClass: "mt-5 mb-5" }),
+        _c("div", { staticClass: "hr mb-4 mt-5" }),
         _vm._v(" "),
         _c("div", { staticClass: "d-flex justify-content-between" }, [
           _c("div", [
