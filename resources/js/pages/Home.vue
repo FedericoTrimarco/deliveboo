@@ -4,7 +4,43 @@
             <div class="custom-section-wrapper">
                 <h2>I vostri tipici preferiti</h2>
                 <div class="card-wrapper">
-                    <router-link class="custom-card" to="/">
+                    <router-link
+                        class="custom-card"
+                        :class="{
+                            'custom-card-long': index === 0 || index === 3,
+                        }"
+                        :to="{
+                            name: 'restaurant',
+                            params: { id: typology.id },
+                        }"
+                        v-for="(typology, index) in typologies"
+                        :key="`typology-link-${typology.name}`"
+                    >
+                        <div class="custom-card-container">
+                            <div class="custom-card-container-image">
+                                <span
+                                    class="custom-placeholder"
+                                    :style="`background-image: url(${require('../images/' +
+                                        typology.name.toLowerCase() +
+                                        '.jpg')})`"
+                                >
+                                    <span class="image-text">{{
+                                        typology.name
+                                    }}</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="custom-card-texts">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing
+                            elit. Assumenda, repellendus.
+                            <span>Scopri di più</span>
+                        </div>
+                    </router-link>
+
+                    <!-- <router-link
+                        class="custom-card custom-card-long"
+                        to="/card"
+                    >
                         <div class="custom-card-container">
                             <div class="custom-card-container-image">
                                 <span class="placeholder">
@@ -32,20 +68,6 @@
                             <span>Scopri di più</span>
                         </div>
                     </router-link>
-                    <router-link class="custom-card custom-card-long" to="/">
-                        <div class="custom-card-container">
-                            <div class="custom-card-container-image">
-                                <span class="placeholder">
-                                    <span class="image-text">Dessert</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="custom-card-texts">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Assumenda, repellendus.
-                            <span>Scopri di più</span>
-                        </div>
-                    </router-link>
                     <router-link class="custom-card" to="/">
                         <div class="custom-card-container">
                             <div class="custom-card-container-image">
@@ -59,7 +81,7 @@
                             elit. Assumenda, repellendus.
                             <span>Scopri di più</span>
                         </div>
-                    </router-link>
+                    </router-link> -->
                 </div>
             </div>
         </section>
@@ -111,8 +133,28 @@
 </template>
 
 <script>
+import Axios from "axios";
 export default {
     name: "Home",
+    data() {
+        return {
+            typologies: null,
+        };
+    },
+    created() {
+        this.randomCategory();
+    },
+    methods: {
+        randomCategory() {
+            Axios.get("http://127.0.0.1:8000/api/typologies")
+                .then((res) => {
+                    this.typologies = res.data.splice(0, 4);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+    },
 };
 </script>
 
@@ -168,24 +210,29 @@ export default {
                         height: 100%;
                         position: absolute;
 
-                        .placeholder {
+                        .custom-placeholder {
                             width: 100%;
                             height: 100%;
                             display: flex;
-                            background: #000;
                             align-items: center;
+                            background-size: cover;
                             justify-content: center;
+                            background-repeat: no-repeat;
 
                             > .image-text {
                                 width: 100%;
                                 height: 100%;
                                 display: flex;
+                                color: white;
                                 font-weight: 600;
                                 font-size: 1.5rem;
                                 line-height: 32px;
                                 position: absolute;
                                 align-items: center;
                                 justify-content: center;
+                                background-color: transparent;
+                                text-shadow: 0 1px 8px
+                                    rgba($color: #000000, $alpha: 0.1);
                             }
                         }
                     }
