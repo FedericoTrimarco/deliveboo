@@ -1,18 +1,25 @@
 <template>
     <section class="d-flex typology-restaurant vh-100">
-      <Aside class="flex-grow-1"
-        :mainArray="typologies"/>
+      <Aside
+        class="flex-grow-1"
+        :mainArray="typologies"
+      />
+      <TypologyRestaurant :mainArray="restaurants"/>
+
     </section>
 </template>
 
 <script>
-import Aside from '../components/Aside';
 import axios from 'axios';
+import Aside from '../components/Aside';
+import TypologyRestaurant from '../components/TypologyRestaurant.vue';
+
 
 export default {
     name: 'Restaurant',
     components: {
       Aside,
+      TypologyRestaurant,
     },
     data() {
       return {
@@ -32,7 +39,7 @@ export default {
                 /* if (res.data.not_found) {
                     this.$router.push({ name: 'not_found' })
                 } else { */
-                    this.product = res.data;
+                    this.restaurants = res.data;
                 // }
             })
             .catch(err => log.error(err));
