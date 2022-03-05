@@ -1,19 +1,17 @@
 <template>
-    <section class="container">
-        <router-link 
-                    v-for="typology in typologies"
-                    :key="`prodotto-${typology.id}`"
-                    :to="{name: 'restaurant', params: { id: typology.id }}"
-                >
-            {{typology.name}}
-        </router-link>
-    </section>
+    <div>
+        <Hero />
+    </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Hero from '../components/Hero.vue'
 export default {
     name: 'Home',
+    components: {
+        Hero,
+    },
     data(){
         return{
             typologies: null,
@@ -43,6 +41,7 @@ export default {
                 console.log(error);
             })
         },
+
     }
 }
 </script>
