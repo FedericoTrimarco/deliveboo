@@ -1,6 +1,6 @@
 <template>
-    <section class="restaurants d-flex flex-column p-4">
-        <div class="container-fluid">
+    <section class="restaurants d-flex flex-column ps-4">
+        <div class="container">
             <div class="d-flex">
                 <div v-for="(el, id) in mainArray" :key="id" class="card-restaurant p-2">
                     <router-link class="h-100 text-decoration-none text-dark" :to="{name: 'restaurantDetails', params: { id: el.restaurant_id }}">
@@ -37,6 +37,7 @@ export default {
         .container-fluid{
             border: 2px solid blue;
         } */
+        padding-top: 150px;
         width: 80%;
         .card-restaurant {
             width: 300px;
