@@ -20,4 +20,6 @@ Route::namespace('Api')->group(function() {
     // Restaurant get api route
     Route::get('/restaurants', 'RestaurantController@index');
     
+    //typologie_restaurant
+    Route::get('/typologies/{id}', 'TypologyController@show');
 });
