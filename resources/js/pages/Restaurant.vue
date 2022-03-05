@@ -1,11 +1,11 @@
 <template>
     <section class="d-flex typology-restaurant vh-100">
       <Aside
-        class="flex-grow-1"
         :mainArray="typologies"
       />
+      
       <TypologyRestaurant :mainArray="restaurants"/>
-
+      
     </section>
 </template>
 

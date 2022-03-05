@@ -118,8 +118,8 @@ footer{
     height: 600px;
     background-color: #000;
     color: #fff;
+    padding: 80px 70px;
     .foot{
-        padding: 80px 70px;
         .logo{
             width: 135px;
         }

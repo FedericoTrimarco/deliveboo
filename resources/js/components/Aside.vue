@@ -2,7 +2,7 @@
     <div>
         <div class="aside row h-100">
             <aside
-                class="aside-wrapper col-md-4 col-lg-3 col-xxl-2 h-100 px-3 px-lg-5"
+                class="aside-wrapper col-md-4 col-lg-3 col-xxl-2 h-100 px-3 px-lg-5 w-100"
             >
                 <div class="container">
                     <h5 class="pt-5 ps-3 pb-3">Filtra per Tipo:</h5>
