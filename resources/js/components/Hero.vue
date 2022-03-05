@@ -2,7 +2,7 @@
     <div class="front-hero">
         <div class="container mb-3 d-flex flex-column align-items-start justify-content-center vh-100">
 
-                <div class="select-container w-50">
+                <div v-if="view.topOfPage" class="select-container w-50">
                     <label class="px-3"  for="typology_id">Tipologie Ristoranti</label>
                     <div class="d-flex">
                         <select class="form-control mx-3 flex-shrink-1" name="typology_id" id="typology_id"  v-model="typologyLink">
@@ -24,10 +24,16 @@ export default {
         return{
             typologies: null,
             typologyLink: '',
+            view: {
+                topOfPage: true
+            }
         }
     },
     created(){
         this.getTypologies();
+    },
+    beforeMount() {
+        window.addEventListener('scroll', this.handleScroll)
     },
     methods: {
         getTypologies(){
@@ -38,6 +44,13 @@ export default {
             .catch(function (error) {
                 console.log(error);
             })
+        },
+        handleScroll(){
+            if(window.pageYOffset>250){
+                if(this.view.topOfPage) this.view.topOfPage = false
+            } else {
+                if(!this.view.topOfPage) this.view.topOfPage = true
+            }
         },
     }
 }
