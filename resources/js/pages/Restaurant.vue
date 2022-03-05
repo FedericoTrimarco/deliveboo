@@ -1,15 +1,24 @@
 <template>
-    <section class="typology-restaurant">
+    <section class="d-flex typology-restaurant vh-100">
+      <Aside
+        class="flex-grow-1"
+        :mainArray="typologies"
+      />
       <TypologyRestaurant :mainArray="restaurants"/>
+
     </section>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import Aside from '../components/Aside';
 import TypologyRestaurant from '../components/TypologyRestaurant.vue';
+
+
 export default {
     name: 'Restaurant',
     components: {
+      Aside,
       TypologyRestaurant,
     },
     data() {
@@ -47,6 +56,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 
 </style>
