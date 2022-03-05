@@ -36,19 +36,19 @@
                 <div class="col-lg-3 d-none d-lg-block">
                     <ul>
                         <li>
-                            <a href="">Linkedin-Luigi</a>
+                            <a href=""><i class="fa-brands fa-linkedin me-1"></i>Linkedin-Luigi Ragusa</a>
                         </li>
                         <li>
-                            <a href="">Linkedin-Luigi</a>
+                            <a href=""><i class="fa-brands fa-linkedin me-1"></i>Linkedin-Luigi Russo</a>
                         </li>
                         <li>
-                            <a href="">Linkedin-Federico</a>
+                            <a href=""><i class="fa-brands fa-linkedin me-1"></i>Linkedin-Federico Trimarco</a>
                         </li>
                         <li>
-                            <a href="">Linkedin-Vittorio</a>
+                            <a href=""><i class="fa-brands fa-linkedin me-1"></i>Linkedin-Vittorio Sbardella</a>
                         </li>
                         <li>
-                            <a href="">Linkedin-Misia</a>
+                            <a href=""><i class="fa-brands fa-linkedin me-1"></i>Linkedin-Misia Pierobon</a>
                         </li>
                     </ul>
                 </div>
@@ -118,8 +118,8 @@ footer{
     height: 600px;
     background-color: #000;
     color: #fff;
+    padding: 80px 70px;
     .foot{
-        padding: 80px 70px;
         .logo{
             width: 135px;
         }
@@ -128,8 +128,8 @@ footer{
         height: 250px;
         .top{
             display:flex;
-        flex-direction: column;
-        justify-content:space-between;
+            flex-direction: column;
+            justify-content:space-between;
         }
     .app{
         img{
