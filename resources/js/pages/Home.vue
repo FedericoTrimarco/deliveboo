@@ -75,19 +75,16 @@
                 </div>
             </section>
         </main>
-        <Footer />
     </div>
 </template>
 
 <script>
 import Axios from "axios";
 import Hero from "../components/Hero.vue";
-import Footer from '../components/Footer.vue';
 export default {
     name: "Home",
     components: {
         Hero,
-        Footer,
     },
     data() {
         return {
