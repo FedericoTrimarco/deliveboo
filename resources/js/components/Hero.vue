@@ -60,7 +60,7 @@ export default {
     .front-hero {
         height: 100vh;
         background: url('../images/hero-deliveboo.png') no-repeat center center;
-
+        background-size: cover;
         .select-container {
             width: 33%;
             color: white;
