@@ -4,7 +4,8 @@
         :mainArray="typologies"
       />
       
-      <TypologyRestaurant :mainArray="restaurants"/>
+      <TypologyRestaurant 
+        :mainArray="restaurants"/>
       
     </section>
 </template>
