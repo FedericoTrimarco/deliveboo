@@ -18,7 +18,7 @@
                             <option selected disabled hidden value="">Selezionare una tipologia</option>
                             <option v-for="typology in typologies" :key="`typology-${typology.id}`" :value="typology.id">{{ typology.name }}</option>
                     </select> -->
-                    <div class="position-relative w-100 mr-2">
+                    <div class="position-relative w-100 mr-lg-3">
                         <div @click="selectDopdown()" class="w-100 text-center py-2 site-pointer site-custom-select">
                             <div class="site-control-select" v-if="typologyLink === ''" >Seleziona tipologia</div>
                             <div class="site-control-select" v-else>{{ typologies[typologyLink-1].name }}</div>
@@ -59,7 +59,7 @@
 
                                 </div>
                             </div>
-                            <button class="site-primary-btn mb-3 mb-md-0 mr-md-3">
+                            <button class="site-primary-btn mb-3 mb-md-0 mr-md-2">
                                 <i class="fas fa-shopping-cart"></i>
                             </button>
                             <a class="text-uppercase site-primary-btn" href="/admin">Area Privata</a>
