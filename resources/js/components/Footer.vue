@@ -36,19 +36,24 @@
                 <div class="col-lg-3 d-none d-lg-block">
                     <ul>
                         <li>
-                            <a href=""><i class="fa-brands fa-linkedin me-1"></i>Linkedin-Luigi Ragusa</a>
+                            <a href="https://www.linkedin.com/in/luigiragusa/">
+                            <i class="fa-brands fa-linkedin me-1"></i>Luigi Ragusa</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa-brands fa-linkedin me-1"></i>Linkedin-Luigi Russo</a>
+                            <a href="https://www.linkedin.com/in/luirusso/">
+                            <i class="fa-brands fa-linkedin me-1"></i>Luigi Russo</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa-brands fa-linkedin me-1"></i>Linkedin-Federico Trimarco</a>
+                            <a href="https://www.linkedin.com/in/federico-trimarco/">
+                            <i class="fa-brands fa-linkedin me-1"></i>Federico Trimarco</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa-brands fa-linkedin me-1"></i>Linkedin-Vittorio Sbardella</a>
+                            <a href="https://www.linkedin.com/in/vittorio-sbardella-0873b2232/">
+                            <i class="fa-brands fa-linkedin me-1"></i>Vittorio Sbardella</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa-brands fa-linkedin me-1"></i>Linkedin-Misia Pierobon</a>
+                            <a href="https://www.linkedin.com/in/misia-pierobon-b7b6391b1/">
+                            <i class="fa-brands fa-linkedin me-1"></i>Misia Pierobon</a>
                         </li>
                     </ul>
                 </div>
@@ -109,6 +114,11 @@
 <script>
 export default {
     name: 'Footer',
+    data(){
+        return{
+
+        }
+    }
 }
 </script>
 
