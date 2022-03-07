@@ -66,9 +66,6 @@
                                 <h3 class="custom-card-name">
                                     {{ restaurant.name }}
                                 </h3>
-                                <p class="custom-card-description">
-                                    {{ restaurant.id }}
-                                </p>
                             </router-link>
                         </li>
                     </ul>
