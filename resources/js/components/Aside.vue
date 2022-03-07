@@ -21,8 +21,7 @@
                                 :value="el.name"
                                 :name="el.name"
                                 :id="el.name"
-                                emit
-                                @click="putTypologies(el.name)"
+                                @click="putTypologies(el.name), getTypologyFromAside(checkedTypologies)"
                             />
                             <div class="checkbox m-2">
                                 <svg
@@ -52,23 +51,27 @@
 <script>
 export default {
     name: "Aside",
-    /* data() {
+    data() {
         return {
             checkedTypologies: [],
         };
-    }, */
+    },
     props: {
         mainArray: Array,
         selectedTypology: String,
-        checkedTypologies: Array,
+    },
+    created(){
+        this.getTypologyFromAside
     },
     computed: {
         checkedFirstTypology(){
             if(this.selectedTypology != null){
-                this.checkedTypologies.push(this.selectedTypology);
+                return this.checkedTypologies.push(this.selectedTypology);
             }
-            return console.log('lello');
        }
+       /* getTypologyFromAside(typology){
+            return this.$emit('getTypologyFromAside', typology);
+        } */
     },
     methods: {
         putTypologies(typo){
@@ -83,12 +86,9 @@ export default {
             }
            console.log(this.checkedTypologies);
         },
-        /* checkedFirstTypology(){
-            // if(this.selectedTypology != null){
-                this.checkedTypologies.push(this.selectedTypology);
-            // }
-            console.log('ciao');
-       } */
+        getTypologyFromAside(typology){
+            this.$emit('getTypologyFromAside', typology);
+        }
     }
 };
 </script>

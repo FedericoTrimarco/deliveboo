@@ -3,7 +3,7 @@
       <Aside
         :mainArray="typologies"
         :selectedTypology="selectedTypology"
-        :checkedTypologies="checkedTypologies"
+        @getTypologyFromAside="selectedTypologyLello"
       />
       
       <TypologyRestaurant
@@ -34,13 +34,18 @@ export default {
         typologies: null,
         restaurants: null,
         checkedTypologies: [],
+        // selectedTypology: null,
       }
     },
     created() {
         this.getTypologies();
         this.getRestaurants();
     },
-
+    computed: {
+      firstTypology(){
+        return this.checkedTypologies = [this.selectedTypology]
+      }
+    },
     methods: {
           getRestaurants() {
             axios.get('http://127.0.0.1:8000/api/restaurants')
@@ -60,7 +65,11 @@ export default {
                     this.typologies = res.data;
                 })
             .catch(err => log.error(err));
-        },
+          },
+
+          selectedTypologyLello(typology){
+            return this.checkedTypologies = typology; 
+          } 
     }
 }
 </script>
