@@ -13,13 +13,16 @@
                         :key="`typology-${index}`"
                     >
                         <label class="custom-checkbox pb-2 ps-3" :for="el.name">
+                                <!-- :checked="selectedTypology == el.id" -->
+                                <!-- v-model="checkedTypologies" -->
                             <input
+                               :checked="selectedTypology == el.name"
                                 type="checkbox"
-                                checked="checked"
                                 :value="el.name"
-                                v-model="checkedTypologies"
                                 :name="el.name"
                                 :id="el.name"
+                                emit
+                                @click="putTypologies(el.name)"
                             />
                             <div class="checkbox m-2">
                                 <svg
@@ -49,14 +52,44 @@
 <script>
 export default {
     name: "Aside",
-    data() {
+    /* data() {
         return {
             checkedTypologies: [],
         };
-    },
+    }, */
     props: {
         mainArray: Array,
+        selectedTypology: String,
+        checkedTypologies: Array,
     },
+    computed: {
+        checkedFirstTypology(){
+            if(this.selectedTypology != null){
+                this.checkedTypologies.push(this.selectedTypology);
+            }
+            return console.log('lello');
+       }
+    },
+    methods: {
+        putTypologies(typo){
+            if(!this.checkedTypologies.includes(typo)){
+                this.checkedTypologies.push(typo)
+            } else if(this.checkedTypologies.includes(typo)){
+                for (let i = 0; i < this.checkedTypologies.length; i++) {
+                    if(this.checkedTypologies[i] == typo){
+                        this.checkedTypologies.splice(i, 1)
+                    }
+                }
+            }
+           console.log(this.checkedTypologies);
+        },
+        /* checkedFirstTypology(){
+            // if(this.selectedTypology != null){
+                this.checkedTypologies.push(this.selectedTypology);
+            // }
+            console.log('ciao');
+       } */
+    }
 };
 </script>
 

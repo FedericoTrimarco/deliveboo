@@ -2,19 +2,27 @@
     <section class="restaurants d-flex flex-column ps-4">
         <div class="container">
             <div class="d-flex">
-                <div v-for="(el, id) in mainArray" :key="id" class="card-restaurant p-2">
-                    <router-link class="h-100 text-decoration-none text-dark" :to="{name: 'restaurantDetails', params: { id: el.restaurant_id }}">
-                        <div class="restaurant-item h-100">
-                            <div class="cover-restaurant">
-                                <img :src="el.cover" class="w-100 h-100" alt="">
+                <div v-for="(el, id) in mainArray" :key="id">
+
+                    <div class="card-restaurant p-2" v-if="getFilter(el.typologies, filter)">
+                        <router-link class="h-100 text-decoration-none text-dark" :to="{name: 'restaurantDetails', params: { id: el.restaurant_id }}">
+                            <div class="restaurant-item h-100">
+                                <div class="cover-restaurant">
+                                    <img :src="el.cover" class="w-100 h-100" alt="">
+                                </div>
+                                <div class="info-card d-flex p-3 flex-column">
+                                    <h5 class="mb-3">{{el.user.name}}</h5>
+                                    <div class="typologies">
+                                        <i class="fa-solid fa-utensils mr-2"></i>
+                                        <span v-for="(typology, id) in el.typologies" :key="`tpology-${id}`">
+                                            {{typology.name}},
+                                        </span>
+                                    </div>
+                                    <span><i class="fa-solid fa-location-dot mr-2"></i>{{el.user.address}}</span>
+                                </div>
                             </div>
-                            <div class="info-card d-flex p-3 flex-column">
-                                <h5 class="mb-3">{{el.name}}</h5>
-                                <span><i class="fa-solid fa-utensils mr-2"></i>{{el.name_typology}}</span>
-                                <span><i class="fa-solid fa-location-dot mr-2"></i>{{el.address}}</span>
-                            </div>
-                        </div>
-                    </router-link>
+                        </router-link>
+                    </div>
                 </div>
             </div>
         </div>
@@ -26,6 +34,22 @@ export default {
     name: 'TypologyRestaurant',
     props: {
         mainArray: Array,
+        filter: Array,
+    },
+    methods: {
+        getFilter(array1, array2){
+            let isInclude = false;
+            array1.forEach(el => {
+                if(array2.includes(el.name)){
+                    isInclude = true;
+
+                }
+                /* console.log(el.name);
+                console.log(isInclude); */
+            });
+            // console.log(array1);
+            return isInclude;
+        }
     }
 }
 </script>

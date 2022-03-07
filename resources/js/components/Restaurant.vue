@@ -1,19 +1,23 @@
 <template>
-    <section class="d-flex typology-restaurant vh-100">
+    <section id="restaurants" class="d-flex typology-restaurant vh-100">
       <Aside
         :mainArray="typologies"
+        :selectedTypology="selectedTypology"
+        :checkedTypologies="checkedTypologies"
       />
       
-      <TypologyRestaurant 
-        :mainArray="restaurants"/>
-      
+      <TypologyRestaurant
+        :filter="checkedTypologies"
+        :mainArray="restaurants"
+      />
+        
     </section>
 </template>
 
 <script>
 import axios from 'axios';
 import Aside from '../components/Aside';
-import TypologyRestaurant from '../components/TypologyRestaurant.vue';
+import TypologyRestaurant from './TypologyRestaurant.vue';
 
 
 export default {
@@ -22,10 +26,14 @@ export default {
       Aside,
       TypologyRestaurant,
     },
+    props: {
+      selectedTypology: String,
+    },
     data() {
       return {
         typologies: null,
         restaurants: null,
+        checkedTypologies: [],
       }
     },
     created() {
@@ -35,7 +43,7 @@ export default {
 
     methods: {
           getRestaurants() {
-            axios.get(`http://127.0.0.1:8000/api/typologies/${this.$route.params.id}`)
+            axios.get('http://127.0.0.1:8000/api/restaurants')
             .then(res => {
                 /* if (res.data.not_found) {
                     this.$router.push({ name: 'not_found' })

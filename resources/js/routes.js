@@ -4,7 +4,7 @@ import VueRouter from 'vue-router';
 
 // COMPONENTI PER ROTTA
 import Home from './pages/Home';
-import Restaurant from './pages/Restaurant';
+// import Restaurant from './pages/Restaurant';
 import RestaurantDetails from './pages/RestaurantDetails';
 
 // ATTIVAZIONE ROUTER IN VUE
@@ -28,11 +28,11 @@ const router = new VueRouter({
             name: 'home',
             component: Home,
         },
-        {
+        /* {
             path: '/restaurant/typologies/:id',
             name: 'restaurant',
             component: Restaurant,
-        },
+        }, */
         {
             path: '/restaurant/:id',
             name: 'restaurantDetails',
