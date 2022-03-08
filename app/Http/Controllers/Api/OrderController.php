@@ -36,10 +36,13 @@ class OrderController extends Controller
 
         $order->save();
 
-        // if (array_key_exists('plates', $data)) {
-        //     $order->plates->attach($data['plates']);
-        // }
+        if (array_key_exists('plates', $data)) {
+            foreach ($data['plates'] as $plate) {
+                // $data_query = [$order->id, $plate['id'], $plate['quantity']];
+                $order->plates()->attach($plate['id'],['quantity' => $plate['quantity']]);
+            }
+        }
 
-        return $amount;
+        return response()->json(['message' => 'grazie per gli acquisti']);
     }
 }

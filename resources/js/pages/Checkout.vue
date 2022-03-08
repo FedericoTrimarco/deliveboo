@@ -7,8 +7,8 @@
                     <span>
                         <strong>Quantity:</strong>{{ product.quantity }}</span
                     >
-                    <button>Aggiungi</button>
-                    <button>Rimuovi</button>
+                    <button @click="addToCart(product)">Aggiungi</button>
+                    <button @click="removeFromCart(product)">Rimuovi</button>
                 </div>
             </li>
         </ul>
@@ -28,10 +28,36 @@ export default {
     created() {
         this.getCart();
     },
+    // prettier-ignore
     methods: {
         getCart() {
             if (JSON.parse(localStorage.getItem("cart")) !== null) {
                 this.cart = JSON.parse(localStorage.getItem("cart"));
+            }
+        },
+        addToCart(product) {
+            if ( JSON.parse(localStorage.getItem("cart") !== null) && Object.keys(JSON.parse(localStorage.getItem("cart"))).length > 0 ) {
+                const cart = JSON.parse(localStorage.getItem("cart"));
+                const exist = cart["plates"].find((element) => element.id === product.id);
+                if (exist) exist.quantity++;
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+            this.getCart()
+        },
+        removeFromCart(product) {
+            if ( JSON.parse(localStorage.getItem("cart") !== null) && Object.keys(JSON.parse(localStorage.getItem("cart"))).length > 0 ) {
+                const cart = JSON.parse(localStorage.getItem("cart"));
+                const exist = cart["plates"].find((element) => element.id === product.id);
+                if (exist) {
+                    exist.quantity--;
+                    if (exist.quantity <= 0) {
+                        const index = cart["plates"].indexOf(exist);
+                        cart["plates"].splice(index, 1)
+                    }
+                    
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                }
+            this.getCart()
             }
         },
         buy() {
