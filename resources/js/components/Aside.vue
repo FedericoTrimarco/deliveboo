@@ -63,16 +63,10 @@ export default {
     created(){
         this.getTypologyFromAside
     },
-    computed: {
-        checkedFirstTypology(){
-            if(this.selectedTypology != null){
-                return this.checkedTypologies.push(this.selectedTypology);
-            }
-       }
-       /* getTypologyFromAside(typology){
-            return this.$emit('getTypologyFromAside', typology);
-        } */
-    },
+    watch: { 
+      	selectedTypology: function(newVal, oldVal) { 
+          this.checkedTypologies = [newVal];
+    }},
     methods: {
         putTypologies(typo){
             if(!this.checkedTypologies.includes(typo)){

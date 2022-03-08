@@ -41,11 +41,11 @@ export default {
         this.getTypologies();
         this.getRestaurants();
     },
-    computed: {
-      firstTypology(){
-        return this.checkedTypologies = [this.selectedTypology]
-      }
-    },
+    watch: { 
+      	selectedTypology: function(newVal, oldVal) { 
+          this.checkedTypologies = [newVal];
+    }},
+
     methods: {
           getRestaurants() {
             axios.get('http://127.0.0.1:8000/api/restaurants')
@@ -68,7 +68,7 @@ export default {
           },
 
           selectedTypologyLello(typology){
-            return this.checkedTypologies = typology; 
+            this.checkedTypologies = typology; 
           } 
     }
 }
