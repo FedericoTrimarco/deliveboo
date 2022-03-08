@@ -22,4 +22,7 @@ Route::namespace('Api')->group(function() {
     
     //typologie_restaurant
     Route::get('/typologies/{id}', 'TypologyController@show');
+
+    Route::post('/restaurant/menu', 'RestaurantController@getMenu');
+    Route::post('/checkout', 'OrderController@checkout');
 });

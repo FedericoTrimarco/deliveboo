@@ -3,22 +3,46 @@
         <div class="container">
             <div class="d-flex">
                 <div v-for="(el, id) in mainArray" :key="id">
-
-                    <div class="card-restaurant p-2" v-if="getFilter(el.typologies, filter)">
-                        <router-link class="h-100 text-decoration-none text-dark" :to="{name: 'restaurantDetails', params: { id: el.restaurant_id }}">
+                    <div
+                        class="card-restaurant p-2"
+                        v-if="getFilter(el.typologies, filter)"
+                    >
+                        <router-link
+                            class="h-100 text-decoration-none text-dark"
+                            :to="{
+                                name: 'restaurant',
+                                params: { id: el.id },
+                            }"
+                        >
                             <div class="restaurant-item h-100">
                                 <div class="cover-restaurant">
-                                    <img :src="el.cover" class="w-100 h-100" alt="">
+                                    <img
+                                        :src="el.cover"
+                                        class="w-100 h-100"
+                                        alt=""
+                                    />
                                 </div>
                                 <div class="info-card d-flex p-3 flex-column">
-                                    <h5 class="mb-3">{{el.user.name}}</h5>
+                                    <h5 class="mb-3">{{ el.user.name }}</h5>
                                     <div class="typologies">
-                                        <i class="fa-solid fa-utensils mr-2"></i>
-                                        <span v-for="(typology, id) in el.typologies" :key="`tpology-${id}`">
-                                            {{typology.name}},
+                                        <i
+                                            class="fa-solid fa-utensils mr-2"
+                                        ></i>
+                                        <span
+                                            v-for="(
+                                                typology, id
+                                            ) in el.typologies"
+                                            :key="`tpology-${id}`"
+                                        >
+                                            {{ typology.name }},
                                         </span>
                                     </div>
-                                    <span><i class="fa-solid fa-location-dot mr-2"></i>{{el.user.address}}</span>
+                                    <span
+                                        ><i
+                                            class="fa-solid fa-location-dot mr-2"
+                                        ></i
+                                        >{{ el.user.address }}</span
+                                    >
                                 </div>
                             </div>
                         </router-link>
@@ -31,73 +55,69 @@
 
 <script>
 export default {
-    name: 'TypologyRestaurant',
+    name: "TypologyRestaurant",
     props: {
         mainArray: Array,
         filter: Array,
     },
     methods: {
-        getFilter(array1, array2){
+        getFilter(array1, array2) {
             let isInclude = false;
-            array1.forEach(el => {
-                if(array2.includes(el.name)){
+            array1.forEach((el) => {
+                if (array2.includes(el.name)) {
                     isInclude = true;
-
                 }
-                /* console.log(el.name);
-                console.log(isInclude); */
             });
-            // console.log(array1);
             return isInclude;
-        }
-    }
-}
+        },
+    },
+};
 </script>
 
 <style scoped lang="scss">
-@import '../../sass/_variables.scss';
-    .restaurants{
-        /* border: 1px solid red;
+@import "../../sass/_variables.scss";
+.restaurants {
+    /* border: 1px solid red;
         .container-fluid{
             border: 2px solid blue;
         } */
-        padding-top: 150px;
-        width: 80%;
-        .card-restaurant {
-            width: 300px;
-            height: 300px;
-            .restaurant-item {
-                outline: 2px solid transparent;
-                outline-offset: 5px;
-                transition: outline .2s;
-                &:hover {
-                    outline-color: $site-item-col;
+    padding-top: 150px;
+    width: 80%;
+    .card-restaurant {
+        width: 300px;
+        height: 300px;
+        .restaurant-item {
+            outline: 2px solid transparent;
+            outline-offset: 5px;
+            transition: outline 0.2s;
+            &:hover {
+                outline-color: $site-item-col;
+            }
+            box-shadow: rgba(0, 0, 0, 0.103) 1.95px 1.95px 2.6px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            .cover-restaurant {
+                height: 57%;
+                img {
+                    object-fit: cover;
                 }
-                box-shadow: rgba(0, 0, 0, 0.103) 1.95px 1.95px 2.6px;
-                border-radius: 8px;
+            }
+            .info-card {
                 overflow: hidden;
-                cursor: pointer;
-                .cover-restaurant{
-                    height: 57%;
-                    img {
-                        object-fit: cover;
-                    }
+                backdrop-filter: blur(10px);
+                height: 43%;
+                transition: height 0.5s;
+                h5 {
+                    text-transform: capitalize;
                 }
-                .info-card{
-                    overflow: hidden;
-                    backdrop-filter: blur(10px);
-                    height: 43%;
-                    transition: height 0.5s ;
-                    h5 {
-                        text-transform: capitalize;
-                    }
-                    span {
-                        i{
-                            color: $site-item-col;
-                        }
+                span {
+                    i {
+                        color: $site-item-col;
                     }
                 }
             }
         }
     }
+}
 </style>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Plate;
 use Illuminate\Http\Request;
 use App\User;
 use App\Restaurant;
+use App\Typology;
 
 class RestaurantController extends Controller
 {
@@ -16,5 +18,20 @@ class RestaurantController extends Controller
             $restaurant->cover = url('storage/' . $restaurant->cover);
         }
         return response()->json($restaurants);
+    }
+
+    // public function getRestaurantsByTipology ($array) {
+    //     foreach ($array as $id) {
+    //         $restaurants = Typology::find($id)->restaurants()->get();
+    //     }
+        
+    //     return response()->json($restaurants);
+    // }
+
+    public function getMenu(Request $request) {
+        $data = $request->all();
+        $id = (int)$data['id'];
+        $plates = Restaurant::find($id)->plates()->get();
+        return response()->json($plates);
     }
 }
