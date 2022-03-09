@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Hero @getTypology="getTypology"/>
+        <Hero @getTypology="getTypology" />
         <main>
             <!-- <section class="custom-section">
                 <div class="custom-section-wrapper">
@@ -71,7 +71,7 @@
                     </ul>
                 </div>
             </section> -->
-            <Restaurant :selectedTypology="selectedTypology"/>
+            <Restaurant :selectedTypology="selectedTypology" />
         </main>
     </div>
 </template>
@@ -117,10 +117,10 @@ export default {
                     console.log(error);
                 });
         },
-        getTypology(typology){
+        getTypology(typology) {
             // console.log(typology);
             this.selectedTypology = typology;
-        }
+        },
     },
 };
 </script>
