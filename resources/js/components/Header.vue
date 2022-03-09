@@ -27,7 +27,8 @@
                             <li v-for="typology in typologies" :key="`typology-${typology.id}`" class="list-group-item site-pointer" @click="typologyLink = typology.id, selectDopdown()">{{ typology.name }}</li>
                         </ul>
                     </div>
-                     <router-link :is="typologyLink === '' ? 'span' : 'router-link'" :to="{name: 'restaurant', params: {id: typologyLink}}" class=" site-primary-btn">Cerca</router-link>
+                     <!-- <router-link :is="typologyLink === '' ? 'span' : 'router-link'" :to="{name: 'restaurant', params: {id: typologyLink}}" class=" site-primary-btn">Cerca</router-link> -->
+                     <a href="#restaurants" class=" site-primary-btn">Cerca</a>
                 </div>
             </div>
             <div class="col-2 col-md-4 d-flex justify-content-end">

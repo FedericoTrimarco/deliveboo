@@ -15,10 +15,10 @@
                                 <div class="site-control-select" v-else>{{ typologies[typologyLink-1].name }}</div>
                             </div>
                             <ul class="position-absolute text-center w-100 list-group overflow-auto select-dropdown" :class="{'d-0': select}">
-                                <li v-for="typology in typologies" :key="`typology-${typology.id}`" class="list-group-item site-pointer" @click="typologyLink = typology.id, selectDopdown()">{{ typology.name }}</li>
+                                <li v-for="typology in typologies" :key="`typology-${typology.id}`" class="list-group-item site-pointer" @click="typologyLink = typology.id, selectDopdown(), typologyName = typology.name">{{ typology.name }}</li>
                             </ul>
                         </div>
-                        <router-link :is="typologyLink === '' ? 'span' : 'router-link'" :to="{name: 'restaurant', params: {id: typologyLink}}" class=" site-primary-btn">Cerca</router-link>
+                         <a href="#restaurants" class=" site-primary-btn" @click="getTypology(typologyName)">Cerca</a>
                     </div>
                 </div>
         </div>
@@ -34,6 +34,7 @@ export default {
         return{
             typologies: null,
             typologyLink: '',
+            typologyName: '',
             view: {
                 topOfPage: true
             },
@@ -76,6 +77,9 @@ export default {
             if (event.target.className !==  'site-control-select') {
                 this.select = true;
             }
+        },
+        getTypology(typology){
+            this.$emit('getTypology', typology);
         }
     }
 }
