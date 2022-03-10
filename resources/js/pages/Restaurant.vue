@@ -1,38 +1,68 @@
 <template>
-    <main>
-        <section class="custom-section">
-            <div class="custom-section-wrapper">
-                <ul class="card-list">
-                    <li
-                        class="custom-card"
-                        v-for="(item, index) in menu"
-                        :key="`item-${index}`"
-                    >
-                        <router-link to="">
-                            <div class="custom-card-image-container">
-                                <div
-                                    class="custom-card-image"
-                                    :style="`background-image: url('../storage/${item.image}')`"
-                                ></div>
+    <section class="custom-section">
+        <h1>I NOSTRI PIATTI</h1>
+        <div class="container-fluid mt-5">
+            <div class="row">
+                <div class="custom-section-wrapper col-8">
+                    <div v-for="(category, index) in categories" :key="index" class="mb-5" v-show="menuCategories.includes(category.name)">
+                        <h1>{{category.name}}</h1>
+                        <ul class="card-list list-unstyled d-flex row">
+                            <li 
+                                @click="checkForLocalstorage(item)"
+                                v-for="(item, index) in menu"
+                                :key="`item-${index}`"
+                                v-show="item.category.name == category.name"
+                                class="col-4 pointer p-3"
+                            >
+                                <div v-if="item.visible" class="custom-card row rounded">
+                                    <div class="col-4 image-plate">
+                                        <img :src="item.image" alt="" class="w-100 h-100">
+                                    </div>
+                                    <div class="col-8 info">
+                                        <h4 class="custom-card-name mt-3">{{ item.name }}</h4>
+                                        <p><strong>Ingredienti:</strong> {{item.ingredients}}</p>
+                                        <p><strong>Descrizione:</strong> {{item.description}}</p>
+                                        <p class="text-end price m-0">€{{item.price}}</p>
+                                    </div>
+
+                                    <!-- <span class="text-danger">{{item.category.name}}</span>
+                                    <div class="custom-card-image-container">
+                                        <img :src="item.image" alt="">
+                                    </div>
+                                    <h3 class="custom-card-name">{{ item.name }}</h3>
+                                    <p>
+                                        {{
+                                            item.price.toLocaleString("it", {
+                                                style: "currency",
+                                                currency: "EUR",
+                                            })
+                                        }}
+                                    </p>
+                                    <button @click="checkForLocalstorage(item)">
+                                        Aggiungi al carrello
+                                    </button> -->
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-4 order">
+                    <ul>
+                        <li v-for="product in cart['plates']" :key="`${product.id}`">
+                            {{ product.name }}
+                            <div class="div">
+                                <span>
+                                    <strong>Quantity:</strong>{{ product.quantity }}</span
+                                >
+                                <button @click="addToCart(product)">Aggiungi</button>
+                                <button @click="removeFromCart(product)">Rimuovi</button>
                             </div>
-                            <h3 class="custom-card-name">{{ item.name }}</h3>
-                            <p>
-                                {{
-                                    item.price.toLocaleString("it", {
-                                        style: "currency",
-                                        currency: "EUR",
-                                    })
-                                }}
-                            </p>
-                            <button @click="checkForLocalstorage(item)">
-                                Aggiungi al carrello
-                            </button>
-                        </router-link>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 </template>
 
 <script>
@@ -44,12 +74,37 @@ export default {
     data() {
         return {
             menu: [],
+            categories: null,
+            menuCategories: [],
+            cart: {},
         };
     },
     created() {
+        this.getCategories();
         this.getMenu();
     },
+    watch:{
+        menu: function(){
+            this.menu.forEach(el => {
+                if(el.visible){
+                    this.menuCategories.push(el.category.name)
+
+                }
+            })
+        }
+    },
+    created() {
+        this.getCart();
+    },
     methods: {
+        getCategories() {
+            axios
+                .get("http://127.0.0.1:8000/api/categories")
+                .then((res) => {
+                    this.categories = res.data;
+                })
+                .catch((err) => log.error(err));
+        },
         // prettier-ignore
         getMenu() {
             const id = JSON.stringify({ id: this.$route.params.id });
@@ -84,94 +139,83 @@ export default {
                 localStorage.setItem("cart", JSON.stringify(obj));
             }
         },
+        getCart() {
+            if (JSON.parse(localStorage.getItem("cart")) !== null) {
+                this.cart = JSON.parse(localStorage.getItem("cart"));
+                console.log('lello');
+            }
+        },
+        addToCart(product) {
+            if ( JSON.parse(localStorage.getItem("cart") !== null) && Object.keys(JSON.parse(localStorage.getItem("cart"))).length > 0 ) {
+                const cart = JSON.parse(localStorage.getItem("cart"));
+                const exist = cart["plates"].find((element) => element.id === product.id);
+                if (exist) exist.quantity++;
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+            this.getCart()
+        },
+        removeFromCart(product) {
+            if ( JSON.parse(localStorage.getItem("cart") !== null) && Object.keys(JSON.parse(localStorage.getItem("cart"))).length > 0 ) {
+                const cart = JSON.parse(localStorage.getItem("cart"));
+                const exist = cart["plates"].find((element) => element.id === product.id);
+                if (exist) {
+                    exist.quantity--;
+                    if (exist.quantity <= 0) {
+                        const index = cart["plates"].indexOf(exist);
+                        cart["plates"].splice(index, 1)
+                    }
+
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                }
+            this.getCart()
+            }
+        },
     },
 };
 </script>
 
 <style lang="scss" scoped>
-main {
-    flex-grow: 1;
-    display: flex;
-    padding-top: 80px;
-    flex-direction: column;
+.pointer{
+    cursor: pointer;
 }
-
-.custom-section {
-    padding: 48px 0 80px;
-
-    .custom-section-wrapper {
-        margin: 0 auto;
-        padding: 0 32px;
-        width: calc(100% - (2 * 32px));
-
-        h2 {
-            margin: 0;
-            font-size: 40px;
-            font-weight: 600;
-            margin-bottom: 32px;
-        }
-
-        .card-list {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0 0 -32px -32px;
-
-            > .custom-card {
-                list-style: none;
-                padding-left: 32px;
-                padding-bottom: 32px;
-                width: calc(100% / 3);
-
-                a {
-                    color: currentColor;
-                    text-decoration: none;
-
-                    .custom-card-image-container {
-                        padding-top: 50%;
-                        position: relative;
-                        margin-bottom: 8px;
-
-                        .custom-card-image {
-                            left: 0;
-                            top: 0;
-                            width: 100%;
-                            height: 100%;
-                            position: absolute;
-                            background-size: cover;
+.custom-section{
+    margin: 150px auto 0;
+    width: 80%;
+    .custom-section-wrapper{
+        border: 2px solid blue;
+        ul{
+            li{
+                .custom-card{
+                    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                    transition: all .4s ease-in-out;
+                    background-color: #fff;
+                    &:hover{
+                       box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+                    }
+                    .info{
+                        .price{
+                            font-size: 20px;
+                            color: #bcc5d8;
                         }
                     }
-
-                    .custom-card-name {
-                        font-weight: 500;
-                        margin-bottom: 4px;
-                        font-size: 1.125rem;
-                        letter-spacing: 0.02rem;
-                    }
-
-                    .custom-card-description {
-                        margin: 0;
-                        padding: 0;
-                        font-size: 16px;
+                    .image-plate{
+                        padding: 15px;
+                        img{
+                            border-radius: 5px;
+                            object-fit: cover;
+                        }
                     }
                 }
             }
         }
+
+    }
+    .order{
+        border: 2px solid red;
     }
 }
 
-@media screen and (max-width: 768px) {
-    .custom-card {
-        width: 100% !important;
-        flex-grow: 0 !important;
-        flex-shrink: 0 !important;
 
-        &.custom-card-long {
-            width: 100%;
-            flex-grow: 0;
-            flex-shrink: 0;
-        }
-    }
-}
+
+
 </style>
