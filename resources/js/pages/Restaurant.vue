@@ -1,6 +1,6 @@
 <template>
     <main>
-        <HeaderRestaurant />
+        <HeaderRestaurant :image="restaurant.cover" :name="restaurant.user.name" :address="restaurant.user.address"/>
 
         <section class="custom-section">
             <div class="custom-section-wrapper">
@@ -46,13 +46,31 @@ export default {
     components: { Header, Card, HeaderRestaurant},
     data() {
         return {
+            restaurant: null,
             menu: [],
         };
     },
     created() {
+        this.getSingolRestaurant();
         this.getMenu();
     },
     methods: {
+        //Header Restaurant
+        getSingolRestaurant() {
+            axios.get(`http://127.0.0.1:8000/api/restaurants/${this.$route.params.id}`)
+            .then(res => {
+                    if (res.data.not_found) {
+                        this.$router.push({ cover: 'not_found' })
+                    } else {
+                        this.restaurant = res.data;
+                        console.log(this.restaurant);
+                    }
+                })
+            .catch(function (error) {
+        // handle error
+            console.log(error);
+            })
+        },
         // prettier-ignore
         getMenu() {
             const id = JSON.stringify({ id: this.$route.params.id });
