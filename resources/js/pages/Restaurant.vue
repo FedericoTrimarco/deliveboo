@@ -1,5 +1,7 @@
 <template>
     <main>
+        <HeaderRestaurant />
+
         <section class="custom-section">
             <div class="custom-section-wrapper">
                 <ul class="card-list">
@@ -38,9 +40,10 @@
 <script>
 import axios from "axios";
 import Header from "../components/Header.vue";
+import HeaderRestaurant from "../components/HeaderRestaurant.vue";
 import Card from "../components/Card.vue";
 export default {
-    components: { Header, Card },
+    components: { Header, Card, HeaderRestaurant},
     data() {
         return {
             menu: [],

@@ -2,7 +2,7 @@
     <div>
         <Hero @getTypology="getTypology" />
         <main>
-            <!-- <section class="custom-section">
+            <section class="custom-section">
                 <div class="custom-section-wrapper">
                     <h2>I vostri tipici preferiti</h2>
                     <div class="card-wrapper">
@@ -70,7 +70,7 @@
                         </li>
                     </ul>
                 </div>
-            </section> -->
+            </section>
             <Restaurant :selectedTypology="selectedTypology" />
         </main>
     </div>
