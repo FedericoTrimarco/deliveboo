@@ -13,13 +13,15 @@
                         :key="`typology-${index}`"
                     >
                         <label class="custom-checkbox pb-2 ps-3" :for="el.name">
+                                <!-- :checked="selectedTypology == el.id" -->
+                                <!-- v-model="checkedTypologies" -->
                             <input
+                               :checked="selectedTypology == el.name"
                                 type="checkbox"
-                                checked="checked"
                                 :value="el.name"
-                                v-model="checkedTypologies"
                                 :name="el.name"
                                 :id="el.name"
+                                @click="putTypologies(el.name), getTypologyFromAside(checkedTypologies)"
                             />
                             <div class="checkbox m-2">
                                 <svg
@@ -56,7 +58,32 @@ export default {
     },
     props: {
         mainArray: Array,
+        selectedTypology: String,
     },
+    created(){
+        this.getTypologyFromAside
+    },
+    watch: { 
+      	selectedTypology: function(newVal, oldVal) { 
+          this.checkedTypologies = [newVal];
+    }},
+    methods: {
+        putTypologies(typo){
+            if(!this.checkedTypologies.includes(typo)){
+                this.checkedTypologies.push(typo)
+            } else if(this.checkedTypologies.includes(typo)){
+                for (let i = 0; i < this.checkedTypologies.length; i++) {
+                    if(this.checkedTypologies[i] == typo){
+                        this.checkedTypologies.splice(i, 1)
+                    }
+                }
+            }
+           console.log(this.checkedTypologies);
+        },
+        getTypologyFromAside(typology){
+            this.$emit('getTypologyFromAside', typology);
+        }
+    }
 };
 </script>
 

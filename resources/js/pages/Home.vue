@@ -1,8 +1,8 @@
 <template>
     <div>
-        <Hero />
+        <Hero @getTypology="getTypology" />
         <main>
-            <section class="custom-section">
+            <!-- <section class="custom-section">
                 <div class="custom-section-wrapper">
                     <h2>I vostri tipici preferiti</h2>
                     <div class="card-wrapper">
@@ -66,14 +66,12 @@
                                 <h3 class="custom-card-name">
                                     {{ restaurant.name }}
                                 </h3>
-                                <p class="custom-card-description">
-                                    {{ restaurant.id }}
-                                </p>
                             </router-link>
                         </li>
                     </ul>
                 </div>
-            </section>
+            </section> -->
+            <Restaurant :selectedTypology="selectedTypology" />
         </main>
     </div>
 </template>
@@ -81,15 +79,18 @@
 <script>
 import Axios from "axios";
 import Hero from "../components/Hero.vue";
+import Restaurant from "../components/Restaurant.vue";
 export default {
     name: "Home",
     components: {
         Hero,
+        Restaurant,
     },
     data() {
         return {
             typologies: null,
             restaurants: null,
+            selectedTypology: null,
         };
     },
     created() {
@@ -115,6 +116,10 @@ export default {
                 .catch(function (error) {
                     console.log(error);
                 });
+        },
+        getTypology(typology) {
+            // console.log(typology);
+            this.selectedTypology = typology;
         },
     },
 };
