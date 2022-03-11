@@ -1,78 +1,10 @@
 <template>
-    <div>
-        <Hero @getTypology="getTypology" />
-        <main>
-            <!-- <section class="custom-section">
-                <div class="custom-section-wrapper">
-                    <h2>I vostri tipici preferiti</h2>
-                    <div class="card-wrapper">
-                        <router-link
-                            class="custom-card"
-                            :class="{
-                                'custom-card-long': index === 0 || index === 3,
-                            }"
-                            :to="{
-                                name: 'restaurant',
-                                params: { id: typology.id },
-                            }"
-                            v-for="(typology, index) in typologies"
-                            :key="`typology-link-${typology.name}`"
-                        >
-                            <div class="custom-card-container">
-                                <div class="custom-card-container-image">
-                                    <span
-                                        class="custom-placeholder"
-                                        :style="`background-image: url(${require('../images/' +
-                                            typology.name.toLowerCase() +
-                                            '.jpg')})`"
-                                    >
-                                        <span class="image-text">{{
-                                            typology.name
-                                        }}</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="custom-card-texts">
-                                Lorem ipsum dolor sit amet consectetur, adipisicing
-                                elit. Assumenda, repellendus.
-                                <span>Scopri di più</span>
-                            </div>
-                        </router-link>
-                    </div>
-                </div>
-            </section>
-
-            <section class="custom-section colored">
-                <div class="custom-section-wrapper">
-                    <h2>I vostri ristoranti preferiti</h2>
-                    <ul class="card-list">
-                        <li
-                            class="custom-card"
-                            v-for="(restaurant, index) in restaurants"
-                            :key="`restaurant-${index}`"
-                        >
-                            <router-link
-                                :to="{
-                                    name: 'restaurantDetails',
-                                    params: { id: restaurant.id },
-                                }"
-                            >
-                                <div class="custom-card-image-container">
-                                    <div
-                                        class="custom-card-image"
-                                        :style="`background-image: url('../storage/${restaurant.cover}')`"
-                                    ></div>
-                                </div>
-                                <h3 class="custom-card-name">
-                                    {{ restaurant.name }}
-                                </h3>
-                            </router-link>
-                        </li>
-                    </ul>
-                </div>
-            </section> -->
-            <Restaurant :selectedTypology="selectedTypology" />
+    <div class="lello">
+        <Hero @getTypology="getTypology"/>
+        <main :class="{'d-none' : selectedTypologyVariables == null}">
+            <Restaurant :selectedTypology="selectedTypologyVariables" />
         </main>
+        <Footer :class="{'d-none' : selectedTypologyVariables == null}"/>
     </div>
 </template>
 
@@ -80,20 +12,23 @@
 import Axios from "axios";
 import Hero from "../components/Hero.vue";
 import Restaurant from "../components/Restaurant.vue";
+import Footer from '../components/Footer.vue';
 export default {
     name: "Home",
     components: {
         Hero,
         Restaurant,
+        Footer,
     },
     props: {
         selectedTypology: String,
+        
     },
     data() {
         return {
             typologies: null,
             restaurants: null,
-            selectedTypology: null,
+            selectedTypologyVariables: null,
         };
     },
     watch: {
@@ -127,13 +62,24 @@ export default {
         },
         getTypology(typology) {
             // console.log(typology);
-            this.selectedTypology = typology;
+            this.selectedTypologyVariables = typology;
         },
     },
 };
 </script>
 
 <style lang="scss" scoped>
+.lello{
+    -ms-overflow-style: none;
+    scrollbar-width: none !important;
+    ::-webkit-scrollbar {
+    display: none !important;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
+    
+}
 .custom-section {
     padding: 48px 0 80px;
 

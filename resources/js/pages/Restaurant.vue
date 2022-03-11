@@ -1,7 +1,7 @@
 <template>           
 
     <section class="custom-section">
-        <HeaderRestaurant :image="restaurant.cover" :name="restaurant.user.name"  :address="restaurant.user.address" class="mb-5"/>
+        <HeaderRestaurant :image="restaurant.cover" :name="restaurant.user.name" :address="restaurant.user.address" class="mb-5"/>
         <hr class="mb-5">
         <h1>I NOSTRI PIATTI</h1>
         <div class="container-fluid mt-5">
@@ -50,14 +50,13 @@
                                 <h4>{{plate.name}}</h4>
                                 <span class="fs-5 fw-bold">x{{plate.quantity}}</span>
                                 <div>
-                                    <span class="text-danger fs-3" @click="addToCart(plate)">+</span>
-                                    <span class="text-danger fs-3" @click="removeFromCart(plate)">-</span>
+                                    <span class="text-danger fs-3 pointer" @click="addToCart(plate)">+</span>
+                                    <span class="text-danger fs-3 pointer" @click="removeFromCart(plate)">-</span>
                                 </div>
                             </li>
                         </ul>
-                        <router-link :to="{ name: 'checkout' }" class="site-primary-btn d-block p-3 text-center button-cart">
+                        <router-link :to="{ name: 'checkout' }" class="site-primary-btn d-block p-3 text-center button-cart" :class="{disabled : cart.length == 0}">
                             <i class="fas fa-shopping-cart fs-4"></i>
-
                         </router-link>
                     </div>
                 </div>
@@ -83,7 +82,7 @@ export default {
         };
     },
     created() {
-
+        this.emptyCart();
         this.getSingleRestaurant();
 
         this.getCart();
@@ -161,6 +160,9 @@ export default {
             }
             this.getCart();
         },
+        emptyCart(){
+            localStorage.clear();
+        },
         getCart() {
             if (JSON.parse(localStorage.getItem("cart")) !== null) {
                 this.cart = JSON.parse(localStorage.getItem("cart"));
@@ -198,6 +200,10 @@ export default {
 <style lang="scss" scoped>
 .pointer{
     cursor: pointer;
+}
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }
 .custom-section{
     margin: 150px auto 0;
@@ -245,12 +251,18 @@ export default {
     }
     .order{
         .cart-review{
+            margin-bottom: 50px;
             background-color: #fff;
             min-height: 400px;
             border-radius:5px;
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             position: sticky;
             top: 150px;
+
+            ul{
+                height: 495px;
+                overflow: auto;
+            }
         }
     }
 }

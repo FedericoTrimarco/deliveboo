@@ -42,7 +42,11 @@ class RestaurantController extends Controller
         $id = (int)$data['id'];
         $plates = Restaurant::find($id)->plates()->with('category')->get();
         foreach ($plates as $plate) {
-            $plate->image = url('storage/' . $plate->image);
+            if($plate->image != null) {
+                $plate->image = url('storage/' . $plate->image);
+            } else{
+                $plate->image = url('http://www.persefone.it/blog/wp-content/themes/photobook/images/blank.png');
+            }
         }
         return response()->json($plates);
     }

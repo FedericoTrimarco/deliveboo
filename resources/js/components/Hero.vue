@@ -1,5 +1,5 @@
 <template>
-    <div class="front-hero">
+    <div class="front-hero" ref="hero">
         <div
             class="container mb-3 d-flex flex-column align-items-start justify-content-center vh-100"
         >
@@ -50,6 +50,7 @@
                         </ul>
                     </div>
                     <a
+                        href="#restaurants"
                         class="site-primary-btn"
                         @click="getTypology(typologyName)"
                         >Cerca</a
@@ -99,6 +100,7 @@ export default {
                 .catch(function (error) {
                     console.log(error);
                 });
+                
         },
         handleScroll() {
             if (window.pageYOffset > 250) {
@@ -117,7 +119,14 @@ export default {
         },
         getTypology(typology) {
             this.$emit("getTypology", typology);
+            this. fadeOnClick();
         },
+        fadeOnClick(){
+            this.$refs.hero.style.opacity = '0';
+            setTimeout(()=> {
+               this.$refs.hero.style.display = 'none';
+            }, 800)
+        }
     },
 };
 </script>
@@ -127,6 +136,9 @@ export default {
     height: 100vh;
     background: url("../images/hero-deliveboo.png") no-repeat center center;
     background-size: cover;
+    transition: all .3s ease-in-out;
+    
+    // scrollbar-width: none;
     .select-container {
         width: 100%;
         color: white;
