@@ -1,8 +1,10 @@
 <template>
     <div class="app-wrapper">
-        <Header />
+
+        <Header @getTypology="getTypology"/>
+
         <main>
-            <router-view></router-view>
+            <router-view :selectedTypology="selectedTypology"></router-view>
         </main>
 
         <Footer />
@@ -23,7 +25,13 @@ export default {
         return {
             typologies: null,
             restaurants: null,
+            selectedTypology: null,
         };
+    },
+    watch: {
+        selectedTypology: function (newVal, oldVal) {
+            this.checkedTypologies = [newVal];
+        },
     },
     created() {
         this.getTypologies();
@@ -50,6 +58,10 @@ export default {
                     console.log(error);
                 });
         },
+        getTypology(typology) {
+            // console.log(typology);
+            this.selectedTypology = typology;
+        },
     },
 };
 </script>
@@ -66,6 +78,7 @@ export default {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
+        background-color: #f9fafa;
     }
 }
 </style>

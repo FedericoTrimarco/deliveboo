@@ -1,5 +1,6 @@
 <template>
     <footer :class="{ hidden: getCurrentRouteName === 'checkout' }">
+
         <div class="container-fluid foot">
             <!--Top-->
             <div class="row box">
