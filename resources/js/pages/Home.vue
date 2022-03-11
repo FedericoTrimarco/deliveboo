@@ -37,6 +37,7 @@ export default {
         },
     },
     created() {
+        this.emptyCart();
         this.randomCategory();
         this.randomRestaurant();
     },
@@ -63,6 +64,9 @@ export default {
         getTypology(typology) {
             // console.log(typology);
             this.selectedTypologyVariables = typology;
+        },
+        emptyCart(){
+            localStorage.clear();
         },
     },
 };
