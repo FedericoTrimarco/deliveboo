@@ -31,7 +31,7 @@
                     </div>
                 </div>
 
-                <div class="d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block col-lg-2">
+                <div class="d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block col-lg-2 me-1">
                     <div>
                         <i class="fa-solid fa-person-biking icon"></i>
                         <span>Consegna fra:</span>
