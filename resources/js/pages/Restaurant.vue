@@ -1,5 +1,7 @@
 <template>
     <main>
+        <HeaderRestaurant :image="restaurant.cover"     :name="restaurant.user.name"  :address="restaurant.user.address" />
+                 
         <section class="custom-section">
             <div class="custom-section-wrapper">
                 <ul class="card-list">
@@ -38,18 +40,36 @@
 <script>
 import axios from "axios";
 import Header from "../components/Header.vue";
+import HeaderRestaurant from "../components/HeaderRestaurant.vue";
 import Card from "../components/Card.vue";
 export default {
-    components: { Header, Card },
+    components: { Header, Card, HeaderRestaurant },
     data() {
         return {
+            restaurant: null,
             menu: [],
         };
     },
     created() {
+        this.getSingleRestaurant();
         this.getMenu();
     },
     methods: {
+
+        getSingleRestaurant() {
+            axios.get(`http://127.0.0.1:8000/api/restaurants/${this.$route.params.id}`)
+              .then(res => {
+                    if (res.data.not_found) {
+                        this.$router.push({ name: 'not_found' })
+                    } else {
+                        this.restaurant = res.data;
+                    }
+                })
+              .catch(function (error) {
+            // handle error
+                console.log(error);
+                })
+        },
         // prettier-ignore
         getMenu() {
             const id = JSON.stringify({ id: this.$route.params.id });

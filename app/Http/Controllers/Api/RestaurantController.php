@@ -23,6 +23,12 @@ class RestaurantController extends Controller
         return response()->json($restaurants);
     }
 
+    public function show($id) {
+        $restaurant = Restaurant::with('user')->find($id);
+        $restaurant->cover = url('storage/' . $restaurant->cover);
+        return response()->json($restaurant);
+    }
+
     // public function getRestaurantsByTipology ($array) {
     //     foreach ($array as $id) {
     //         $restaurants = Typology::find($id)->restaurants()->get();
