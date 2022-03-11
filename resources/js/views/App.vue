@@ -1,6 +1,8 @@
 <template>
     <div class="app-wrapper">
+
         <Header @getTypology="getTypology"/>
+
         <main>
             <router-view :selectedTypology="selectedTypology"></router-view>
         </main>
@@ -75,8 +77,8 @@ export default {
     > main {
         flex-grow: 1;
         display: flex;
-        min-height: 200vh;
         flex-direction: column;
+        background-color: #f9fafa;
     }
 }
 </style>

@@ -49,7 +49,12 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="#restaurants" class=" site-primary-btn" @click="getTypology(typologyName)">Cerca</a>
+                    <a
+                        class="site-primary-btn"
+                        @click="getTypology(typologyName)"
+                        >Cerca</a
+                    >
+
                 </div>
             </div>
         </div>
