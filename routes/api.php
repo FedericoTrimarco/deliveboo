@@ -19,6 +19,7 @@ Route::namespace('Api')->group(function () {
     Route::get('/typologies', 'TypologyController@index');
     // Restaurant get api route
     Route::get('/restaurants', 'RestaurantController@index');
+    Route::get('/restaurants/{id}', 'RestaurantController@show');
 
     //typologie_restaurant
     Route::get('/typologies/{id}', 'TypologyController@show');

@@ -1,4 +1,9 @@
 <template>
+
+    <main>
+        <HeaderRestaurant :image="restaurant.cover"     :name="restaurant.user.name"  :address="restaurant.user.address" />
+                 
+
     <section class="custom-section">
         <h1>I NOSTRI PIATTI</h1>
         <div class="container-fluid mt-5">
@@ -48,6 +53,7 @@
                         </ul>
                         <router-link :to="{ name: 'checkout' }" class="site-primary-btn d-block p-3 text-center button-cart">
                             <i class="fas fa-shopping-cart fs-4"></i>
+
                         </router-link>
                     </div>
                 </div>
@@ -59,11 +65,13 @@
 <script>
 import axios from "axios";
 import Header from "../components/Header.vue";
+import HeaderRestaurant from "../components/HeaderRestaurant.vue";
 import Card from "../components/Card.vue";
 export default {
-    components: { Header, Card },
+    components: { Header, Card, HeaderRestaurant },
     data() {
         return {
+            restaurant: null,
             menu: [],
             categories: null,
             menuCategories: [],
@@ -71,8 +79,12 @@ export default {
         };
     },
     created() {
+
+        this.getSingleRestaurant();
+
         this.addToCart();
         this.getCategories();
+
         this.getMenu();
     },
     watch:{
@@ -86,6 +98,21 @@ export default {
         }
     },
     methods: {
+
+        getSingleRestaurant() {
+            axios.get(`http://127.0.0.1:8000/api/restaurants/${this.$route.params.id}`)
+              .then(res => {
+                    if (res.data.not_found) {
+                        this.$router.push({ name: 'not_found' })
+                    } else {
+                        this.restaurant = res.data;
+                    }
+                })
+              .catch(function (error) {
+            // handle error
+                console.log(error);
+                })
+
         getCategories() {
             axios
                 .get("http://127.0.0.1:8000/api/categories")
@@ -93,6 +120,7 @@ export default {
                     this.categories = res.data;
                 })
                 .catch((err) => log.error(err));
+
         },
         // prettier-ignore
         getMenu() {
