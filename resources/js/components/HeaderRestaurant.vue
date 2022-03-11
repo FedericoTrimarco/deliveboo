@@ -1,10 +1,10 @@
 <template>
     <header>
-        <div class="container">
+        <div>
             <div class="row">
 
                 <div class="col-12 col-md-6 col-lg-4">
-                    <img :src="image" alt="">    
+                    <img :src="image" alt="">
                 </div>
 
                 <div class="d-sm-none d-md-block col-md-6 col-lg-6 ps-4">
@@ -20,18 +20,9 @@
                         </span>
                         {{ address }}
                     </p>
-
-                    <div class="box-info" >
-                        <i class="fa-solid fa-info icon"></i>
-                        <a href=""
-                           class="info">
-                            <span>Informazioni</span>
-                        </a>
-                        <i class="fa-solid fa-chevron-right icon"></i>
-                    </div>
                 </div>
 
-                <div class="d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block col-lg-2 me-1">
+                <div class="d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block col-lg-2">
                     <div>
                         <i class="fa-solid fa-person-biking icon"></i>
                         <span>Consegna fra:</span>

@@ -1,10 +1,8 @@
-<template>
-
-    <main>
-        <HeaderRestaurant :image="restaurant.cover"     :name="restaurant.user.name"  :address="restaurant.user.address" />
-                 
+<template>           
 
     <section class="custom-section">
+        <HeaderRestaurant :image="restaurant.cover" :name="restaurant.user.name"  :address="restaurant.user.address" class="mb-5"/>
+        <hr class="mb-5">
         <h1>I NOSTRI PIATTI</h1>
         <div class="container-fluid mt-5">
             <div class="row">
@@ -31,6 +29,7 @@
                                     </div>
                                     <div class="add-to-cart position-absolute top-0 start-0 h-100 d-flex justify-content-center align-items-center">
                                         <h3>AGGIUNGI AL <i class="fas fa-shopping-cart"></i></h3>
+                                        
                                     </div>
                                 </div>
                             </li>
@@ -42,13 +41,18 @@
                         <h1>Riepilogo Ordine</h1>
                         <hr>
                         <div class="d-flex justify-content-between my-4">
-                            <span class="fs-4"><strong>Nome Piatto</strong></span>
-                            <span class="fs-4"><strong>Quantità</strong></span>
+                            <span class="fs-5"><strong>Nome Piatto</strong></span>
+                            <span class="fs-5"><strong>Quantità</strong></span>
+                            <span class="fs-5"><strong>Aggiungi/Rimuovi</strong></span>
                         </div>
                         <ul class="list-unstyled">
                             <li v-for="(plate, id) in cart.plates" :key="id" class="border d-flex justify-content-between mb-4 py-5 px-3">
                                 <h4>{{plate.name}}</h4>
                                 <span class="fs-5 fw-bold">x{{plate.quantity}}</span>
+                                <div>
+                                    <span class="text-danger fs-3" @click="addToCart(plate)">+</span>
+                                    <span class="text-danger fs-3" @click="removeFromCart(plate)">-</span>
+                                </div>
                             </li>
                         </ul>
                         <router-link :to="{ name: 'checkout' }" class="site-primary-btn d-block p-3 text-center button-cart">
@@ -82,7 +86,7 @@ export default {
 
         this.getSingleRestaurant();
 
-        this.addToCart();
+        this.getCart();
         this.getCategories();
 
         this.getMenu();
@@ -112,7 +116,7 @@ export default {
             // handle error
                 console.log(error);
                 })
-
+        },
         getCategories() {
             axios
                 .get("http://127.0.0.1:8000/api/categories")
@@ -155,11 +159,38 @@ export default {
                 console.log(obj);
                 localStorage.setItem("cart", JSON.stringify(obj));
             }
-            this.addToCart();
+            this.getCart();
         },
-        addToCart(){
-            this.cart = JSON.parse(localStorage.getItem("cart"));
-        }
+        getCart() {
+            if (JSON.parse(localStorage.getItem("cart")) !== null) {
+                this.cart = JSON.parse(localStorage.getItem("cart"));
+            }
+        },
+        addToCart(product) {
+            if ( JSON.parse(localStorage.getItem("cart") !== null) && Object.keys(JSON.parse(localStorage.getItem("cart"))).length > 0 ) {
+                const cart = JSON.parse(localStorage.getItem("cart"));
+                const exist = cart["plates"].find((element) => element.id === product.id);
+                if (exist) exist.quantity++;
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+            this.getCart()
+        },
+        removeFromCart(product) {
+            if ( JSON.parse(localStorage.getItem("cart") !== null) && Object.keys(JSON.parse(localStorage.getItem("cart"))).length > 0 ) {
+                const cart = JSON.parse(localStorage.getItem("cart"));
+                const exist = cart["plates"].find((element) => element.id === product.id);
+                if (exist) {
+                    exist.quantity--;
+                    if (exist.quantity <= 0) {
+                        const index = cart["plates"].indexOf(exist);
+                        cart["plates"].splice(index, 1)
+                    }
+
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                }
+            this.getCart()
+            }
+        },
     },
 };
 </script>
