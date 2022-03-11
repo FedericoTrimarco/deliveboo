@@ -40,7 +40,10 @@ class RestaurantController extends Controller
     public function getMenu(Request $request) {
         $data = $request->all();
         $id = (int)$data['id'];
-        $plates = Restaurant::find($id)->plates()->get();
+        $plates = Restaurant::find($id)->plates()->with('category')->get();
+        foreach ($plates as $plate) {
+            $plate->image = url('storage/' . $plate->image);
+        }
         return response()->json($plates);
     }
 

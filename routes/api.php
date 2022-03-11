@@ -24,6 +24,9 @@ Route::namespace('Api')->group(function () {
     //typologie_restaurant
     Route::get('/typologies/{id}', 'TypologyController@show');
 
+    //category-plates
+    Route::get('/categories', 'CategoryController@index');
+
     Route::post('/restaurant/menu', 'RestaurantController@getMenu');
     Route::post('/send_email', 'RestaurantController@send_email');
     

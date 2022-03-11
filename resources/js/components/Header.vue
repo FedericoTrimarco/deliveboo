@@ -1,7 +1,10 @@
 <template>
     <header
         class="front-header position-fixed vw-100"
-        :class="{ onScroll: !view.topOfPage || $route.path != '/' }"
+        :class="{
+            onScroll: !view.topOfPage || $route.path != '/',
+            hidden: getCurrentRouteName === 'checkout',
+        }"
     >
         <nav class="row justify-content-between align-items-center p-3">
             <!-- Left Side Of Navbar -->
@@ -52,7 +55,10 @@
                                 class="list-group-item site-pointer"
                                 @click="
                                     (typologyLink = typology.id),
-                                        selectDopdown()
+
+                                        selectDopdown(),
+                                        (typologyName = typology.name)
+
                                 "
                             >
                                 {{ typology.name }}
@@ -60,7 +66,9 @@
                         </ul>
                     </div>
                     <!-- <router-link :is="typologyLink === '' ? 'span' : 'router-link'" :to="{name: 'restaurant', params: {id: typologyLink}}" class=" site-primary-btn">Cerca</router-link> -->
-                    <a href="#restaurants" class="site-primary-btn">Cerca</a>
+
+                    <a href="#restaurants" class=" site-primary-btn" @click="getTypology(typologyName)">Cerca</a>
+
                 </div>
             </div>
             <div class="col-2 col-md-4 d-flex justify-content-end">
@@ -90,10 +98,7 @@
                                     class="site-dropleft d-sm-none"
                                     :class="{ 'd-none': dropleftNone }"
                                 >
-                                    <!-- <select class="form-control mb-3" name="category_id" id="category_id"  v-model="typologyLink">
-                                        <option selected disabled value="">Selezionare una tipologia</option>
-                                        <option v-for="typology in typologies" :key="`typology-${typology.id}`" :value="typology.id">{{ typology.name }}</option>
-                                    </select> -->
+                                    
                                     <div class="position-relative w-100 mb-3">
                                         <div
                                             @click="selectDopdown()"
@@ -119,21 +124,29 @@
                                             class="position-absolute text-center w-100 list-group overflow-auto select-dropdown"
                                             :class="{ 'd-0': select }"
                                         >
-                                            <li
+
+                                           <li
+
                                                 v-for="typology in typologies"
                                                 :key="`typology-${typology.id}`"
                                                 class="list-group-item site-pointer"
                                                 @click="
-                                                    (typologyLink =
-                                                        typology.id),
-                                                        selectDopdown()
+
+                                                    (typologyLink = typology.id),
+                                                        selectDopdown(),
+                                                        changeDropDownDisplay(),
+                                                        (typologyName = typology.name),
+                                                        getTypology(typologyName)
+
                                                 "
                                             >
                                                 {{ typology.name }}
                                             </li>
                                         </ul>
                                     </div>
+
                                     <router-link
+
                                         :is="
                                             typologyLink === ''
                                                 ? 'span'
@@ -144,13 +157,15 @@
                                             params: { id: typologyLink },
                                         }"
                                         class="site-primary-btn"
-                                        >Cerca</router-link
-                                    >
+                                        >Cerca</router-link>
                                 </div>
                             </div>
                             <router-link
                                 :to="{ name: 'checkout' }"
                                 class="site-primary-btn mb-3 mb-md-0 mr-md-2"
+                                :class="{
+                                    hidden: getCurrentRouteName === `home`,
+                                }"
                             >
                                 <i class="fas fa-shopping-cart"></i>
                             </router-link>
@@ -177,171 +192,202 @@
 import axios from "axios";
 
 export default {
-    name: "Header",
-    data() {
-        return {
-            typologies: null,
-            typologyLink: "",
-            view: {
-                topOfPage: true,
-            },
-            dropdownNone: true,
-            dropleftNone: true,
-            select: true,
-        };
-    },
-    created() {
-        this.getTypologies();
-    },
-    beforeMount() {
-        window.addEventListener("scroll", this.handleScroll);
-    },
-    mounted() {
-        document.addEventListener("click", this.onClick);
-    },
-    beforeDestroy() {
-        document.removeEventListener("click", this.onClick);
-    },
-    watch: {
-        $route(to, from) {
-            this.dropdownNone = true;
-            this.dropleftNone = true;
-        },
-    },
-    methods: {
-        getTypologies() {
-            axios
-                .get("http://127.0.0.1:8000/api/typologies")
-                .then((res) => {
-                    this.typologies = res.data;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        },
-        handleScroll() {
-            if (window.pageYOffset > 250) {
-                if (this.view.topOfPage) this.view.topOfPage = false;
-            } else {
-                if (!this.view.topOfPage) this.view.topOfPage = true;
-            }
-        },
-        changeDropDownDisplay() {
-            this.dropdownNone = !this.dropdownNone;
-            this.dropleftNone = true;
-            this.select = true;
-        },
-        changeDropLeftDisplay() {
-            this.dropleftNone = !this.dropleftNone;
-        },
-        selectDopdown() {
-            this.select = !this.select;
-        },
-        onClick(event) {
-            if (!event.target.classList.contains("site-control-select")) {
-                if (this.select == false) {
-                    this.select = true;
-                } else if (this.dropleftNone == false) {
-                    this.dropleftNone = true;
-                } else {
-                    this.select = true;
-                    this.dropdownNone = true;
-                    this.dropleftNone = true;
-                }
+  name: "Header",
+  data() {
+    return {
+      typologies: null,
+      typologyLink: "",
+      typologyName: "",
 
-                // console.log(event.target);
-            }
-        },
+      view: {
+        topOfPage: true,
+      },
+      dropdownNone: true,
+      dropleftNone: true,
+      select: true,
+    };
+  },
+  computed: {
+    getCurrentRouteName() {
+      return this.$route.name;
     },
+  },
+  created() {
+    this.getTypologies();
+  },
+  beforeMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  mounted() {
+    document.addEventListener("click", this.onClick);
+  },
+  beforeDestroy() {
+    document.removeEventListener("click", this.onClick);
+  },
+  watch: {
+    $route(to, from) {
+      this.dropdownNone = true;
+      this.dropleftNone = true;
+    },
+  },
+  methods: {
+    getTypologies() {
+      axios
+        .get("http://127.0.0.1:8000/api/typologies")
+        .then((res) => {
+          this.typologies = res.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    handleScroll() {
+      if (window.pageYOffset > 250) {
+        if (this.view.topOfPage) this.view.topOfPage = false;
+      } else {
+        if (!this.view.topOfPage) this.view.topOfPage = true;
+      }
+    },
+    changeDropDownDisplay() {
+      this.dropdownNone = !this.dropdownNone;
+      this.dropleftNone = true;
+      this.select = true;
+    },
+    changeDropLeftDisplay() {
+      this.dropleftNone = !this.dropleftNone;
+    },
+    selectDopdown() {
+      this.select = !this.select;
+    },
+    onClick(event) {
+      if (!event.target.classList.contains("site-control-select")) {
+        if (this.select == false) {
+          this.select = true;
+        } else if (this.dropleftNone == false) {
+          this.dropleftNone = true;
+        } else {
+          this.select = true;
+          this.dropdownNone = true;
+          this.dropleftNone = true;
+        }
+
+        // console.log(event.target);
+      }
+    },
+    getTypology(typology) {
+      this.$emit("getTypology", typology);
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+.hidden {
+  display: none;
+}
+
 .front-header {
-    background: transparent;
-    z-index: 1;
-    transition: all 0.4s ease-in-out;
+  background: transparent;
+  z-index: 1;
+  transition: all 0.4s ease-in-out;
 
-    &.onScroll {
-        box-shadow: 0 0 10px #aaa;
-        background-color: rgba(2, 48, 71, 0.5);
+  &.onScroll {
+    box-shadow: 0 0 10px #aaa;
+    background-color: rgba(2, 48, 71, 0.5);
+  }
+
+  nav {
+    background-color: transparent;
+
+    .site-logo {
+      padding: 0;
+      img {
+        max-width: 100%;
+        filter: contrast(180%) drop-shadow(8px 8px 10px rgb(51, 50, 50));
+      }
     }
 
-    nav {
-        background-color: transparent;
-
-        .site-logo {
-            padding: 0;
-            img {
-                max-width: 100%;
-                filter: contrast(180%) drop-shadow(8px 8px 10px rgb(51, 50, 50));
-            }
-        }
-
-        .site-custom-select {
-            background: #e0f4fe;
-            color: #219ebc;
-        }
-        .select-dropdown {
-            max-height: 300px;
-            transition: all 0.5s ease-in-out;
-
-            &.d-0 {
-                max-height: 0px;
-            }
-
-            li {
-                background: #c7ecff;
-                color: #179dbe;
-
-                &:nth-child(even) {
-                    background: #daf1fd;
-                    color: #219ebc;
-                }
-
-                &:hover {
-                    background: #ffb703;
-                }
-            }
-        }
-
-        .site-pointer {
-            cursor: pointer;
-        }
-
-        @media all and (max-width: 767px) {
-            .site-dropdown {
-                position: absolute;
-                top: 50px;
-                left: -65px;
-                background-color: rgb(2, 48, 71);
-                padding: 10px;
-                width: 150px;
-                box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-                    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-
-                .site-primary-btn {
-                    padding: 5px;
-                    text-align: center;
-                }
-            }
-        }
-
-        .site-dropleft {
-            position: absolute;
-            right: 140px;
-            top: -10px;
-            background-color: rgb(2, 48, 71);
-            padding: 10px;
-            width: 200px;
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-                rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-
-            .site-primary-btn {
-                padding: 5px;
-                text-align: center;
-            }
-        }
+    .site-custom-select {
+      background: #e0f4fe;
+      color: #219ebc;
     }
+    .select-dropdown {
+      max-height: 300px;
+      transition: all 0.5s ease-in-out;
+
+      &.d-0 {
+        max-height: 0px;
+      }
+
+      li {
+        background: #c7ecff;
+        color: #179dbe;
+
+        &:nth-child(even) {
+          background: #daf1fd;
+          color: #219ebc;
+        }
+
+        &:hover {
+          background: #ffb703;
+        }
+      }
+    }
+
+    .site-pointer {
+      cursor: pointer;
+    }
+
+    @media all and (max-width: 767px) {
+      .site-dropdown {
+        position: absolute;
+        top: 50px;
+        left: -65px;
+        background-color: rgb(2, 48, 71);
+        padding: 10px;
+        width: 150px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+      }
+
+      .site-pointer {
+        cursor: pointer;
+      }
+    }
+
+    @media all and (max-width: 767px) {
+      .site-dropdown {
+        position: absolute;
+        top: 50px;
+        left: -65px;
+        background-color: rgb(2, 48, 71);
+        padding: 10px;
+        width: 150px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+        .site-primary-btn {
+          padding: 5px;
+          text-align: center;
+        }
+      }
+    }
+
+    .site-dropleft {
+      position: absolute;
+      right: 140px;
+      top: -10px;
+      background-color: rgb(2, 48, 71);
+      padding: 10px;
+      width: 200px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+        rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+
+      .site-primary-btn {
+        padding: 5px;
+        text-align: center;
+      }
+    }
+  }
 }
 </style>

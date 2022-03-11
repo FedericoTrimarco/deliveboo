@@ -86,12 +86,20 @@ export default {
         Hero,
         Restaurant,
     },
+    props: {
+        selectedTypology: String,
+    },
     data() {
         return {
             typologies: null,
             restaurants: null,
             selectedTypology: null,
         };
+    },
+    watch: {
+        selectedTypology: function (newVal, oldVal) {
+            this.checkedTypologies = [newVal];
+        },
     },
     created() {
         this.randomCategory();

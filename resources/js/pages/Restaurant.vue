@@ -1,40 +1,65 @@
 <template>
+
     <main>
         <HeaderRestaurant :image="restaurant.cover"     :name="restaurant.user.name"  :address="restaurant.user.address" />
                  
-        <section class="custom-section">
-            <div class="custom-section-wrapper">
-                <ul class="card-list">
-                    <li
-                        class="custom-card"
-                        v-for="(item, index) in menu"
-                        :key="`item-${index}`"
-                    >
-                        <router-link to="">
-                            <div class="custom-card-image-container">
-                                <div
-                                    class="custom-card-image"
-                                    :style="`background-image: url('../storage/${item.image}')`"
-                                ></div>
-                            </div>
-                            <h3 class="custom-card-name">{{ item.name }}</h3>
-                            <p>
-                                {{
-                                    item.price.toLocaleString("it", {
-                                        style: "currency",
-                                        currency: "EUR",
-                                    })
-                                }}
-                            </p>
-                            <button @click="checkForLocalstorage(item)">
-                                Aggiungi al carrello
-                            </button>
+
+    <section class="custom-section">
+        <h1>I NOSTRI PIATTI</h1>
+        <div class="container-fluid mt-5">
+            <div class="row">
+                <div class="custom-section-wrapper col-8">
+                    <div v-for="(category, index) in categories" :key="index" class="mb-5" v-show="menuCategories.includes(category.name)">
+                        <h1>{{category.name}}</h1>
+                        <ul class="card-list list-unstyled d-flex row">
+                            <li 
+                                @click="checkForLocalstorage(item)"
+                                v-for="(item, index) in menu"
+                                :key="`item-${index}`"
+                                v-show="item.category.name == category.name && item.visible"
+                                class="col-4 pointer p-3"
+                            >
+                                <div v-if="item.visible" class="custom-card row rounded position-relative">
+                                    <div class="col-4 image-plate">
+                                        <img :src="item.image" alt="" class="w-100 h-100">
+                                    </div>
+                                    <div class="col-8 info">
+                                        <h4 class="custom-card-name mt-3">{{ item.name }}</h4>
+                                        <p><strong>Ingredienti:</strong> {{item.ingredients}}</p>
+                                        <p><strong>Descrizione:</strong> {{item.description}}</p>
+                                        <p class="text-end price m-0">€{{item.price}}</p>
+                                    </div>
+                                    <div class="add-to-cart position-absolute top-0 start-0 h-100 d-flex justify-content-center align-items-center">
+                                        <h3>AGGIUNGI AL <i class="fas fa-shopping-cart"></i></h3>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-4 order pt-5">
+                    <div class="cart-review p-3">
+                        <h1>Riepilogo Ordine</h1>
+                        <hr>
+                        <div class="d-flex justify-content-between my-4">
+                            <span class="fs-4"><strong>Nome Piatto</strong></span>
+                            <span class="fs-4"><strong>Quantità</strong></span>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li v-for="(plate, id) in cart.plates" :key="id" class="border d-flex justify-content-between mb-4 py-5 px-3">
+                                <h4>{{plate.name}}</h4>
+                                <span class="fs-5 fw-bold">x{{plate.quantity}}</span>
+                            </li>
+                        </ul>
+                        <router-link :to="{ name: 'checkout' }" class="site-primary-btn d-block p-3 text-center button-cart">
+                            <i class="fas fa-shopping-cart fs-4"></i>
+
                         </router-link>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 </template>
 
 <script>
@@ -48,11 +73,29 @@ export default {
         return {
             restaurant: null,
             menu: [],
+            categories: null,
+            menuCategories: [],
+            cart: [],
         };
     },
     created() {
+
         this.getSingleRestaurant();
+
+        this.addToCart();
+        this.getCategories();
+
         this.getMenu();
+    },
+    watch:{
+        menu: function(){
+            this.menu.forEach(el => {
+                if(el.visible){
+                    this.menuCategories.push(el.category.name)
+
+                }
+            })
+        }
     },
     methods: {
 
@@ -69,6 +112,15 @@ export default {
             // handle error
                 console.log(error);
                 })
+
+        getCategories() {
+            axios
+                .get("http://127.0.0.1:8000/api/categories")
+                .then((res) => {
+                    this.categories = res.data;
+                })
+                .catch((err) => log.error(err));
+
         },
         // prettier-ignore
         getMenu() {
@@ -103,95 +155,76 @@ export default {
                 console.log(obj);
                 localStorage.setItem("cart", JSON.stringify(obj));
             }
+            this.addToCart();
         },
+        addToCart(){
+            this.cart = JSON.parse(localStorage.getItem("cart"));
+        }
     },
 };
 </script>
 
 <style lang="scss" scoped>
-main {
-    flex-grow: 1;
-    display: flex;
-    padding-top: 80px;
-    flex-direction: column;
+.pointer{
+    cursor: pointer;
 }
-
-.custom-section {
-    padding: 48px 0 80px;
-
-    .custom-section-wrapper {
-        margin: 0 auto;
-        padding: 0 32px;
-        width: calc(100% - (2 * 32px));
-
-        h2 {
-            margin: 0;
-            font-size: 40px;
-            font-weight: 600;
-            margin-bottom: 32px;
-        }
-
-        .card-list {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0 0 -32px -32px;
-
-            > .custom-card {
-                list-style: none;
-                padding-left: 32px;
-                padding-bottom: 32px;
-                width: calc(100% / 3);
-
-                a {
-                    color: currentColor;
-                    text-decoration: none;
-
-                    .custom-card-image-container {
-                        padding-top: 50%;
-                        position: relative;
-                        margin-bottom: 8px;
-
-                        .custom-card-image {
-                            left: 0;
-                            top: 0;
-                            width: 100%;
-                            height: 100%;
-                            position: absolute;
-                            background-size: cover;
+.custom-section{
+    margin: 150px auto 0;
+    width: 80%;
+    .custom-section-wrapper{
+        ul{
+            li{
+                .custom-card{
+                    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                    transition: all .4s ease-in-out;
+                    background-color: #fff;
+                    overflow: hidden;
+                    .add-to-cart{
+                        background-color: #ffb8038f;
+                        backdrop-filter: blur(2px);
+                        opacity: 0;
+                        transition: all .6s ease-in-out;
+                    }
+                    &:hover{
+                       box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+                       .add-to-cart{
+                        opacity: 1;
+                    }
+                    }
+                    .info{
+                        h4{
+                            text-transform: capitalize;
+                        }
+                        .price{
+                            font-size: 20px;
+                            color: #bcc5d8;
                         }
                     }
-
-                    .custom-card-name {
-                        font-weight: 500;
-                        margin-bottom: 4px;
-                        font-size: 1.125rem;
-                        letter-spacing: 0.02rem;
-                    }
-
-                    .custom-card-description {
-                        margin: 0;
-                        padding: 0;
-                        font-size: 16px;
+                    .image-plate{
+                        padding: 15px;
+                        img{
+                            border-radius: 5px;
+                            object-fit: cover;
+                        }
                     }
                 }
             }
         }
+
     }
-}
-
-@media screen and (max-width: 768px) {
-    .custom-card {
-        width: 100% !important;
-        flex-grow: 0 !important;
-        flex-shrink: 0 !important;
-
-        &.custom-card-long {
-            width: 100%;
-            flex-grow: 0;
-            flex-shrink: 0;
+    .order{
+        .cart-review{
+            background-color: #fff;
+            min-height: 400px;
+            border-radius:5px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            position: sticky;
+            top: 150px;
         }
     }
 }
+
+
+
+
 </style>
