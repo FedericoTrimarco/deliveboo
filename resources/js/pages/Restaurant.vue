@@ -11,10 +11,10 @@
                                 @click="checkForLocalstorage(item)"
                                 v-for="(item, index) in menu"
                                 :key="`item-${index}`"
-                                v-show="item.category.name == category.name"
+                                v-show="item.category.name == category.name && item.visible"
                                 class="col-4 pointer p-3"
                             >
-                                <div v-if="item.visible" class="custom-card row rounded">
+                                <div v-if="item.visible" class="custom-card row rounded position-relative">
                                     <div class="col-4 image-plate">
                                         <img :src="item.image" alt="" class="w-100 h-100">
                                     </div>
@@ -24,41 +24,32 @@
                                         <p><strong>Descrizione:</strong> {{item.description}}</p>
                                         <p class="text-end price m-0">€{{item.price}}</p>
                                     </div>
-
-                                    <!-- <span class="text-danger">{{item.category.name}}</span>
-                                    <div class="custom-card-image-container">
-                                        <img :src="item.image" alt="">
+                                    <div class="add-to-cart position-absolute top-0 start-0 h-100 d-flex justify-content-center align-items-center">
+                                        <h3>AGGIUNGI AL <i class="fas fa-shopping-cart"></i></h3>
                                     </div>
-                                    <h3 class="custom-card-name">{{ item.name }}</h3>
-                                    <p>
-                                        {{
-                                            item.price.toLocaleString("it", {
-                                                style: "currency",
-                                                currency: "EUR",
-                                            })
-                                        }}
-                                    </p>
-                                    <button @click="checkForLocalstorage(item)">
-                                        Aggiungi al carrello
-                                    </button> -->
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-4 order">
-                    <ul>
-                        <li v-for="product in cart['plates']" :key="`${product.id}`">
-                            {{ product.name }}
-                            <div class="div">
-                                <span>
-                                    <strong>Quantity:</strong>{{ product.quantity }}</span
-                                >
-                                <button @click="addToCart(product)">Aggiungi</button>
-                                <button @click="removeFromCart(product)">Rimuovi</button>
-                            </div>
-                        </li>
-                    </ul>
+                <div class="col-4 order pt-5">
+                    <div class="cart-review p-3">
+                        <h1>Riepilogo Ordine</h1>
+                        <hr>
+                        <div class="d-flex justify-content-between my-4">
+                            <span class="fs-4"><strong>Nome Piatto</strong></span>
+                            <span class="fs-4"><strong>Quantità</strong></span>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li v-for="(plate, id) in cart.plates" :key="id" class="border d-flex justify-content-between mb-4 py-5 px-3">
+                                <h4>{{plate.name}}</h4>
+                                <span class="fs-5 fw-bold">x{{plate.quantity}}</span>
+                            </li>
+                        </ul>
+                        <div :to="{ name: 'checkout' }" class="site-primary-btn text-center py-4 pointer">
+                            <i class="fas fa-shopping-cart fs-4"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,10 +67,11 @@ export default {
             menu: [],
             categories: null,
             menuCategories: [],
-            cart: {},
+            cart: [],
         };
     },
     created() {
+        this.addToCart();
         this.getCategories();
         this.getMenu();
     },
@@ -92,9 +84,6 @@ export default {
                 }
             })
         }
-    },
-    created() {
-        this.getCart();
     },
     methods: {
         getCategories() {
@@ -112,6 +101,7 @@ export default {
             axios.post("http://127.0.0.1:8000/api/restaurant/menu", id, config).then((response) => this.menu = response.data);
         },
         checkForLocalstorage(item) {
+            this.addToCart();
             if (
                 JSON.parse(localStorage.getItem("cart") !== null) &&
                 Object.keys(JSON.parse(localStorage.getItem("cart"))).length > 0
@@ -139,37 +129,9 @@ export default {
                 localStorage.setItem("cart", JSON.stringify(obj));
             }
         },
-        getCart() {
-            if (JSON.parse(localStorage.getItem("cart")) !== null) {
-                this.cart = JSON.parse(localStorage.getItem("cart"));
-                console.log('lello');
-            }
-        },
-        addToCart(product) {
-            if ( JSON.parse(localStorage.getItem("cart") !== null) && Object.keys(JSON.parse(localStorage.getItem("cart"))).length > 0 ) {
-                const cart = JSON.parse(localStorage.getItem("cart"));
-                const exist = cart["plates"].find((element) => element.id === product.id);
-                if (exist) exist.quantity++;
-                localStorage.setItem("cart", JSON.stringify(cart));
-            }
-            this.getCart()
-        },
-        removeFromCart(product) {
-            if ( JSON.parse(localStorage.getItem("cart") !== null) && Object.keys(JSON.parse(localStorage.getItem("cart"))).length > 0 ) {
-                const cart = JSON.parse(localStorage.getItem("cart"));
-                const exist = cart["plates"].find((element) => element.id === product.id);
-                if (exist) {
-                    exist.quantity--;
-                    if (exist.quantity <= 0) {
-                        const index = cart["plates"].indexOf(exist);
-                        cart["plates"].splice(index, 1)
-                    }
-
-                    localStorage.setItem("cart", JSON.stringify(cart));
-                }
-            this.getCart()
-            }
-        },
+        addToCart(){
+            this.cart = JSON.parse(localStorage.getItem("cart"));
+        }
     },
 };
 </script>
@@ -189,10 +151,23 @@ export default {
                     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
                     transition: all .4s ease-in-out;
                     background-color: #fff;
+                    overflow: hidden;
+                    .add-to-cart{
+                        background-color: #ffb8038f;
+                        backdrop-filter: blur(2px);
+                        opacity: 0;
+                        transition: all .6s ease-in-out;
+                    }
                     &:hover{
-                       box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+                       box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+                       .add-to-cart{
+                        opacity: 1;
+                    }
                     }
                     .info{
+                        h4{
+                            text-transform: capitalize;
+                        }
                         .price{
                             font-size: 20px;
                             color: #bcc5d8;
@@ -212,6 +187,14 @@ export default {
     }
     .order{
         border: 2px solid red;
+        .cart-review{
+            background-color: #fff;
+            min-height: 400px;
+            border-radius:5px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            position: sticky;
+            top: 150px;
+        }
     }
 }
 
