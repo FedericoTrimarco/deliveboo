@@ -98,10 +98,7 @@
                                     class="site-dropleft d-sm-none"
                                     :class="{ 'd-none': dropleftNone }"
                                 >
-                                    <!-- <select class="form-control mb-3" name="category_id" id="category_id"  v-model="typologyLink">
-                                        <option selected disabled value="">Selezionare una tipologia</option>
-                                        <option v-for="typology in typologies" :key="`typology-${typology.id}`" :value="typology.id">{{ typology.name }}</option>
-                                    </select> -->
+                                    
                                     <div class="position-relative w-100 mb-3">
                                         <div
                                             @click="selectDopdown()"
