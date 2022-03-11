@@ -130,7 +130,6 @@ export default {
             this.addToCart();
         },
         addToCart(){
-            console.log('lello');
             this.cart = JSON.parse(localStorage.getItem("cart"));
         }
     },
