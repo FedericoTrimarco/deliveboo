@@ -1,25 +1,22 @@
 <template>
     <div class="front-hero" ref="hero">
         <div
-            class="container mb-3 d-flex flex-column align-items-start justify-content-center vh-100"
+            class="mb-3 d-flex flex-column align-items-start border border-danger justify-content-center vh-100"
         >
             <div
                 v-if="view.topOfPage"
                 class="select-container"
                 id="search-hero"
             >
-                <label class="px-3" for="typology_id"
-                    >Tipologie Ristoranti</label
-                >
-                <div class="d-flex">
+                <div class="d-flex justify-content-center ps-5">
                     <!-- <select class="form-control mx-3 flex-shrink-1" name="typology_id" id="typology_id"  v-model="typologyLink">
                                 <option selected disabled value="">Selezionare una tipologia</option>
                                 <option v-for="typology in typologies" :key="`typology-${typology.id}`" :value="typology.id">{{ typology.name }}</option>
                         </select> -->
-                    <div class="position-relative w-100 mr-3">
+                    <div class="position-relative w-75 mr-3">
                         <div
                             @click="selectDopdown()"
-                            class="w-100 text-center py-2 site-pointer site-custom-select"
+                            class="w-100 text-center py-3 site-pointer site-custom-select"
                         >
                             <div
                                 class="site-control-select"
@@ -51,7 +48,7 @@
                     </div>
                     <a
                         href="#restaurants"
-                        class="site-primary-btn"
+                        class="site-primary-btn d-flex align-items-center"
                         @click="getTypology(typologyName)"
                         >Cerca</a
                     >
@@ -140,9 +137,8 @@ export default {
     
     // scrollbar-width: none;
     .select-container {
-        width: 100%;
         color: white;
-        background: rgba(2, 48, 71, 0.5);
+        // background: rgba(2, 48, 71, 0.5);
         padding: 10px;
         transform: translateY(-100px);
 
@@ -150,7 +146,7 @@ export default {
             cursor: pointer;
         }
         .site-custom-select {
-            background: #e0f4fe;
+            background: #fff;
             color: #219ebc;
         }
         .select-dropdown {
@@ -162,7 +158,7 @@ export default {
             }
 
             li {
-                background: #c7ecff;
+                background: #fff;
                 color: #179dbe;
 
                 &:nth-child(even) {
