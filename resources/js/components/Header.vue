@@ -52,7 +52,10 @@
                                 class="list-group-item site-pointer"
                                 @click="
                                     (typologyLink = typology.id),
-                                        selectDopdown()
+
+                                        selectDopdown(),
+                                        (typologyName = typology.name)
+
                                 "
                             >
                                 {{ typology.name }}
@@ -60,7 +63,9 @@
                         </ul>
                     </div>
                     <!-- <router-link :is="typologyLink === '' ? 'span' : 'router-link'" :to="{name: 'restaurant', params: {id: typologyLink}}" class=" site-primary-btn">Cerca</router-link> -->
-                    <a href="#restaurants" class="site-primary-btn">Cerca</a>
+
+                    <a href="#restaurants" class=" site-primary-btn" @click="getTypology(typologyName)">Cerca</a>
+
                 </div>
             </div>
             <div class="col-2 col-md-4 d-flex justify-content-end">
@@ -119,21 +124,29 @@
                                             class="position-absolute text-center w-100 list-group overflow-auto select-dropdown"
                                             :class="{ 'd-0': select }"
                                         >
-                                            <li
+
+                                           <li
+
                                                 v-for="typology in typologies"
                                                 :key="`typology-${typology.id}`"
                                                 class="list-group-item site-pointer"
                                                 @click="
-                                                    (typologyLink =
-                                                        typology.id),
-                                                        selectDopdown()
+
+                                                    (typologyLink = typology.id),
+                                                        selectDopdown(),
+                                                        changeDropDownDisplay(),
+                                                        (typologyName = typology.name),
+                                                        getTypology(typologyName)
+
                                                 "
                                             >
                                                 {{ typology.name }}
                                             </li>
                                         </ul>
                                     </div>
+
                                     <router-link
+
                                         :is="
                                             typologyLink === ''
                                                 ? 'span'
@@ -145,7 +158,7 @@
                                         }"
                                         class="site-primary-btn"
                                         >Cerca</router-link
-                                    >
+
                                 </div>
                             </div>
                             <router-link
@@ -182,6 +195,8 @@ export default {
         return {
             typologies: null,
             typologyLink: "",
+            typologyName: "",
+
             view: {
                 topOfPage: true,
             },
@@ -252,6 +267,10 @@ export default {
                 // console.log(event.target);
             }
         },
+        getTypology(typology) {
+            this.$emit("getTypology", typology);
+        },
+
     },
 };
 </script>
@@ -305,6 +324,7 @@ export default {
             }
         }
 
+
         .site-pointer {
             cursor: pointer;
         }
@@ -319,6 +339,24 @@ export default {
                 width: 150px;
                 box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
                     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+
+
+        .site-pointer {
+            cursor: pointer;
+        }
+
+        @media all and (max-width: 767px) {
+            .site-dropdown {
+                position: absolute;
+                top: 50px;
+                left: -65px;
+                background-color: rgb(2, 48, 71);
+                padding: 10px;
+                width: 150px;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+                    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
 
                 .site-primary-btn {
                     padding: 5px;

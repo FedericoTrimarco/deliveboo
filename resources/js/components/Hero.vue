@@ -54,6 +54,7 @@
                         @click="getTypology(typologyName)"
                         >Cerca</a
                     >
+
                 </div>
             </div>
         </div>
