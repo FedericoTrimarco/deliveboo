@@ -16,23 +16,27 @@
 
 // General styles
 .site-primary-btn {
-    font-size: 17px;
-    color: $site-primary-col;
-    background-color: $site-item-col;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    background-color: $site-col-3;
     padding: 0.5rem 1.2rem;
-    border-radius: 5px;
+    border-radius: 2px;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
     &:hover {
         color: white;
         text-decoration: none;
-        background-color: #c78f00;
+        background-color: #b96300;
         box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     }
     &:focus {
         outline: 3px solid #b88400;
     }
 }
+
+// Font variables
+$site-title-font: 'Inter', sans-serif;
 
 .site-badge {
     display: flex;
