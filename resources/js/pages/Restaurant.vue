@@ -46,9 +46,9 @@
                                 <span class="fs-5 fw-bold">x{{plate.quantity}}</span>
                             </li>
                         </ul>
-                        <div :to="{ name: 'checkout' }" class="site-primary-btn text-center py-4 pointer">
+                        <router-link :to="{ name: 'checkout' }" class="site-primary-btn d-block p-3 text-center button-cart">
                             <i class="fas fa-shopping-cart fs-4"></i>
-                        </div>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -101,7 +101,6 @@ export default {
             axios.post("http://127.0.0.1:8000/api/restaurant/menu", id, config).then((response) => this.menu = response.data);
         },
         checkForLocalstorage(item) {
-            this.addToCart();
             if (
                 JSON.parse(localStorage.getItem("cart") !== null) &&
                 Object.keys(JSON.parse(localStorage.getItem("cart"))).length > 0
@@ -128,8 +127,10 @@ export default {
                 console.log(obj);
                 localStorage.setItem("cart", JSON.stringify(obj));
             }
+            this.addToCart();
         },
         addToCart(){
+            console.log('lello');
             this.cart = JSON.parse(localStorage.getItem("cart"));
         }
     },
@@ -144,7 +145,6 @@ export default {
     margin: 150px auto 0;
     width: 80%;
     .custom-section-wrapper{
-        border: 2px solid blue;
         ul{
             li{
                 .custom-card{
@@ -186,7 +186,6 @@ export default {
 
     }
     .order{
-        border: 2px solid red;
         .cart-review{
             background-color: #fff;
             min-height: 400px;
