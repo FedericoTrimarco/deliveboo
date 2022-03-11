@@ -1,11 +1,10 @@
 <template>
     <section class="restaurants d-flex flex-column ps-4">
         <div class="container">
-            <div class="d-flex">
+            <div class="d-flex flex-wrap" v-if="filter[0] === '' && filter[1] == null || filter.length == 0">
                 <div v-for="(el, id) in mainArray" :key="id">
                     <div
                         class="card-restaurant p-2"
-                        v-if="getFilter(el.typologies, filter)"
                     >
                         <router-link
                             class="h-100 text-decoration-none text-dark"
@@ -29,9 +28,7 @@
                                             class="fa-solid fa-utensils mr-2"
                                         ></i>
                                         <span
-                                            v-for="(
-                                                typology, id
-                                            ) in el.typologies"
+                                            v-for="(typology, id) in el.typologies"
                                             :key="`tpology-${id}`"
                                         >
                                             {{ typology.name }},
@@ -49,6 +46,50 @@
                     </div>
                 </div>
             </div>
+            <div class="d-flex flex-wrap" v-else>
+                <div v-for="(el, id) in mainArray" :key="id">
+                    <div
+                        class="card-restaurant p-2"
+                        v-if="getFilter(el.typologies, filter)"
+                    >
+                        <router-link
+                            class="h-100 text-decoration-none text-dark"
+                            :to="{
+                                name: 'restaurant',
+                                params: { id: el.id },
+                            }"
+                        >
+                            <div class="restaurant-item h-100">
+                                <div class="cover-restaurant">
+                                    <img
+                                        :src="el.cover"
+                                        class="w-100 h-100"
+                                        alt=""
+                                    />
+                                </div>
+                                <div class="info-card d-flex p-3 flex-column">
+                                    <h5 class="mb-3">{{ el.user.name }}</h5>
+                                    <div class="typologies">
+                                        <i class="fa-solid fa-utensils mr-2"></i>
+                                        <span
+                                            v-for="(typology, id) in el.typologies"
+                                            :key="`tpology-${id}`"
+                                        >
+                                            {{ typology.name }},
+                                        </span>
+                                    </div>
+                                    <span>
+                                        <i class="fa-solid fa-location-dot mr-2"></i>
+                                        {{ el.user.address }}
+                                    </span
+                                    >
+                                </div>
+                            </div>
+                        </router-link>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 </template>
@@ -59,6 +100,7 @@ export default {
     props: {
         mainArray: Array,
         filter: Array,
+        allRestaurant: Array,
     },
     methods: {
         getFilter(array1, array2) {
@@ -111,10 +153,13 @@ export default {
                 h5 {
                     text-transform: capitalize;
                 }
-                span {
-                    i {
-                        color: $site-item-col;
-                    }
+                i{
+                    color: $site-item-col;
+                }
+                .typologies{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
             }
         }

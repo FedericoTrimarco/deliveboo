@@ -116,7 +116,7 @@ export default {
         },
         getTypology(typology) {
             this.$emit("getTypology", typology);
-            this. fadeOnClick();
+            this.fadeOnClick();
         },
         fadeOnClick(){
             this.$refs.hero.style.opacity = '0';

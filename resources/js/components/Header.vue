@@ -1,6 +1,6 @@
 <template>
     <header
-        class="front-header position-fixed vw-100"
+        class="front-header position-fixed vw-100 px-3"
         :class="{
             onScroll: !view.topOfPage || $route.path != '/',
             hidden: getCurrentRouteName === 'checkout',
@@ -160,15 +160,6 @@
                                         >Cerca</router-link>
                                 </div>
                             </div>
-                            <router-link
-                                :to="{ name: 'checkout' }"
-                                class="site-primary-btn mb-3 mb-md-0 mr-md-2"
-                                :class="{
-                                    hidden: getCurrentRouteName === `home`,
-                                }"
-                            >
-                                <i class="fas fa-shopping-cart"></i>
-                            </router-link>
                             <a
                                 class="text-uppercase site-primary-btn"
                                 href="/admin"
