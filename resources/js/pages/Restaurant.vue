@@ -163,7 +163,6 @@ export default {
                     id: this.$route.params.id,
                     plates: [{ id: item.id, name: item.name, quantity: 1 }],
                 };
-                console.log(obj);
                 localStorage.setItem("cart", JSON.stringify(obj));
             }
             this.getCart();

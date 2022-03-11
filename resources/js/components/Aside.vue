@@ -78,7 +78,6 @@ export default {
                     }
                 }
             }
-           console.log(this.checkedTypologies);
         },
         getTypologyFromAside(typology){
             this.$emit('getTypologyFromAside', typology);

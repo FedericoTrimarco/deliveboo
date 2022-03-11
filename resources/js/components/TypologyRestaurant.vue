@@ -3,9 +3,7 @@
         <div class="container">
             <div class="d-flex flex-wrap" v-if="filter[0] === '' && filter[1] == null || filter.length == 0">
                 <div v-for="(el, id) in mainArray" :key="id">
-                    <div
-                        class="card-restaurant p-2"
-                    >
+                    <div class="card-restaurant p-2">
                         <router-link
                             class="h-100 text-decoration-none text-dark"
                             :to="{
