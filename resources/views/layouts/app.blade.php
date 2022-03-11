@@ -79,7 +79,8 @@
                                     </a>
                                     <a class="dropdown-item site-link @if (Request::route()->getName() == 'admin.plates.index') active @endif"
                                         href="{{ route('admin.plates.index') }}">Piatti</a>
-                                    <a class="dropdown-item site-link" href="#">Ordini</a>
+                                    <a class="dropdown-item site-link"
+                                        href="{{ route('admin.orders.index') }}">Ordini</a>
                                     <div class="dropdown-divider"></div>
                                     <div>
                                         <a class="dropdown-item site-link" href="{{ route('logout') }}"

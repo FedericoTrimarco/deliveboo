@@ -1,5 +1,5 @@
 <template>
-    <footer>
+    <footer :class="{ hidden: getCurrentRouteName === 'checkout' }">
         <div class="container-fluid foot">
             <!--Top-->
             <div class="row box">
@@ -147,10 +147,19 @@ export default {
     data() {
         return {};
     },
+    computed: {
+        getCurrentRouteName() {
+            return this.$route.name;
+        },
+    },
 };
 </script>
 
 <style scoped lang="scss">
+.hidden {
+    display: none;
+}
+
 footer {
     width: 100%;
     background-color: #000;

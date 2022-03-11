@@ -1,7 +1,10 @@
 <template>
     <header
         class="front-header position-fixed vw-100"
-        :class="{ onScroll: !view.topOfPage || $route.path != '/' }"
+        :class="{
+            onScroll: !view.topOfPage || $route.path != '/',
+            hidden: getCurrentRouteName === 'checkout',
+        }"
     >
         <nav class="row justify-content-between align-items-center p-3">
             <!-- Left Side Of Navbar -->
@@ -151,6 +154,9 @@
                             <router-link
                                 :to="{ name: 'checkout' }"
                                 class="site-primary-btn mb-3 mb-md-0 mr-md-2"
+                                :class="{
+                                    hidden: getCurrentRouteName === `home`,
+                                }"
                             >
                                 <i class="fas fa-shopping-cart"></i>
                             </router-link>
@@ -189,6 +195,11 @@ export default {
             dropleftNone: true,
             select: true,
         };
+    },
+    computed: {
+        getCurrentRouteName() {
+            return this.$route.name;
+        },
     },
     created() {
         this.getTypologies();
@@ -257,6 +268,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.hidden {
+    display: none;
+}
+
 .front-header {
     background: transparent;
     z-index: 1;
