@@ -6,7 +6,7 @@
             <h1>I NOSTRI PIATTI</h1>
             <div class="container-fluid mt-5">
                 <div class="row">
-                    <div class="custom-section-wrapper col-8">
+                    <div class="custom-section-wrapper col-lg-8 col-sm-12">
                         <div v-for="(category, index) in categories" :key="index" class="mb-5" v-show="menuCategories.includes(category.name)">
                             <h1>{{category.name}}</h1>
                             <ul class="card-list list-unstyled d-flex flex-wrap">
@@ -36,7 +36,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-4 order pt-5">
+                    <div class="col-lg-4 order pt-5">
                         <div class="cart-review p-3">
                             <h1>Riepilogo Ordine</h1>
                             <hr>
@@ -62,7 +62,32 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12 border border-primary order-responsive">
+                <div class="cart-review-responsive p-3">
+                    <h1>Riepilogo Ordine</h1>
+                    <hr>
+                    <div class="d-flex justify-content-between my-4">
+                        <span class="fs-5"><strong>Nome Piatto</strong></span>
+                        <span class="fs-5"><strong>Quantità</strong></span>
+                        <span class="fs-5"><strong>Aggiungi/Rimuovi</strong></span>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li v-for="(plate, id) in cart.plates" :key="id" class="border d-flex justify-content-between mb-4 py-5 px-3">
+                            <h4>{{plate.name}}</h4>
+                            <span class="fs-5 fw-bold">x{{plate.quantity}}</span>
+                            <div>
+                                <span class="text-danger fs-3 pointer" @click="addToCart(plate)">+</span>
+                                <span class="text-danger fs-3 pointer" @click="removeFromCart(plate)">-</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <router-link :to="{ name: 'checkout' }" class="site-primary-btn d-block p-3 text-center button-cart" :class="{disabled : cart.length == 0 || cart.plates.length == 0}">
+                        <i class="fas fa-shopping-cart fs-4"></i>
+                    </router-link>
+                </div>
+            </div>
         </section>
+
         <Footer />
 
     </div>
@@ -281,8 +306,34 @@ export default {
             }
         }
     }
+    .order-responsive{
+        position: sticky;
+        max-height: 70vh;
+        // height: 50px;
+        overflow: auto;
+        background: #fff;
+        bottom: 0;
+        left: 0;
+        .cart-review-responsive{
+            ul{
+                max-height: 300px;
+                overflow: auto;
+                border: 3px solid red
+            }
+        }
+    }
 }
-
+/**********
+RESPONSIVE 
+***********/
+/* desktop */
+/* tablet */
+@media  screen and (max-width: 768px) {
+    .order{
+        display: none;
+    }
+    
+}
 
 
 
