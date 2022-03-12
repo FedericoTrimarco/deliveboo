@@ -291,7 +291,7 @@ export default {
 
   &.onScroll {
     box-shadow: 0 0 10px #aaa;
-    background-color: #282828;
+    background-color: white;
   }
 
   nav {

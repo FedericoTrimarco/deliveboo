@@ -102,7 +102,7 @@ export default {
     font-size: 16px;
     cursor: pointer;
     &:hover .checkbox {
-        border: 2px solid $site-item-col;
+        border: 2px solid $site-col-3;
     }
 }
 
@@ -111,7 +111,7 @@ export default {
 }
 
 .custom-checkbox input:checked + .checkbox {
-    background-color: $site-item-col;
+    background-color: $site-col-3;
     border: 0;
 }
 

@@ -48,7 +48,7 @@
                     </div>
                     <a
                         href="#restaurants"
-                        class="site-primary-btn d-flex align-items-center"
+                        class="site-primary-btn search d-flex align-items-center"
                         @click="getTypology(typologyName)"
                         >Cerca</a
                     >
@@ -129,6 +129,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../sass/variables.scss";
+
 .front-hero {
     height: 100vh;
     background: url("../images/hero-deliveboo.png") no-repeat center center;
@@ -146,11 +148,13 @@ export default {
             cursor: pointer;
         }
         .site-custom-select {
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
             background: #fff;
-            color: #219ebc;
+            color: gray;
         }
         .select-dropdown {
             max-height: 300px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
             transition: all 0.5s ease-in-out;
 
             &.d-0 {
@@ -158,16 +162,12 @@ export default {
             }
 
             li {
-                background: #fff;
-                color: #179dbe;
-
-                &:nth-child(even) {
-                    background: #daf1fd;
-                    color: #219ebc;
-                }
+                background: white;
+                color: gray;
 
                 &:hover {
-                    background: #ffb703;
+                    background: $site-col-3;
+                    color: white;
                 }
             }
         }
@@ -178,5 +178,9 @@ export default {
             width: 40%;
         }
     }
+}
+
+.search {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 </style>
