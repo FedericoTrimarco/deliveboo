@@ -62,17 +62,21 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 border border-primary order-responsive">
-                <div class="cart-review-responsive p-3">
-                    <h1>Riepilogo Ordine</h1>
-                    <hr>
-                    <div class="d-flex justify-content-between my-4">
-                        <span class="fs-5"><strong>Nome Piatto</strong></span>
-                        <span class="fs-5"><strong>Quantità</strong></span>
-                        <span class="fs-5"><strong>Aggiungi/Rimuovi</strong></span>
+            <div
+                class="col-12 order-responsive"
+                :class="{open : maxHeight == true, 'with-plates' : cart.length != 0 && cart.plates.length != 0}"
+            >
+                <div class="cart-review-responsive p-3 d-flex flex-column h-100">
+                    <div class="d-flex flex-column align-items-center mb-4" @click="viewCartResponive">
+                        <i class="fa-solid fa-angle-up fs-4 arrow"></i>
+                        <h2>Riepilogo Ordine</h2>
                     </div>
-                    <ul class="list-unstyled">
-                        <li v-for="(plate, id) in cart.plates" :key="id" class="border d-flex justify-content-between mb-4 py-5 px-3">
+                    <hr>
+                    <div class="my-4">
+                        <span class="fs-5"><strong>Nome Piatto</strong></span>
+                    </div>
+                    <ul class="list-unstyled flex-grow-1">
+                        <li v-for="(plate, id) in cart.plates" :key="id" class="border d-flex justify-content-between mb-4 p-3">
                             <h4>{{plate.name}}</h4>
                             <span class="fs-5 fw-bold">x{{plate.quantity}}</span>
                             <div>
@@ -113,6 +117,7 @@ export default {
             categories: null,
             menuCategories: [],
             cart: [],
+            maxHeight: false
         };
     },
     created() {
@@ -222,6 +227,9 @@ export default {
             this.getCart()
             }
         },
+        viewCartResponive(){
+            this.maxHeight = !this.maxHeight;
+        }
     },
 };
 </script>
@@ -285,11 +293,9 @@ export default {
 
     }
     .order{
-        // border: 3px solid red;
         .cart-review{
             display: flex;
             flex-direction: column;
-            // border: 2px solid blue;
             margin-bottom: 50px;
             background-color: #fff;
             min-height: 400px;
@@ -300,7 +306,6 @@ export default {
 
             ul{
                 flex-grow: 1;
-                // border: 3px solid green;
                 max-height: 300px;
                 overflow: auto;
             }
@@ -308,17 +313,29 @@ export default {
     }
     .order-responsive{
         position: sticky;
-        max-height: 70vh;
-        // height: 50px;
-        overflow: auto;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        height: 0;
+        overflow: hidden;
         background: #fff;
         bottom: 0;
         left: 0;
+        transition: all .4s ease-in-out;
+        div .arrow{
+            transition: all .4s ease-in-out;
+        }
+        &.with-plates{
+            height: 80px;
+        }
+        &.open{
+            height: 80vh;
+            div .arrow{
+                transform: rotate(180deg);
+            }
+        }
         .cart-review-responsive{
             ul{
                 max-height: 300px;
                 overflow: auto;
-                border: 3px solid red
             }
         }
     }
@@ -326,13 +343,19 @@ export default {
 /**********
 RESPONSIVE 
 ***********/
-/* desktop */
-/* tablet */
+
 @media  screen and (max-width: 768px) {
     .order{
         display: none;
     }
-    
+    .order-responsive{
+        display: block;
+    }
+}
+@media  screen and (min-width: 768px) {
+    .order-responsive{
+        display: none;
+    }
 }
 
 
