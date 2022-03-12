@@ -8,7 +8,7 @@
                 class="select-container"
                 id="search-hero"
             >
-                <div class="d-flex justify-content-center ps-5">
+                <div class="d-flex justify-content-center">
                     <!-- <select class="form-control mx-3 flex-shrink-1" name="typology_id" id="typology_id"  v-model="typologyLink">
                                 <option selected disabled value="">Selezionare una tipologia</option>
                                 <option v-for="typology in typologies" :key="`typology-${typology.id}`" :value="typology.id">{{ typology.name }}</option>
@@ -22,7 +22,7 @@
                                 class="site-control-select"
                                 v-if="typologyLink === ''"
                             >
-                                Seleziona tipologia ristorante
+                                Cos'hai voglia di mangiare oggi?
                             </div>
                             <div class="site-control-select" v-else>
                                 {{ typologies[typologyLink - 1].name }}
@@ -143,6 +143,7 @@ export default {
         // background: rgba(2, 48, 71, 0.5);
         padding: 10px;
         transform: translateY(-100px);
+        width: 100%;
 
         .site-pointer {
             cursor: pointer;
@@ -175,7 +176,7 @@ export default {
 
     @media all and (min-width: 769px) {
         .select-container {
-            width: 40%;
+            width: 50%
         }
     }
 }

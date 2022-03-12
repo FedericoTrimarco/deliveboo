@@ -168,7 +168,7 @@
                                 </div>
                             </div>
                             <a
-                                class="site-primary-btn px-5"
+                                class="site-primary-btn px-4 px-lg-5"
                                 href="/admin"
                                 >Registrati o accedi</a
                             >
