@@ -1,6 +1,6 @@
 <template>
     <header
-        class="front-header position-fixed vw-100"
+        class="front-header position-fixed vw-100 px-3"
         :class="{
             onScroll: !view.topOfPage || $route.path != '/',
             hidden: getCurrentRouteName === 'checkout',
@@ -30,7 +30,7 @@
                             <option selected disabled hidden value="">Selezionare una tipologia</option>
                             <option v-for="typology in typologies" :key="`typology-${typology.id}`" :value="typology.id">{{ typology.name }}</option>
                     </select> -->
-                    <div class="position-relative w-100 mr-lg-3">
+                    <!-- <div class="position-relative w-100 mr-lg-3">
                         <div
                             @click="selectDopdown()"
                             class="w-100 text-center py-2 site-pointer site-custom-select"
@@ -64,10 +64,10 @@
                                 {{ typology.name }}
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                     <!-- <router-link :is="typologyLink === '' ? 'span' : 'router-link'" :to="{name: 'restaurant', params: {id: typologyLink}}" class=" site-primary-btn">Cerca</router-link> -->
 
-                    <a href="#restaurants" class=" site-primary-btn" @click="getTypology(typologyName)">Cerca</a>
+                    <!-- <a href="#restaurants" class=" site-primary-btn" @click="getTypology(typologyName)">Cerca</a> -->
 
                 </div>
             </div>
@@ -160,15 +160,6 @@
                                         >Cerca</router-link>
                                 </div>
                             </div>
-                            <router-link
-                                :to="{ name: 'checkout' }"
-                                class="site-primary-btn mb-3 mb-md-0 mr-md-2"
-                                :class="{
-                                    hidden: getCurrentRouteName === `home`,
-                                }"
-                            >
-                                <i class="fas fa-shopping-cart"></i>
-                            </router-link>
                             <a
                                 class="text-uppercase site-primary-btn"
                                 href="/admin"

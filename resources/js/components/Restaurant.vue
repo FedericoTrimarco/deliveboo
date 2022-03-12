@@ -31,8 +31,7 @@ export default {
         return {
             typologies: null,
             restaurants: null,
-            checkedTypologies: [],
-            // selectedTypology: null,
+            checkedTypologies: null,
         };
     },
     created() {
