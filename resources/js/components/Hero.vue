@@ -1,7 +1,7 @@
 <template>
     <div class="front-hero" ref="hero">
         <div
-            class="mb-3 d-flex flex-column align-items-start border border-danger justify-content-center vh-100"
+            class="mb-3 d-flex flex-column align-items-start justify-content-center vh-100"
         >
             <div
                 v-if="view.topOfPage"
@@ -22,7 +22,7 @@
                                 class="site-control-select"
                                 v-if="typologyLink === ''"
                             >
-                                Seleziona tipologia
+                                Seleziona tipologia ristorante
                             </div>
                             <div class="site-control-select" v-else>
                                 {{ typologies[typologyLink - 1].name }}

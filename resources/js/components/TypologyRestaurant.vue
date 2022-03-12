@@ -123,6 +123,7 @@ export default {
         } */
     padding-top: 150px;
     width: 80%;
+    overflow: auto;
     .card-restaurant {
         width: 300px;
         height: 300px;

@@ -9,22 +9,22 @@
                     <div class="custom-section-wrapper col-8">
                         <div v-for="(category, index) in categories" :key="index" class="mb-5" v-show="menuCategories.includes(category.name)">
                             <h1>{{category.name}}</h1>
-                            <ul class="card-list list-unstyled d-flex row">
+                            <ul class="card-list list-unstyled d-flex flex-wrap">
                                 <li 
                                     @click="checkForLocalstorage(item)"
                                     v-for="(item, index) in menu"
                                     :key="`item-${index}`"
                                     v-show="item.category.name == category.name && item.visible"
-                                    class="col-4 pointer p-3"
+                                    class="pointer p-3"
                                 >
-                                    <div v-if="item.visible" class="custom-card row rounded position-relative">
+                                    <div v-if="item.visible" class="custom-card row rounded position-relative h-100">
                                         <div class="col-4 image-plate">
                                             <img :src="item.image" alt="" class="w-100 h-100">
                                         </div>
                                         <div class="col-8 info">
                                             <h4 class="custom-card-name mt-3">{{ item.name }}</h4>
-                                            <p><strong>Ingredienti:</strong> {{item.ingredients}}</p>
-                                            <p><strong>Descrizione:</strong> {{item.description}}</p>
+                                            <p class="info-plate"><strong>Ingredienti:</strong> {{item.ingredients}}</p>
+                                            <p class="info-plate"><strong>Descrizione:</strong> {{item.description}}</p>
                                             <p class="text-end price m-0">€{{item.price}}</p>
                                         </div>
                                         <div class="add-to-cart position-absolute top-0 start-0 h-100 d-flex justify-content-center align-items-center">
@@ -55,7 +55,7 @@
                                     </div>
                                 </li>
                             </ul>
-                            <router-link :to="{ name: 'checkout' }" class="site-primary-btn d-block p-3 text-center button-cart" :class="{disabled : cart.length == 0}">
+                            <router-link :to="{ name: 'checkout' }" class="site-primary-btn d-block p-3 text-center button-cart" :class="{disabled : cart.length == 0 || cart.plates.length == 0}">
                                 <i class="fas fa-shopping-cart fs-4"></i>
                             </router-link>
                         </div>
@@ -215,6 +215,7 @@ export default {
     .custom-section-wrapper{
         ul{
             li{
+                width: 450px;
                 .custom-card{
                     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
                     transition: all .4s ease-in-out;
@@ -236,6 +237,11 @@ export default {
                         h4{
                             text-transform: capitalize;
                         }
+                        /* .info-plate{
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        } */
                         .price{
                             font-size: 20px;
                             color: #bcc5d8;
@@ -254,7 +260,11 @@ export default {
 
     }
     .order{
+        // border: 3px solid red;
         .cart-review{
+            display: flex;
+            flex-direction: column;
+            // border: 2px solid blue;
             margin-bottom: 50px;
             background-color: #fff;
             min-height: 400px;
@@ -264,7 +274,9 @@ export default {
             top: 150px;
 
             ul{
-                height: 495px;
+                flex-grow: 1;
+                // border: 3px solid green;
+                max-height: 300px;
                 overflow: auto;
             }
         }
