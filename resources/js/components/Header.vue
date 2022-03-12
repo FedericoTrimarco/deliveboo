@@ -1,20 +1,27 @@
 <template>
     <header
-        class="front-header position-fixed vw-100 px-3"
+        class="front-header position-fixed vw-100"
         :class="{
             onScroll: !view.topOfPage || $route.path != '/',
             hidden: getCurrentRouteName === 'checkout',
         }"
     >
-        <nav class="row justify-content-between align-items-center p-3">
+        <nav class="row justify-content-between align-items-center p-3 px-5">
             <!-- Left Side Of Navbar -->
             <div class="col-4">
-                <router-link :to="{ name: 'home' }" class="site-logo">
+                <router-link v-if="$route.path != '/'" :to="{ name: 'home' }" class="site-logo">
                     <img
                         src="../images/deliveboo-logo.png"
                         alt="deliveboo-logo"
                     />
                 </router-link>
+
+                <a v-else href="/" class="site-logo">
+                    <img
+                        src="../images/deliveboo-logo.png"
+                        alt="deliveboo-logo"
+                    />
+                </a>
 
                 <!-- <a class="site-logo" href="/">
                     <img src="../images/deliveboo-logo.png" alt="deliveboo-logo">
@@ -161,9 +168,9 @@
                                 </div>
                             </div>
                             <a
-                                class="text-uppercase site-primary-btn"
+                                class="site-primary-btn px-5"
                                 href="/admin"
-                                >Area Privata</a
+                                >Registrati o accedi</a
                             >
                         </div>
                     </div>
@@ -284,7 +291,7 @@ export default {
 
   &.onScroll {
     box-shadow: 0 0 10px #aaa;
-    background-color: rgba(2, 48, 71, 0.5);
+    background-color: #282828;
   }
 
   nav {
@@ -294,7 +301,6 @@ export default {
       padding: 0;
       img {
         max-width: 100%;
-        filter: contrast(180%) drop-shadow(8px 8px 10px rgb(51, 50, 50));
       }
     }
 
