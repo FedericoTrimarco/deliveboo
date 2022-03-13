@@ -10,9 +10,8 @@
                 <div class="d-sm-none d-md-block col-md-6 col-lg-6 ps-4">
                     <h2>{{ name }} </h2>
                     <p class="mt-4">
-                        <span><i class="fa-solid fa-utensils icon me-2"></i>Categorie:
-                        </span>
-                        Americana
+                        <span><i class="fa-solid fa-utensils icon me-2"></i>Categorie:</span>
+                        <!-- <span v-for="(el, id) in typologiesArray" :key="id">{{ el.name}}, </span> -->
                     </p>
 
                     <p>
@@ -43,6 +42,7 @@ export default {
         image: String,
         name: String,
         address: String,
+        // typologiesArray: Array,
     }
 
 }

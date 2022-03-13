@@ -1,7 +1,7 @@
 <template>           
     <div>
         <section class="custom-section">
-            <HeaderRestaurant :image="restaurant.cover" :name="restaurant.user.name" :address="restaurant.user.address" class="mb-5"/>
+            <HeaderRestaurant :image="restaurant.cover" :name="restaurant.user.name" :address="restaurant.user.address" class="mb-5"/> <!-- :typologiesArray="restaurant.typologies" --> 
             <hr class="mb-5">
             <h1>I NOSTRI PIATTI</h1>
             <div class="container-fluid mt-5">

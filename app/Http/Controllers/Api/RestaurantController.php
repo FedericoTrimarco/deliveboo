@@ -24,7 +24,7 @@ class RestaurantController extends Controller
     }
 
     public function show($id) {
-        $restaurant = Restaurant::with('user')->find($id);
+        $restaurant = Restaurant::with('user', 'typologies')->find($id);
         $restaurant->cover = url('storage/' . $restaurant->cover);
         return response()->json($restaurant);
     }
