@@ -87,7 +87,7 @@
                         class="d-md-none site-primary-btn site-control-select site-control-select-2"
                         @click="changeDropDownDisplay"
                     >
-                        Menu <i class="fa-solid fa-bars"></i>
+                        <i class="fa-solid fa-bars"></i>
                     </a>
                     <div
                         class="d-md-block site-dropdown"
