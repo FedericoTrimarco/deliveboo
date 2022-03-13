@@ -84,10 +84,12 @@
             <div class="col-2 col-md-4 d-flex justify-content-end">
                 <div class="position-relative">
                     <a
-                        class="d-md-none site-primary-btn site-control-select site-control-select-2"
+                        class="d-md-none site-control-select site-control-select-2"
                         @click="changeDropDownDisplay"
                     >
-                        <i class="fa-solid fa-bars"></i>
+                        <!-- <i class="fa-solid fa-bars"></i> -->
+
+                        <Hamburger class="site-primary-btn"/>
                     </a>
                     <div
                         class="d-md-block site-dropdown"
@@ -190,9 +192,13 @@
 
 <script>
 import axios from "axios";
+import Hamburger from "../components/Hamburger";
 
 export default {
     name: "Header",
+    components: {
+        Hamburger,
+    },
     data() {
         return {
             typologies: null,
