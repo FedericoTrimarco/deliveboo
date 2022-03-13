@@ -7,7 +7,7 @@
                     <img :src="image" alt="">    
                 </div>
 
-                <div class="d-sm-none d-md-block col-md-6 col-lg-6 ps-4">
+                <div class="col-12 col-md-6 col-lg-6 ps-4 title">
                     <h2>{{ name }} </h2>
                     <p class="mt-4">
                         <span><i class="fa-solid fa-utensils icon me-2"></i>Categorie:
@@ -20,21 +20,10 @@
                         </span>
                         {{ address }}
                     </p>
-
-                    <div class="box-info" >
-                        <i class="fa-solid fa-info icon"></i>
-                        <a href=""
-                           class="info">
-                            <span>Informazioni</span>
-                        </a>
-                        <i class="fa-solid fa-chevron-right icon"></i>
-                    </div>
                 </div>
             </div>
-        </div>
-    
-    </header>
-  
+        </div>  
+    </header> 
 </template>
 
 <script>
@@ -45,7 +34,6 @@ export default {
         name: String,
         address: String,
     }
-
 }
 </script>
 
@@ -94,7 +82,18 @@ export default {
        .content{
            width: 150px;height: 80px;
        }
-
+   }
+   @media all and(max-width: 768px) {
+    .title {
+        text-align: center;
+        padding: 2rem;
+    }
+}
+   @media all and(max-width: 768px) {
+       p{
+           display: none;
+       }
+       
    }
 
 </style>
