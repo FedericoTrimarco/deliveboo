@@ -1,11 +1,12 @@
 <template>
     <div>
-        <div class="aside row h-100">
+        <!-- BIG ASIDE -->
+        <div class="aside row h-100 d-none d-md-block">
             <aside
                 class="overflow-auto py-5 aside-wrapper col-md-4 col-lg-3 col-xxl-2 h-100 px-3 px-lg-5 w-100"
             >
                 <div class="container">
-                    <h5 class="pt-5 ps-3 pb-3">Filtra per Tipo:</h5>
+                    <h5 class="pt-5 pb-4 ps-3">Filtra per tipologia:</h5>
 
                     <div
                         class="position-relative"
@@ -45,7 +46,7 @@
                 </div>
             </aside>
         </div>
-    </div>
+    </div>    
 </template>
 
 <script>
@@ -135,9 +136,9 @@ export default {
     display: none;
 }
 
-@media all and (max-width: 767px) {
-    .aside {
-        display: none;
-    }
-}
+// @media all and (max-width: 767px) {
+//     .aside {
+//         display: none;
+//     }
+// }
 </style>

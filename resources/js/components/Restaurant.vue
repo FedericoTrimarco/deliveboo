@@ -6,6 +6,12 @@
             @getTypologyFromAside="selectedTypologyLello"
         />
 
+        <SlideSidebar 
+            :mainArray="typologies"
+            :selectedTypology="selectedTypology"
+            @getTypologyFromAside="selectedTypologyLello"
+        />
+
         <TypologyRestaurant
             :filter="checkedTypologies"
             :mainArray="restaurants"
@@ -16,13 +22,15 @@
 <script>
 import axios from "axios";
 import Aside from "../components/Aside";
-import TypologyRestaurant from "./TypologyRestaurant.vue";
+import TypologyRestaurant from "./TypologyRestaurant";
+import SlideSidebar from "./SlideSidebar";
 
 export default {
     name: "Restaurant",
     components: {
         Aside,
         TypologyRestaurant,
+        SlideSidebar,
     },
     props: {
         selectedTypology: String,
