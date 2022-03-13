@@ -12,7 +12,7 @@
                     <p class="mt-4">
                         <span><i class="fa-solid fa-utensils icon me-2"></i>Categorie:
                         </span>
-                        Americana
+                        {{ type }}
                     </p>
 
                     <p>
@@ -33,6 +33,7 @@ export default {
         image: String,
         name: String,
         address: String,
+        type: String,
     }
 }
 </script>
@@ -43,7 +44,7 @@ export default {
        height: 310px;
        margin-top: 45px;
        padding: 25px 0;
-       color: #2e3333;
+       color: #282828;
        img{
            width: 100%;
            height: 265px;

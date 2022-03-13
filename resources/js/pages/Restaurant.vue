@@ -1,9 +1,12 @@
 <template>
 
     <main>
-        <HeaderRestaurant :image="restaurant.cover"     :name="restaurant.user.name"  :address="restaurant.user.address" />
+        <HeaderRestaurant :image="restaurant.cover"     
+                          :name="restaurant.user.name"  
+                          :address="restaurant.user.address"
+                          :type="typology.name"
+                          />
                  
-
     <section class="custom-section">
         <h1>I NOSTRI PIATTI</h1>
         <div class="container-fluid mt-5">
@@ -73,6 +76,7 @@ export default {
     data() {
         return {
             restaurant: null,
+            typology: null,
             menu: [],
             categories: null,
             menuCategories: [],
@@ -82,6 +86,7 @@ export default {
     created() {
 
         this.getSingleRestaurant();
+        this.getType();
 
         this.addToCart();
         this.getCategories();
@@ -114,6 +119,22 @@ export default {
                 console.log(error);
                 })
         },
+
+        getType() {
+            axios.get(`http://127.0.0.1:8000/api/typologies/${this.$route.params.id}`)
+              .then(res => {
+                    if (res.data.not_found) {
+                        this.$router.push({ name: 'not_found' })
+                    } else {
+                        this.typology = res.data;
+                    }
+                })
+              .catch(function (error) {
+                console.log(error);
+            })
+        },
+
+
         getCategories() {
 
             axios.get("http://127.0.0.1:8000/api/categories")
@@ -121,7 +142,6 @@ export default {
                     this.categories = res.data;
                 })
                 .catch((err) => log.error(err));
-
         },
         // prettier-ignore
         getMenu() {
