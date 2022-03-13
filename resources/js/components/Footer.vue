@@ -8,9 +8,8 @@
                     <div>
                         <img
                             class="logo"
-                            src="../images/deliveboo-logo.png"
-                            alt=""
-                        />
+                            src="../images/deliveboo-nl.svg"
+                            alt=""/>
                     </div>
                     <div class="app">
                         <img
@@ -51,38 +50,33 @@
                         <li>
                             <a href="https://www.linkedin.com/in/luigiragusa/">
                                 <i class="fa-brands fa-linkedin me-1"></i>Luigi
-                                Ragusa</a
-                            >
+                                Ragusa</a>
                         </li>
                         <li>
                             <a href="https://www.linkedin.com/in/luirusso/">
                                 <i class="fa-brands fa-linkedin me-1"></i>Luigi
-                                Russo</a
-                            >
+                                Russo</a>
                         </li>
                         <li>
                             <a
                                 href="https://www.linkedin.com/in/federico-trimarco/"
                             >
                                 <i class="fa-brands fa-linkedin me-1"></i
-                                >Federico Trimarco</a
-                            >
+                                >Federico Trimarco</a>
                         </li>
                         <li>
                             <a
                                 href="https://www.linkedin.com/in/vittorio-sbardella-0873b2232/"
                             >
                                 <i class="fa-brands fa-linkedin me-1"></i
-                                >Vittorio Sbardella</a
-                            >
+                                >Vittorio Sbardella</a>
                         </li>
                         <li>
                             <a
                                 href="https://www.linkedin.com/in/misia-pierobon-b7b6391b1/"
                             >
                                 <i class="fa-brands fa-linkedin me-1"></i>Misia
-                                Pierobon</a
-                            >
+                                Pierobon</a>
                         </li>
                     </ul>
                 </div>
@@ -163,13 +157,13 @@ export default {
 
 footer {
     width: 100%;
-    background-color: #000;
+    background-color: #282828;
     color: #fff;
     padding: 80px 70px;
     justify-self: flex-end;
     .foot {
         .logo {
-            width: 135px;
+            width: 200px;
         }
     }
     .box {

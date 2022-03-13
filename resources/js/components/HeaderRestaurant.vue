@@ -30,14 +30,6 @@
                         <i class="fa-solid fa-chevron-right icon"></i>
                     </div>
                 </div>
-
-                <div class="d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block col-lg-2 me-1">
-                    <div>
-                        <i class="fa-solid fa-person-biking icon"></i>
-                        <span>Consegna fra:</span>
-                        <div class="mt-3" >40/50 minuti</div>
-                    </div>
-                </div>
             </div>
         </div>
     
@@ -69,6 +61,7 @@ export default {
            height: 265px;
            border-radius: 5px;
            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+           object-fit: cover;
        }
        h2{
            font-size: 45px;

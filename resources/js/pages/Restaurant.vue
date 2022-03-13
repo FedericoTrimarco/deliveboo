@@ -60,6 +60,7 @@
             </div>
         </div>
     </section>
+  </main>
 </template>
 
 <script>
@@ -112,10 +113,10 @@ export default {
             // handle error
                 console.log(error);
                 })
-
+        },
         getCategories() {
-            axios
-                .get("http://127.0.0.1:8000/api/categories")
+
+            axios.get("http://127.0.0.1:8000/api/categories")
                 .then((res) => {
                     this.categories = res.data;
                 })
