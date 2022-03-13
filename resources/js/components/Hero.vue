@@ -174,7 +174,7 @@ export default {
         }
     }
 
-    @media all and (min-width: 769px) {
+    @media all and (min-width: 999px) {
         .select-container {
             width: 50%
         }

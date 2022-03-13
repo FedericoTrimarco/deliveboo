@@ -9,7 +9,11 @@
         <nav class="row justify-content-between align-items-center p-3 px-5">
             <!-- Left Side Of Navbar -->
             <div class="col-4">
-                <router-link v-if="$route.path != '/'" :to="{ name: 'home' }" class="site-logo">
+                <router-link
+                    v-if="$route.path != '/'"
+                    :to="{ name: 'home' }"
+                    class="site-logo"
+                >
                     <img
                         src="../images/deliveboo-logo.png"
                         alt="deliveboo-logo"
@@ -75,17 +79,16 @@
                     <!-- <router-link :is="typologyLink === '' ? 'span' : 'router-link'" :to="{name: 'restaurant', params: {id: typologyLink}}" class=" site-primary-btn">Cerca</router-link> -->
 
                     <!-- <a href="#restaurants" class=" site-primary-btn" @click="getTypology(typologyName)">Cerca</a> -->
-
                 </div>
             </div>
             <div class="col-2 col-md-4 d-flex justify-content-end">
                 <div class="position-relative">
-                    <button
+                    <a
                         class="d-md-none site-primary-btn site-control-select site-control-select-2"
                         @click="changeDropDownDisplay"
                     >
-                        menu
-                    </button>
+                        Menu <i class="fa-solid fa-bars"></i>
+                    </a>
                     <div
                         class="d-md-block site-dropdown"
                         :class="{ 'd-none': dropdownNone }"
@@ -105,7 +108,6 @@
                                     class="site-dropleft d-sm-none"
                                     :class="{ 'd-none': dropleftNone }"
                                 >
-                                    
                                     <div class="position-relative w-100 mb-3">
                                         <div
                                             @click="selectDopdown()"
@@ -131,20 +133,20 @@
                                             class="position-absolute text-center w-100 list-group overflow-auto select-dropdown"
                                             :class="{ 'd-0': select }"
                                         >
-
-                                           <li
-
+                                            <li
                                                 v-for="typology in typologies"
                                                 :key="`typology-${typology.id}`"
                                                 class="list-group-item site-pointer"
                                                 @click="
-
-                                                    (typologyLink = typology.id),
+                                                    (typologyLink =
+                                                        typology.id),
                                                         selectDopdown(),
                                                         changeDropDownDisplay(),
-                                                        (typologyName = typology.name),
-                                                        getTypology(typologyName)
-
+                                                        (typologyName =
+                                                            typology.name),
+                                                        getTypology(
+                                                            typologyName
+                                                        )
                                                 "
                                             >
                                                 {{ typology.name }}
@@ -153,7 +155,6 @@
                                     </div>
 
                                     <router-link
-
                                         :is="
                                             typologyLink === ''
                                                 ? 'span'
@@ -164,7 +165,8 @@
                                             params: { id: typologyLink },
                                         }"
                                         class="site-primary-btn"
-                                        >Cerca</router-link>
+                                        >Cerca</router-link
+                                    >
                                 </div>
                             </div>
                             <a
@@ -190,201 +192,201 @@
 import axios from "axios";
 
 export default {
-  name: "Header",
-  data() {
-    return {
-      typologies: null,
-      typologyLink: "",
-      typologyName: "",
+    name: "Header",
+    data() {
+        return {
+            typologies: null,
+            typologyLink: "",
+            typologyName: "",
 
-      view: {
-        topOfPage: true,
-      },
-      dropdownNone: true,
-      dropleftNone: true,
-      select: true,
-    };
-  },
-  computed: {
-    getCurrentRouteName() {
-      return this.$route.name;
+            view: {
+                topOfPage: true,
+            },
+            dropdownNone: true,
+            dropleftNone: true,
+            select: true,
+        };
     },
-  },
-  created() {
-    this.getTypologies();
-  },
-  beforeMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  },
-  mounted() {
-    document.addEventListener("click", this.onClick);
-  },
-  beforeDestroy() {
-    document.removeEventListener("click", this.onClick);
-  },
-  watch: {
-    $route(to, from) {
-      this.dropdownNone = true;
-      this.dropleftNone = true;
+    computed: {
+        getCurrentRouteName() {
+            return this.$route.name;
+        },
     },
-  },
-  methods: {
-    getTypologies() {
-      axios
-        .get("http://127.0.0.1:8000/api/typologies")
-        .then((res) => {
-          this.typologies = res.data;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+    created() {
+        this.getTypologies();
     },
-    handleScroll() {
-      if (window.pageYOffset > 250) {
-        if (this.view.topOfPage) this.view.topOfPage = false;
-      } else {
-        if (!this.view.topOfPage) this.view.topOfPage = true;
-      }
+    beforeMount() {
+        window.addEventListener("scroll", this.handleScroll);
     },
-    changeDropDownDisplay() {
-      this.dropdownNone = !this.dropdownNone;
-      this.dropleftNone = true;
-      this.select = true;
+    mounted() {
+        document.addEventListener("click", this.onClick);
     },
-    changeDropLeftDisplay() {
-      this.dropleftNone = !this.dropleftNone;
+    beforeDestroy() {
+        document.removeEventListener("click", this.onClick);
     },
-    selectDopdown() {
-      this.select = !this.select;
+    watch: {
+        $route(to, from) {
+            this.dropdownNone = true;
+            this.dropleftNone = true;
+        },
     },
-    onClick(event) {
-      if (!event.target.classList.contains("site-control-select")) {
-        if (this.select == false) {
-          this.select = true;
-        } else if (this.dropleftNone == false) {
-          this.dropleftNone = true;
-        } else {
-          this.select = true;
-          this.dropdownNone = true;
-          this.dropleftNone = true;
-        }
+    methods: {
+        getTypologies() {
+            axios
+                .get("http://127.0.0.1:8000/api/typologies")
+                .then((res) => {
+                    this.typologies = res.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        handleScroll() {
+            if (window.pageYOffset > 250) {
+                if (this.view.topOfPage) this.view.topOfPage = false;
+            } else {
+                if (!this.view.topOfPage) this.view.topOfPage = true;
+            }
+        },
+        changeDropDownDisplay() {
+            this.dropdownNone = !this.dropdownNone;
+            this.dropleftNone = true;
+            this.select = true;
+        },
+        changeDropLeftDisplay() {
+            this.dropleftNone = !this.dropleftNone;
+        },
+        selectDopdown() {
+            this.select = !this.select;
+        },
+        onClick(event) {
+            if (!event.target.classList.contains("site-control-select")) {
+                if (this.select == false) {
+                    this.select = true;
+                } else if (this.dropleftNone == false) {
+                    this.dropleftNone = true;
+                } else {
+                    this.select = true;
+                    this.dropdownNone = true;
+                    this.dropleftNone = true;
+                }
 
-        // console.log(event.target);
-      }
+                // console.log(event.target);
+            }
+        },
+        getTypology(typology) {
+            this.$emit("getTypology", typology);
+        },
     },
-    getTypology(typology) {
-      this.$emit("getTypology", typology);
-    },
-  },
 };
 </script>
 
 <style lang="scss" scoped>
 .hidden {
-  display: none;
+    display: none;
 }
 
 .front-header {
-  background: transparent;
-  z-index: 1;
-  transition: all 0.4s ease-in-out;
+    background: transparent;
+    z-index: 1;
+    transition: all 0.4s ease-in-out;
 
-  &.onScroll {
-    box-shadow: 0 0 10px #aaa;
-    background-color: white;
-  }
-
-  nav {
-    background-color: transparent;
-
-    .site-logo {
-      padding: 0;
-      img {
-        max-width: 100%;
-      }
+    &.onScroll {
+        box-shadow: 0 0 10px #aaa;
+        background-color: white;
     }
 
-    .site-custom-select {
-      background: #e0f4fe;
-      color: #219ebc;
-    }
-    .select-dropdown {
-      max-height: 300px;
-      transition: all 0.5s ease-in-out;
+    nav {
+        background-color: transparent;
 
-      &.d-0 {
-        max-height: 0px;
-      }
-
-      li {
-        background: #c7ecff;
-        color: #179dbe;
-
-        &:nth-child(even) {
-          background: #daf1fd;
-          color: #219ebc;
+        .site-logo {
+            padding: 0;
+            img {
+                max-width: 100%;
+            }
         }
 
-        &:hover {
-          background: #ffb703;
+        .site-custom-select {
+            background: #e0f4fe;
+            color: #219ebc;
         }
-      }
-    }
+        .select-dropdown {
+            max-height: 300px;
+            transition: all 0.5s ease-in-out;
 
-    .site-pointer {
-      cursor: pointer;
-    }
+            &.d-0 {
+                max-height: 0px;
+            }
 
-    @media all and (max-width: 767px) {
-      .site-dropdown {
-        position: absolute;
-        top: 50px;
-        left: -65px;
-        background-color: rgb(2, 48, 71);
-        padding: 10px;
-        width: 150px;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-      }
+            li {
+                background: #c7ecff;
+                color: #179dbe;
 
-      .site-pointer {
-        cursor: pointer;
-      }
-    }
+                &:nth-child(even) {
+                    background: #daf1fd;
+                    color: #219ebc;
+                }
 
-    @media all and (max-width: 767px) {
-      .site-dropdown {
-        position: absolute;
-        top: 50px;
-        left: -65px;
-        background-color: rgb(2, 48, 71);
-        padding: 10px;
-        width: 150px;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-
-        .site-primary-btn {
-          padding: 5px;
-          text-align: center;
+                &:hover {
+                    background: #ffb703;
+                }
+            }
         }
-      }
-    }
 
-    .site-dropleft {
-      position: absolute;
-      right: 140px;
-      top: -10px;
-      background-color: rgb(2, 48, 71);
-      padding: 10px;
-      width: 200px;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-        rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+        .site-pointer {
+            cursor: pointer;
+        }
 
-      .site-primary-btn {
-        padding: 5px;
-        text-align: center;
-      }
+        @media all and (max-width: 767px) {
+            .site-dropdown {
+                position: absolute;
+                top: 50px;
+                left: -65px;
+                background-color: rgb(2, 48, 71);
+                padding: 10px;
+                width: 150px;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+                    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+            }
+
+            .site-pointer {
+                cursor: pointer;
+            }
+        }
+
+        @media all and (max-width: 767px) {
+            .site-dropdown {
+                position: absolute;
+                top: 50px;
+                left: -65px;
+                background-color: rgb(2, 48, 71);
+                padding: 10px;
+                width: 150px;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+                    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+                .site-primary-btn {
+                    padding: 5px;
+                    text-align: center;
+                }
+            }
+        }
+
+        .site-dropleft {
+            position: absolute;
+            right: 140px;
+            top: -10px;
+            background-color: rgb(2, 48, 71);
+            padding: 10px;
+            width: 200px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+                rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+
+            .site-primary-btn {
+                padding: 5px;
+                text-align: center;
+            }
+        }
     }
-  }
 }
 </style>
