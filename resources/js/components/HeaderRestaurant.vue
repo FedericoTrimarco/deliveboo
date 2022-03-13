@@ -12,7 +12,7 @@
                     <p class="mt-4">
                         <span><i class="fa-solid fa-utensils icon me-2"></i>Categorie:
                         </span>
-                        {{ type }}
+                        <!-- {{ type }} -->
                     </p>
 
                     <p>
@@ -33,7 +33,7 @@ export default {
         image: String,
         name: String,
         address: String,
-        type: String,
+        // type: String,
     }
 }
 </script>

@@ -4,8 +4,8 @@
         <HeaderRestaurant :image="restaurant.cover"     
                           :name="restaurant.user.name"  
                           :address="restaurant.user.address"
-                          :type="typology.name"
                           />
+                                   <!-- :type="typology.name" -->
                  
     <section class="custom-section">
         <h1>I NOSTRI PIATTI</h1>
@@ -76,7 +76,7 @@ export default {
     data() {
         return {
             restaurant: null,
-            typology: null,
+            // typology: null,
             menu: [],
             categories: null,
             menuCategories: [],
@@ -86,7 +86,7 @@ export default {
     created() {
 
         this.getSingleRestaurant();
-        this.getType();
+        // this.getType();
 
         this.addToCart();
         this.getCategories();
@@ -120,19 +120,19 @@ export default {
                 })
         },
 
-        getType() {
-            axios.get(`http://127.0.0.1:8000/api/typologies/${this.$route.params.id}`)
-              .then(res => {
-                    if (res.data.not_found) {
-                        this.$router.push({ name: 'not_found' })
-                    } else {
-                        this.typology = res.data;
-                    }
-                })
-              .catch(function (error) {
-                console.log(error);
-            })
-        },
+        // getType() {
+        //     axios.get(`http://127.0.0.1:8000/api/typologies/${this.$route.params.id}`)
+        //       .then(res => {
+        //             if (res.data.not_found) {
+        //                 this.$router.push({ name: 'not_found' })
+        //             } else {
+        //                 this.typology = res.data;
+        //             }
+        //         })
+        //       .catch(function (error) {
+        //         console.log(error);
+        //     })
+        // },
 
 
         getCategories() {
