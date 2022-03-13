@@ -182,14 +182,11 @@ export default {
 }
 
 .custom-checkbox input:checked + .checkbox svg {
-    z-index: 1000;
     display: flex;
     color: white;
 }
 
 .checkbox {
-    z-index: 1000;
-
     width: 18px;
     height: 18px;
     background-color: white;
