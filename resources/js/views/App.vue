@@ -5,6 +5,9 @@
             <div class="loader-spin"></div>
         </div>
         <main v-else>
+            <div class="login-button">
+                <a href="/admin">Accedi</a>
+            </div>
             <router-view :selectedTypology="selectedTypology"></router-view>
         </main>
     </div>
@@ -34,7 +37,6 @@ export default {
     created() {
         this.getTypologies();
         this.getRestaurants();
-        this.pageLoaded = true;
     },
     methods: {
         getTypologies() {
@@ -47,15 +49,10 @@ export default {
                     console.log(error);
                 });
         },
-        getRestaurants() {
-            axios
-                .get("http://127.0.0.1:8000/api/restaurants")
-                .then((res) => {
-                    this.restaurants = res.data;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+        async getRestaurants() {
+            const response = await axios.get("http://127.0.0.1:8000/api/restaurants");
+            this.restaurants = response.data;
+            this.pageLoaded = true
         },
         getTypology(typology) {
             this.selectedTypology = typology;
@@ -66,6 +63,13 @@ export default {
 
 <style lang="scss">
 @import "../styles/main.scss";
+
+* {
+    scrollbar-width: thin;
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
 
 .app-wrapper {
     width: 100%;
@@ -80,6 +84,26 @@ export default {
         display: flex;
         flex-direction: column;
         background-color: #ffffff;
+    }
+
+    .login-button {
+        top: 2rem;
+        right: 2rem;
+        display: grid;
+        color: #ffffff;
+        cursor: pointer;
+        z-index: 999999;
+        position: absolute;
+        place-items: center;
+        padding: 0.5rem 1rem;
+        background-color: #333333;
+
+        > a {
+            color: #ffffff;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            text-decoration: none;
+        }
     }
 }
 

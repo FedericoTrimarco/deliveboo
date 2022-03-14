@@ -50,27 +50,23 @@ export default {
     },
     methods: {
         randomCategory() {
+            this.pageLoaded = false;
             Axios.get("http://127.0.0.1:8000/api/typologies")
                 .then((res) => {
                     this.typologies = res.data.splice(0, 4);
-                    this.pageLoaded = true;
+                    this.pageLoaded= true;
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         },
-        randomRestaurant() {
-            Axios.get("http://127.0.0.1:8000/api/restaurants")
-                .then((res) => {
-                    this.restaurants = res.data.splice(0, 9);
-                    console.log(this.restaurants);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+        async randomRestaurant() {
+            this.pageLoaded = false;
+            const response = await Axios.get("http://127.0.0.1:8000/api/restaurants");
+            this.restaurants = response.data.splice(0, 9);
+            this.pageLoaded = true;
         },
         getTypology(typology) {
-            // console.log(typology);
             this.selectedTypologyVariables = typology;
         },
         emptyCart() {

@@ -1,5 +1,5 @@
 <template>
-    <section id="restaurants" class="d-flex typology-restaurant">
+    <section id="restaurants" class="d-flex typology-restaurant h-100vh">
         <Aside
             :mainArray="typologies"
             :selectedTypology="selectedTypology"
