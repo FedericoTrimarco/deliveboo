@@ -38,16 +38,12 @@ export default {
         this.getTypologies();
         this.getRestaurants();
     },
+    // prettier-ignore
     methods: {
-        getTypologies() {
-            axios
-                .get("http://127.0.0.1:8000/api/typologies")
-                .then((res) => {
-                    this.typologies = res.data;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+        async getTypologies() {
+            const response = await axios.get("http://127.0.0.1:8000/api/typologies");
+            this.typologies = response.data;
+            this.pageLoaded = true;
         },
         async getRestaurants() {
             const response = await axios.get("http://127.0.0.1:8000/api/restaurants");

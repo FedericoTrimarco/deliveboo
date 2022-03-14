@@ -38,10 +38,9 @@ export default {
             selectedTypologyVariables: null,
         };
     },
-    watch: {
-        selectedTypology: function (newVal, oldVal) {
-            this.checkedTypologies = [newVal];
-        },
+    getTypology(typology) {
+        // console.log(typology);
+        this.selectedTypologyVariables = typology;
     },
     created() {
         this.emptyCart();
@@ -54,7 +53,7 @@ export default {
             Axios.get("http://127.0.0.1:8000/api/typologies")
                 .then((res) => {
                     this.typologies = res.data.splice(0, 4);
-                    this.pageLoaded= true;
+                    this.pageLoaded = true;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -62,7 +61,9 @@ export default {
         },
         async randomRestaurant() {
             this.pageLoaded = false;
-            const response = await Axios.get("http://127.0.0.1:8000/api/restaurants");
+            const response = await Axios.get(
+                "http://127.0.0.1:8000/api/restaurants"
+            );
             this.restaurants = response.data.splice(0, 9);
             this.pageLoaded = true;
         },
@@ -71,6 +72,11 @@ export default {
         },
         emptyCart() {
             localStorage.clear();
+        },
+    },
+    watch: {
+        selectedTypology: function (newVal, oldVal) {
+            this.checkedTypologies = [newVal];
         },
     },
 };

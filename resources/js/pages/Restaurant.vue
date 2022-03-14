@@ -1,49 +1,21 @@
 <template>
     <div>
         <section class="custom-section">
-            <HeaderRestaurant
-                v-if="restaurant"
-                :image="restaurant.cover"
-                :name="restaurant.user.name"
-                :address="restaurant.user.address"
-                class="mb-5"
+            <HeaderRestaurant v-if="restaurant" :image="restaurant.cover" :name="restaurant.user.name" :typologiesArray="restaurant.typologies" :address="restaurant.user.address" class="mb-5"
             />
             <!-- :typologiesArray="restaurant.typologies" -->
             <hr class="mb-5" />
-            <h1>I NOSTRI PIATTI</h1>
+            <h1 class="restaurant-title">Il nostro menù</h1>
             <div class="container-fluid mt-5">
                 <div class="row">
-                    <div class="custom-section-wrapper col-lg-8 col-sm-12">
-                        <div
-                            v-for="(category, index) in categories"
-                            :key="index"
-                            class="mb-5"
-                            v-show="menuCategories.includes(category.name)"
-                        >
-                            <h1>{{ category.name }}</h1>
-                            <ul
-                                class="card-list list-unstyled d-flex flex-wrap"
-                            >
-                                <li
-                                    @click="checkForLocalstorage(item)"
-                                    v-for="(item, index) in menu"
-                                    :key="`item-${index}`"
-                                    v-show="
-                                        item.category.name == category.name &&
-                                        item.visible
-                                    "
-                                    class="pointer p-3"
-                                >
-                                    <div
-                                        v-if="item.visible"
-                                        class="custom-card row rounded position-relative h-100"
-                                    >
+                    <div class="custom-section-wrapper col-12 col-md-6 col-xxl-7">
+                        <div v-for="(category, index) in categories" :key="index" class="mb-5" v-show="menuCategories.includes(category.name)">
+                            <h2 class="restaurant-subtitle">{{ category.name }}</h2>
+                            <ul class="card-list list-unstyled d-flex flex-wrap">
+                                <li @click="checkForLocalstorage(item)" v-for="(item, index) in menu" :key="`item-${index}`" v-show="item.category.name == category.name &&item.visible" class="pointer p-3">
+                                    <div v-if="item.visible" class="custom-card row rounded position-relative h-100">
                                         <div class="col-4 image-plate">
-                                            <img
-                                                :src="item.image"
-                                                alt=""
-                                                class="w-100 h-100"
-                                            />
+                                            <img :src="item.image" alt="" class="w-100 h-100" />
                                         </div>
                                         <div class="col-8 info">
                                             <h4 class="custom-card-name mt-3">
@@ -61,69 +33,37 @@
                                                 €{{ item.price }}
                                             </p>
                                         </div>
-                                        <div
-                                            class="add-to-cart position-absolute top-0 start-0 h-100 d-flex justify-content-center align-items-center"
-                                        >
-                                            <h3>
-                                                AGGIUNGI AL
-                                                <i
-                                                    class="fas fa-shopping-cart"
-                                                ></i>
-                                            </h3>
+                                        <div class="add-to-cart position-absolute top-0 start-0 h-100 d-flex justify-content-center align-items-center">
+                                            <h3> AGGIUNGI AL <i class="fas fa-shopping-cart"></i></h3>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-4 order pt-5">
+                    <div class="col-md-6 col-xxl-5 order pt-5">
                         <div class="cart-review p-3">
-                            <h1>Riepilogo Ordine</h1>
+                            <h1 class="restaurant-title">Riepilogo Ordine</h1>
                             <hr />
                             <div class="d-flex justify-content-between my-4">
-                                <span class="fs-5"
-                                    ><strong>Nome Piatto</strong></span
-                                >
-                                <span class="fs-5"
-                                    ><strong>Quantità</strong></span
-                                >
-                                <span class="fs-5"
-                                    ><strong>Aggiungi/Rimuovi</strong></span
-                                >
+                                <span class="fs-5"><strong>Nome</strong></span>
+                                <span class="fs-5"><strong>Quantità</strong></span>
+                                <span class="fs-5"><strong></strong></span>
                             </div>
                             <ul class="list-unstyled">
-                                <li
-                                    v-for="(plate, id) in cart.plates"
-                                    :key="id"
-                                    class="border d-flex justify-content-between mb-4 py-5 px-3"
-                                >
+                                <li v-for="(plate, id) in cart.plates" :key="id" class="cart-item">
                                     <h4>{{ plate.name }}</h4>
-                                    <span class="fs-5 fw-bold"
-                                        >x{{ plate.quantity }}</span
-                                    >
+                                    <span>x{{ plate.quantity }}</span>
                                     <div>
-                                        <span
-                                            class="text-danger fs-3 pointer"
-                                            @click="addToCart(plate)"
-                                            >+</span
-                                        >
-                                        <span
-                                            class="text-danger fs-3 pointer"
-                                            @click="removeFromCart(plate)"
-                                            >-</span
-                                        >
+                                        <span class="cart-icon" @click="addToCart(plate)"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span>
+                                        <span class="cart-icon" @click="removeFromCart(plate)" ><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span>
                                     </div>
                                 </li>
                             </ul>
                             <router-link
                                 :to="{ name: 'checkout' }"
                                 class="site-primary-btn d-block p-3 text-center button-cart"
-                                :class="{
-                                    disabled:
-                                        cart.length == 0 ||
-                                        cart.plates.length == 0,
-                                }"
-                            >
+                                :class="{ disabled: cart.length == 0 || cart.plates.length == 0, }" >
                                 <i class="fas fa-shopping-cart fs-4"></i>
                             </router-link>
                         </div>
@@ -132,46 +72,23 @@
             </div>
             <div
                 class="col-12 order-responsive"
-                :class="{
-                    open: maxHeight == true,
-                    'with-plates': cart.length != 0 && cart.plates.length != 0,
-                }"
-            >
-                <div
-                    class="cart-review-responsive p-3 d-flex flex-column h-100"
-                >
-                    <div
-                        class="d-flex flex-column align-items-center mb-4"
-                        @click="viewCartResponive"
-                    >
+                :class="{ open: maxHeight == true, 'with-plates': cart.length != 0 && cart.plates.length != 0, }" >
+                <div class="cart-review-responsive p-3 d-flex flex-column h-100" >
+                    <div class="d-flex flex-column align-items-center mb-4" @click="viewCartResponive">
                         <i class="fa-solid fa-angle-up fs-4 arrow"></i>
-                        <h2>Riepilogo Ordine</h2>
+                        <h2  class="restaurant-title">Riepilogo Ordine</h2>
                     </div>
                     <hr />
                     <div class="my-4">
                         <span class="fs-5"><strong>Nome Piatto</strong></span>
                     </div>
                     <ul class="list-unstyled flex-grow-1">
-                        <li
-                            v-for="(plate, id) in cart.plates"
-                            :key="id"
-                            class="border d-flex justify-content-between mb-4 p-3"
-                        >
+                        <li v-for="(plate, id) in cart.plates" :key="id" class="cart-item" >
                             <h4>{{ plate.name }}</h4>
-                            <span class="fs-5 fw-bold"
-                                >x{{ plate.quantity }}</span
-                            >
+                            <span>x{{ plate.quantity }}</span>
                             <div>
-                                <span
-                                    class="text-danger fs-3 pointer"
-                                    @click="addToCart(plate)"
-                                    >+</span
-                                >
-                                <span
-                                    class="text-danger fs-3 pointer"
-                                    @click="removeFromCart(plate)"
-                                    >-</span
-                                >
+                                <span class="cart-icon" @click="addToCart(plate)" ><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span>
+                                <span class="cart-icon" @click="removeFromCart(plate)" ><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span>
                             </div>
                         </li>
                     </ul>
@@ -348,9 +265,62 @@ export default {
     opacity: 0.5;
     pointer-events: none;
 }
+
+.restaurant-title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 3.5rem;
+}
+
+.restaurant-subtitle {
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 2rem;
+}
+
+.cart-item {
+    display: flex;
+    line-height: 28px;
+    align-items: center;
+    justify-content: space-between;
+
+    > h4 {
+        margin: 0;
+        padding: 0;
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: 28px;
+        letter-spacing: 0.02rem;
+    }
+
+    > span:first-of-type {
+        display: flex;
+        font-size: 1.125rem;
+    }
+
+    > div:last-of-type {
+        display: flex;
+
+        > span:last-of-type {
+            margin-left: 1rem;
+        }
+    }
+}
+
+.cart-icon {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    cursor: pointer;
+    color: #282828;
+    place-items: center;
+}
+
 .custom-section {
     margin: 150px auto 0;
     width: 80%;
+     color: #282828;
+
     .custom-section-wrapper {
         ul {
             li {
@@ -398,56 +368,57 @@ export default {
             }
         }
     }
-    .order {
-        .cart-review {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 50px;
-            background-color: #fff;
-            min-height: 400px;
-            border-radius: 5px;
-            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-            position: sticky;
-            top: 150px;
-
-            ul {
-                flex-grow: 1;
-                max-height: 300px;
-                overflow: auto;
-            }
-        }
-    }
-    .order-responsive {
-        position: sticky;
+}
+.order {
+    .cart-review {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 50px;
+        background-color: #fff;
+        min-height: 400px;
+        border-radius: 5px;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        height: 0;
-        overflow: hidden;
-        background: #fff;
-        bottom: 0;
-        left: 0;
-        transition: all 0.4s ease-in-out;
-        div .arrow {
-            transition: all 0.4s ease-in-out;
-        }
-        &.with-plates {
-            height: 80px;
-        }
-        &.open {
-            height: 80vh;
-            div .arrow {
-                transform: rotate(180deg);
-            }
-        }
-        .cart-review-responsive {
-            ul {
-                max-height: 300px;
-                overflow: auto;
-            }
+        position: sticky;
+        top: 150px;
+
+        ul {
+            flex-grow: 1;
+            max-height: 300px;
+            overflow: auto;
         }
     }
 }
+.order-responsive {
+    position: sticky;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    height: 0;
+    overflow: hidden;
+    background: #fff;
+    bottom: 0;
+    left: 0;
+    transition: all 0.4s ease-in-out;
+    div .arrow {
+        transition: all 0.4s ease-in-out;
+    }
+    &.with-plates {
+        height: 80px;
+    }
+    &.open {
+        height: 80vh;
+        div .arrow {
+            transform: rotate(180deg);
+        }
+    }
+    .cart-review-responsive {
+        ul {
+            max-height: 300px;
+            overflow: auto;
+        }
+    }
+}
+
 /**********
-RESPONSIVE 
+RESPONSIVE
 ***********/
 
 @media screen and (max-width: 768px) {
