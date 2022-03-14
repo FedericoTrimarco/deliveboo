@@ -1,12 +1,10 @@
 <template>
     <div class="app-wrapper">
-
-        <Header @getTypology="getTypology"/>
+        <Header @getTypology="getTypology" />
 
         <main>
             <router-view :selectedTypology="selectedTypology"></router-view>
         </main>
-
     </div>
 </template>
 
@@ -69,6 +67,7 @@ export default {
     width: 100%;
     height: 100%;
     display: flex;
+    overflow: auto;
     flex-direction: column;
 
     > main {
