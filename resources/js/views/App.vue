@@ -1,7 +1,7 @@
 <template>
     <div class="app-wrapper">
 
-        <Header @getTypology="getTypology"/>
+        <!-- <Header @getTypology="getTypology"/> -->
 
         <main>
             <router-view :selectedTypology="selectedTypology"></router-view>

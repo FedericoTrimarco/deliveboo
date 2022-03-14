@@ -6,11 +6,11 @@
             @getTypologyFromAside="selectedTypologyLello"
         />
 
-        <SlideSidebar 
+        <!-- <SlideSidebar 
             :mainArray="typologies"
             :selectedTypology="selectedTypology"
             @getTypologyFromAside="selectedTypologyLello"
-        />
+        /> -->
 
         <TypologyRestaurant
             :filter="checkedTypologies"

@@ -1,10 +1,30 @@
 <template>
-    <div>
+    <div class="sidebar-container">
         <!-- BIG ASIDE -->
-        <div class="aside row h-100 d-none d-md-block">
+        <div
+            id="aside"
+            class="aside"
+        >
+            <div @click="sidebarToggle()" class="toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
             <aside
-                class="overflow-auto py-5 aside-wrapper col-md-4 col-lg-3 col-xxl-2 h-100 px-3 px-lg-5 w-100"
+                class="overflow-auto py-5 aside-wrapper h-100 w-100"
             >
+                <!-- LOGO CONTAINER -->
+                <div class="container">
+                    <div class="ps-3">
+                        <a href="/" class="site-logo">
+                            <img
+                                src="../images/deliveboo-logo.png"
+                                alt="deliveboo-logo"
+                            />
+                        </a>
+                    </div>
+                </div>
+
+                <!-- SIDEBAR -->
                 <div class="container">
                     <h5 class="pt-5 pb-4 ps-3">Filtra per tipologia:</h5>
 
@@ -14,15 +34,18 @@
                         :key="`typology-${index}`"
                     >
                         <label class="custom-checkbox pb-2 ps-3" :for="el.name">
-                                <!-- :checked="selectedTypology == el.id" -->
-                                <!-- v-model="checkedTypologies" -->
+                            <!-- :checked="selectedTypology == el.id" -->
+                            <!-- v-model="checkedTypologies" -->
                             <input
-                               :checked="selectedTypology == el.name"
+                                :checked="selectedTypology == el.name"
                                 type="checkbox"
                                 :value="el.name"
                                 :name="el.name"
                                 :id="el.name"
-                                @click="putTypologies(el.name), getTypologyFromAside(checkedTypologies)"
+                                @click="
+                                    putTypologies(el.name),
+                                        getTypologyFromAside(checkedTypologies)
+                                "
                             />
                             <div class="checkbox m-2">
                                 <svg
@@ -46,7 +69,7 @@
                 </div>
             </aside>
         </div>
-    </div>    
+    </div>
 </template>
 
 <script>
@@ -61,39 +84,65 @@ export default {
         mainArray: Array,
         selectedTypology: String,
     },
-    created(){
-        this.getTypologyFromAside
+    created() {
+        this.getTypologyFromAside;
     },
-    watch: { 
-      	selectedTypology: function(newVal, oldVal) { 
-          this.checkedTypologies = [newVal];
-    }},
+    watch: {
+        selectedTypology: function (newVal, oldVal) {
+            this.checkedTypologies = [newVal];
+        },
+    },
     methods: {
-        putTypologies(typo){
-            if(!this.checkedTypologies.includes(typo)){
-                this.checkedTypologies.push(typo)
-            } else if(this.checkedTypologies.includes(typo)){
+        putTypologies(typo) {
+            if (!this.checkedTypologies.includes(typo)) {
+                this.checkedTypologies.push(typo);
+            } else if (this.checkedTypologies.includes(typo)) {
                 for (let i = 0; i < this.checkedTypologies.length; i++) {
-                    if(this.checkedTypologies[i] == typo){
-                        this.checkedTypologies.splice(i, 1)
+                    if (this.checkedTypologies[i] == typo) {
+                        this.checkedTypologies.splice(i, 1);
                     }
                 }
             }
         },
-        getTypologyFromAside(typology){
-            this.$emit('getTypologyFromAside', typology);
-        }
-    }
+        getTypologyFromAside(typology) {
+            this.$emit("getTypologyFromAside", typology);
+        },
+        sidebarToggle() {
+            let aside = document.querySelector(".sidebar-container");
+
+            aside.classList.toggle("hidden");
+        },
+    },
 };
 </script>
 
 <style scoped lang="scss">
 @import "../../sass/variables.scss";
 
+.sidebar-container {
+    width: 320px;
+    height: 100%;
+    position: relative;
+    border-right: 2px solid #ebebeb;
+    min-width: 320px;
+    &.hidden {
+        position: absolute;
+        left: calc(-100% + 40px);
+        transition: all 0.4s ease-in-out;
+    }
+}
+
 .aside-wrapper {
-    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
-        rgba(17, 17, 26, 0.1) 0px 0px 8px;
-        padding-top: 100px;
+    padding-top: 100px;
+}
+
+.aside {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: all 0.4s ease-in-out;
 }
 
 .custom-checkbox {
@@ -136,9 +185,29 @@ export default {
     display: none;
 }
 
-// @media all and (max-width: 767px) {
-//     .aside {
-//         display: none;
-//     }
-// }
+.toggle {
+    display: grid;
+    position: absolute;
+    top: 1rem;
+    left: 320px;
+    width: 40px;
+    height: 40px;
+    appearance: none;
+    border: 0;
+    background-color: $site-col-3;
+    place-items: center;
+    color: white;
+    z-index: 9999999;
+}
+
+@media all and (max-width: 767px) {
+    .aside {
+        position: fixed;
+        z-index: 10;
+        background-color: white;
+        height: 100%;
+        box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
+            rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    }
+}
 </style>
