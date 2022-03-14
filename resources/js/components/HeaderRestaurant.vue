@@ -2,15 +2,15 @@
     <header>
         <div>
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-6">
                     <img :src="image" alt="">
                 </div>
 
                 <div class="col-12 col-md-6 col-lg-6 ps-4 title">
                     <h2>{{ name }} </h2>
                     <p class="mt-4">
-                        <span><i class="fa-solid fa-utensils icon me-2"></i>Categorie:</span>
-                        <span v-for="(el, id) in typologiesArray" :key="id">•{{ el.name}} </span>
+                        <span><i class="fa-solid fa-utensils icon me-2"></i></span>
+                        <span v-for="(el, id) in typologiesArray" :key="id"><s></s>{{ el.name}} </span>
                     </p>
 
                     <p class="maps" >
@@ -46,10 +46,8 @@ export default {
 <style scoped lang="scss">
    header {
        width: 100%;
-       height: 310px;
-       margin-top: 45px;
+       margin-top: 25px;
        padding: 25px 0;
-       color: #282828;
        img{
            width: 100%;
            height: 265px;
@@ -60,6 +58,7 @@ export default {
        h2{
            font-size: 45px;
            font-weight: 700;
+           color: #282828;
        }
        .box-info{
            width: 170px;
@@ -93,7 +92,6 @@ export default {
     .title {
         text-align: center;
         margin-top:2rem;
-        margin-bottom:2rem;
     }
     .maps {
         display: none;
