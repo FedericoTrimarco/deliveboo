@@ -1,34 +1,5 @@
 <template>
     <main>
-        <!-- <ul>
-            <li v-for="product in cart['plates']" :key="`${product.id}`">
-                {{ product.name }}
-                <div class="div">
-                    <span>
-                        <strong>Quantity:</strong>{{ product.quantity }}</span
-                    >
-                    <button @click="addToCart(product)">Aggiungi</button>
-                    <button @click="removeFromCart(product)">Rimuovi</button>
-                </div>
-            </li>
-        </ul> -->
-        <!-- 4217651111111119 -->
-        <!-- <form action="">
-            <label for="name">Nome</label>
-            <input type="text" name="name" id="name" />
-            <label for="surname">Cognome</label>
-            <input type="text" name="surname" id="surname" />
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" v-model="userEmail" />
-            <Payment
-                ref="paymentRef"
-                :authorization="token"
-                v-if="!loading"
-                @onSuccess="onSuccess"
-                @onError="onError"
-            />
-            <button @click.prevent="beforeBuy">Paga</button>
-        </form> -->
         <div class="custom-logo">
             <img src="../images/deliveboo-nl.svg" alt="deliveboo-logo" />
         </div>
@@ -37,55 +8,55 @@
             <div class="custom-loader" v-if="loading">
                 <div class="custom-loader-spinner"></div>
             </div>
-            <form class="custom-form" v-else>
-                <div class="custom-form-labels">
-                    <div class="custom-form-labels-wrapper">
+            <form class="cf" v-else>
+                <div class="cf-labels">
+                    <div class="cf-labels-wrapper">
                         <h1>Checkout</h1>
-                        <div class="custom-form">
-                            <div class="custom-form-group">
-                                <h3 class="custom-form-group-title">
+                        <div class="cf">
+                            <div class="cf-group">
+                                <h3 class="cf-group-title">
                                     Informazioni Personali
                                 </h3>
                                 <!-- prettier-ignore -->
-                                <div class="custom-form-group-row" style="--grid-in-row: 2;">
-                                    <label class="custom-form-group-row-label" for="name">
-                                        <h3 class="custom-form-group-row-label-title">Nome <strong>*</strong></h3>
+                                <div class="cf-group-row" style="--grid-in-row: 2;">
+                                    <label class="cf-group-row-label" for="name">
+                                        <h3 class="cf-group-row-label-title">Nome <strong>*</strong></h3>
                                         <input type="text" name="name" id="name" placeholder="Nome" v-model="requiredInfo.name" ref="name" autocomplete="off" required @input="validateName">
-                                        <span class="custom-form-group-row-label-error" ref="nameError"></span>
+                                        <span class="cf-group-row-label-error" ref="nameError"></span>
                                     </label>
-                                    <label class="custom-form-group-row-label" for="surname">
-                                        <h3 class="custom-form-group-row-label-title">Cognome <strong>*</strong></h3>
+                                    <label class="cf-group-row-label" for="surname">
+                                        <h3 class="cf-group-row-label-title">Cognome <strong>*</strong></h3>
                                         <input type="text" name="surname" id="surname" placeholder="Cognome" v-model="requiredInfo.surname" ref="surname" autocomplete="off" required @input="validateSurname">
-                                        <span class="custom-form-group-row-label-error" ref="surnameError"></span>
+                                        <span class="cf-group-row-label-error" ref="surnameError"></span>
                                     </label>
                                 </div>
                                 <!-- prettier-ignore -->
-                                <div class="custom-form-group-row" style="--grid-in-row: 1;">
-                                    <label class="custom-form-group-row-label" for="address">
-                                        <h3 class="custom-form-group-row-label-title">Indirizzo <strong>*</strong></h3>
+                                <div class="cf-group-row" style="--grid-in-row: 1;">
+                                    <label class="cf-group-row-label" for="address">
+                                        <h3 class="cf-group-row-label-title">Indirizzo <strong>*</strong></h3>
                                         <input type="text" name="address" id="address" placeholder="Indirizzo" v-model="requiredInfo.address" ref="address" autocomplete="off" required @input="validateAddress">
-                                        <span class="custom-form-group-row-label-error" ref="addressError"></span>
+                                        <span class="cf-group-row-label-error" ref="addressError"></span>
                                     </label>
                                 </div>
                                 <!-- prettier-ignore -->
-                                <div class="custom-form-group-row" style="--grid-in-row: 1;">
-                                    <label class="custom-form-group-row-label" for="email">
-                                        <h3 class="custom-form-group-row-label-title">Email <strong>*</strong></h3>
+                                <div class="cf-group-row" style="--grid-in-row: 1;">
+                                    <label class="cf-group-row-label" for="email">
+                                        <h3 class="cf-group-row-label-title">Email <strong>*</strong></h3>
                                         <input type="email" name="email" id="email" placeholder="Email" v-model="requiredInfo.email" ref="email" required @input="validateEmail">
-                                        <span class="custom-form-group-row-label-error" ref="emailError"></span>
+                                        <span class="cf-group-row-label-error" ref="emailError"></span>
                                     </label>
                                 </div>
                             </div>
 
-                            <div class="custom-form-group">
-                                <h3 class="custom-form-group-title">
+                            <div class="cf-group">
+                                <h3 class="cf-group-title">
                                     Informazioni di Pagamento
                                 </h3>
                                 <!-- prettier-ignore -->
-                                <div class="custom-form-group-braintree" style="--grid-in-row: 1;">
-                                    <div class="custom-form-group-braintree">
+                                <div class="cf-group-braintree" style="--grid-in-row: 1;">
+                                    <div class="cf-group-braintree">
                                         <Payment ref="paymentRef" :authorization="token" v-if="!loading" @onSuccess="onSuccess" @onError="onError" @onLoad="onLoad" />
-                                        <!-- <div class="custom-form-group-braintree-title"><strong>*</strong> Questi campi sono obbligatori</div> -->
+                                        <!-- <div class="cf-group-braintree-title"><strong>*</strong> Questi campi sono obbligatori</div> -->
                                     </div>
                                 </div>
                             </div>
@@ -93,42 +64,42 @@
                     </div>
                 </div>
 
-                <div class="custom-form-basket">
-                    <div class="custom-form-basket-wrapper">
+                <div class="cf-basket">
+                    <div class="cf-basket-wrapper">
                         <h1>Sommario</h1>
                         <!-- prettier-ignore -->
-                        <div class="custom-form-basket-wrapper-group">
-                            <div class="custom-form-basket-wrapper-group-text">
-                                <div class="custom-form-basket-wrapper-group-text-title">Totale Parziale</div>
-                                <div class="custom-form-basket-wrapper-group-text-label">{{form.amount.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' })}}</div>
+                        <div class="cf-basket-wrapper-group">
+                            <div class="cf-basket-wrapper-group-text">
+                                <div class="cf-basket-wrapper-group-text-title">Totale Parziale</div>
+                                <div class="cf-basket-wrapper-group-text-label">{{form.amount.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' })}}</div>
                             </div>
-                            <div class="custom-form-basket-wrapper-group-text">
-                                <div class="custom-form-basket-wrapper-group-text-title">Spedizione</div>
-                                <div class="custom-form-basket-wrapper-group-text-label">{{"0,00 €"}}</div>
+                            <div class="cf-basket-wrapper-group-text">
+                                <div class="cf-basket-wrapper-group-text-title">Spedizione</div>
+                                <div class="cf-basket-wrapper-group-text-label">{{"0,00 €"}}</div>
                             </div>
                         </div>
-                        <div class="custom-form-basket-wrapper-group">
+                        <div class="cf-basket-wrapper-group">
                             <!-- prettier-ignore -->
-                            <div class="custom-form-group-row" style="--grid-in-row: 1;">
-                                <label class="custom-form-group-row-label" for="promo">
-                                    <h3 class="custom-form-group-row-label-title">Hai un codice promo?</h3>
+                            <div class="cf-group-row" style="--grid-in-row: 1;">
+                                <label class="cf-group-row-label" for="promo">
+                                    <h3 class="cf-group-row-label-title">Hai un codice promo?</h3>
                                     <input type="text" name="promo" id="promo" placeholder="Codice Promo">
-                                    <span class="custom-form-group-row-label-error"></span>
+                                    <span class="cf-group-row-label-error"></span>
                                 </label>
                             </div>
                         </div>
                         <!-- prettier-ignore -->
-                        <div class="custom-form-basket-wrapper-group">
-                            <div class="custom-form-basket-wrapper-group-text">
-                                <div class="custom-form-basket-wrapper-group-text-title">Totale</div>
-                                <div class="custom-form-basket-wrapper-group-text-label">{{form.amount.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' })}}</div>
+                        <div class="cf-basket-wrapper-group">
+                            <div class="cf-basket-wrapper-group-text">
+                                <div class="cf-basket-wrapper-group-text-title">Totale</div>
+                                <div class="cf-basket-wrapper-group-text-label">{{form.amount.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' })}}</div>
                             </div>
                         </div>
-                        <div class="custom-form-basket-wrapper-group">
+                        <div class="cf-basket-wrapper-group">
                             <!-- prettier-ignore -->
-                            <div class="custom-form-group-row" style="--grid-in-row: 1;">
-                                <div class="custom-form-basket-wrapper-group-text">
-                                    <div class="custom-form-basket-wrapper-group-text-button">
+                            <div class="cf-group-row" style="--grid-in-row: 1;">
+                                <div class="cf-basket-wrapper-group-text">
+                                    <div class="cf-basket-wrapper-group-text-button">
                                         <button @click.prevent="beforeBuy" :disabled="!activateButton">Acquista</button>
                                     </div>
                                 </div>
@@ -354,10 +325,11 @@ main {
     width: 100%;
     height: 100vh;
     display: flex;
-    overflow: hidden;
+    overflow: auto;
     position: relative;
     align-items: center;
     justify-content: center;
+    background-color: #ffffff;
 
     .custom-logo {
         top: 32px;
@@ -467,7 +439,7 @@ main {
         position: fixed;
         align-items: center;
         justify-content: center;
-        // background-color: rgba(0, 0, 0, 0.1);
+        background-color: rgba(0, 0, 0, 0.05);
 
         &-spinner {
             width: 32px;
@@ -488,20 +460,41 @@ main {
         }
     }
 
-    .custom-checkout {
+    & .custom-checkout {
         width: 100%;
         height: 100%;
         display: flex;
         max-width: 1200px;
         align-items: center;
+        --grid-column: 60% 1fr;
         justify-content: center;
 
-        .custom-form {
+        @media only screen and (max-width: 980px) {
+            align-items: flex-start;
+        }
+
+        @media only screen and (max-width: 860px) {
+            align-items: flex-start;
+        }
+
+        .cf {
             width: 100%;
             display: grid;
             position: relative;
             grid-auto-flow: column;
-            grid-template-columns: 60% 1fr;
+            grid-template-columns: var(--grid-column);
+
+            @media only screen and (max-width: 980px) {
+                display: flex;
+                flex-direction: column;
+                --grid-column: 1fr 1fr;
+            }
+
+            @media only screen and (max-width: 860px) {
+                display: flex;
+                flex-direction: column;
+                --grid-column: 1fr;
+            }
 
             &-labels,
             &-basket {
@@ -520,7 +513,7 @@ main {
                         line-height: 32px;
                     }
 
-                    .custom-form {
+                    .cf {
                         display: flex;
                         flex-direction: column;
 
@@ -561,6 +554,14 @@ main {
                                     var(--grid-in-row),
                                     minmax(0, 1fr)
                                 );
+
+                                @media only screen and (max-width: 980px) {
+                                    --grid-in-row: 1;
+                                }
+
+                                @media only screen and (max-width: 860px) {
+                                    --grid-in-row: 1;
+                                }
 
                                 &-label {
                                     width: 100%;
@@ -624,7 +625,7 @@ main {
                             margin-top: 0.5rem;
                         }
 
-                        .custom-form-group-row-label-title {
+                        .cf-group-row-label-title {
                             color: #282828;
                             font-weight: 400;
                             line-height: 1.5rem;

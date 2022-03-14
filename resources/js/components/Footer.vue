@@ -163,7 +163,7 @@ export default {
 
 footer {
     width: 100%;
-    background-color: #000;
+    background-color: #282828;
     color: #fff;
     padding: 80px 70px;
     justify-self: flex-end;

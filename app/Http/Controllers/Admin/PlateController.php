@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Plate;
 use App\Typology;
 use App\Category;
+use App\User;
+use App\Restaurant;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -19,9 +21,13 @@ class PlateController extends Controller
      */
     public function index()
     {
+        $title = 'Piatti';
         $id = Auth::user()->id;
-        $plates = Plate::where('restaurant_id', $id)->orderBy('created_at', 'DESC')->get();
-        return view('admin.plates.index', compact('plates'));
+        $categories = Category::all();
+        $user = User::where('id', $id)->first();
+        $restaurant = Restaurant::where('user_id', $user->id)->first();
+        $plates = Plate::where('restaurant_id', $restaurant->id)->orderBy('created_at', 'DESC')->get();
+        return view('admin.plates.index', compact('user', 'plates', 'title', 'categories'));
     }
 
     /**
@@ -68,10 +74,14 @@ class PlateController extends Controller
      */
     public function show($id)
     {
+        $idUser = Auth::user()->id;
+        $user = User::where('id', $idUser)->first();
+
         $plate = Plate::find($id);
+        $categories = Category::all();
         if (!$plate) abort(404);
 
-        return view('admin.plates.show', compact('plate'));
+        return view('admin.plates.show', compact('plate', 'categories', 'user'));
     }
 
     /**
@@ -138,7 +148,7 @@ class PlateController extends Controller
             'visible' => 'boolean',
             'ingredients' => 'required',
             'restaurant_id' => 'nullable|exists:restaurants,id',
-            'category_id' => 'nullable|exists:categories,id',
+            'category_id' => 'required|exists:categories,id',
             'image' => 'nullable|file|mimes:png,jpg'
         ];
     }

@@ -9,195 +9,44 @@
         <nav class="row justify-content-between align-items-center p-3 px-5">
             <!-- Left Side Of Navbar -->
             <div class="col-4">
-                <router-link
-                    v-if="$route.path != '/'"
-                    :to="{ name: 'home' }"
-                    class="site-logo"
-                >
-                    <img
-                        src="../images/deliveboo-logo.png"
-                        alt="deliveboo-logo"
-                    />
+                <router-link v-if="$route.path != '/'" :to="{ name: 'home' }" class="site-logo" >
+                    <img src="../images/deliveboo-logo.png" alt="deliveboo-logo"/>
                 </router-link>
-
-                <a v-else href="/" class="site-logo">
-                    <img
-                        src="../images/deliveboo-logo.png"
-                        alt="deliveboo-logo"
-                    />
-                </a>
-
-                <!-- <a class="site-logo" href="/">
-                    <img src="../images/deliveboo-logo.png" alt="deliveboo-logo">
-                </a> -->
+                <a v-else href="/" class="site-logo"> <img src="../images/deliveboo-logo.png" alt="deliveboo-logo" /> </a>
             </div>
 
             <div class="d-none d-sm-block col-6 col-md-4">
-                <div
-                    v-if="$route.path != '/' || !view.topOfPage"
-                    class="d-flex align-items-center"
-                >
-                    <!-- <select class="form-control mx-3 flex-grow-1" name="category_id" id="category_id"  v-model="typologyLink" placeholder-text="Selezionare una tipologia">
-                            <option selected disabled hidden value="">Selezionare una tipologia</option>
-                            <option v-for="typology in typologies" :key="`typology-${typology.id}`" :value="typology.id">{{ typology.name }}</option>
-                    </select> -->
-                    <!-- <div class="position-relative w-100 mr-lg-3">
-                        <div
-                            @click="selectDopdown()"
-                            class="w-100 text-center py-2 site-pointer site-custom-select"
-                        >
-                            <div
-                                class="site-control-select"
-                                v-if="typologyLink === ''"
-                            >
-                                Seleziona tipologia
-                            </div>
-                            <div class="site-control-select" v-else>
-                                {{ typologies[typologyLink - 1].name }}
-                            </div>
-                        </div>
-                        <ul
-                            class="position-absolute text-center w-100 list-group overflow-auto select-dropdown"
-                            :class="{ 'd-0': select }"
-                        >
-                            <li
-                                v-for="typology in typologies"
-                                :key="`typology-${typology.id}`"
-                                class="list-group-item site-pointer"
-                                @click="
-                                    (typologyLink = typology.id),
-
-                                        selectDopdown(),
-                                        (typologyName = typology.name)
-
-                                "
-                            >
-                                {{ typology.name }}
-                            </li>
-                        </ul>
-                    </div> -->
-                    <!-- <router-link :is="typologyLink === '' ? 'span' : 'router-link'" :to="{name: 'restaurant', params: {id: typologyLink}}" class=" site-primary-btn">Cerca</router-link> -->
-
-                    <!-- <a href="#restaurants" class=" site-primary-btn" @click="getTypology(typologyName)">Cerca</a> -->
-                </div>
+                <div v-if="$route.path != '/' || !view.topOfPage" class="d-flex align-items-center"></div>
             </div>
             <div class="col-2 col-md-4 d-flex justify-content-end">
                 <div class="position-relative">
-                    <a
-                        class="d-md-none site-control-select site-control-select-2"
-                        @click="changeDropDownDisplay"
-                    >
-                        <!-- <i class="fa-solid fa-bars"></i> -->
-
-                        <Hamburger class="site-primary-btn"/>
-                    </a>
-                    <div
-                        class="d-md-block site-dropdown"
-                        :class="{ 'd-none': dropdownNone }"
-                    >
-                        <div class="d-flex flex-column flex-md-row">
-                            <div
-                                v-if="$route.path == '/' && !view.topOfPage"
-                                class="position-relative"
-                            >
-                                <button
-                                    class="d-sm-none text-uppercase site-primary-btn mb-3 site-control-select"
-                                    @click="changeDropLeftDisplay"
-                                >
-                                    Cerca Ristoranti
-                                </button>
-                                <div
-                                    class="site-dropleft d-sm-none"
-                                    :class="{ 'd-none': dropleftNone }"
-                                >
-                                    <div class="position-relative w-100 mb-3">
-                                        <div
-                                            @click="selectDopdown()"
-                                            class="w-100 text-center py-2 site-pointer site-custom-select"
-                                        >
-                                            <div
-                                                class="site-control-select"
-                                                v-if="typologyLink === ''"
-                                            >
-                                                Seleziona tipologia
-                                            </div>
-                                            <div
-                                                class="site-control-select"
-                                                v-else
-                                            >
-                                                {{
-                                                    typologies[typologyLink - 1]
-                                                        .name
-                                                }}
-                                            </div>
-                                        </div>
-                                        <ul
-                                            class="position-absolute text-center w-100 list-group overflow-auto select-dropdown"
-                                            :class="{ 'd-0': select }"
-                                        >
-                                            <li
-                                                v-for="typology in typologies"
-                                                :key="`typology-${typology.id}`"
-                                                class="list-group-item site-pointer"
-                                                @click="
-                                                    (typologyLink =
-                                                        typology.id),
-                                                        selectDopdown(),
-                                                        changeDropDownDisplay(),
-                                                        (typologyName =
-                                                            typology.name),
-                                                        getTypology(
-                                                            typologyName
-                                                        )
-                                                "
-                                            >
-                                                {{ typology.name }}
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <router-link
-                                        :is="
-                                            typologyLink === ''
-                                                ? 'span'
-                                                : 'router-link'
-                                        "
-                                        :to="{
-                                            name: 'restaurant',
-                                            params: { id: typologyLink },
-                                        }"
-                                        class="site-primary-btn"
-                                        >Cerca</router-link
-                                    >
-                                </div>
-                            </div>
-                            <a
-                                class="site-primary-btn px-4 px-lg-5"
-                                href="/admin"
-                                >Registrati o accedi</a
-                            >
-                        </div>
+                    <a class="d-md-none site-control-select site-control-select-2" @click="changeDropDownDisplay"></a>
+                    <div @click="selectDopdown()" class="w-100 text-center py-2 site-pointer site-custom-select">
+                        <div class="site-control-select" v-if="typologyLink === ''">Seleziona tipologia</div>
+                        <div class="site-control-select" v-else>{{ typologies[typologyLink - 1].name }}</div>
                     </div>
+                    <ul class="position-absolute text-center w-100 list-group overflow-auto select-dropdown" :class="{ 'd-0': select }">
+                        <li v-for="typology in typologies" :key="`typology-${typology.id}`" class="list-group-item site-pointer" @click="(typologyLink = typology.id), selectDopdown(), changeDropDownDisplay(),(typologyName = typology.name),getTypology(typologyName)">
+                            {{ typology.name }}
+                        </li>
+                    </ul>
                 </div>
-                <!-- <div class="d-none d-md-flex ">
-                    <a class="text-uppercase site-primary-btn mr-3" href="/admin">Area Privata</a>
-                    <button class="site-primary-btn">
-                        <i class="fas fa-shopping-cart"></i>
-                    </button>
-                </div> -->
+
+                <router-link :is="typologyLink === '' ? 'span' : 'router-link'" :to="{name: 'restaurant',params: { id: typologyLink },}" class="site-primary-btn">Cerca</router-link>
             </div>
+            <a class="site-primary-btn px-4 px-lg-5" href="/admin">Registrati o accedi</a>
         </nav>
     </header>
 </template>
 
 <script>
 import axios from "axios";
-import Hamburger from "../components/Hamburger";
+// import Hamburger from "../components/Hamburger";
 
 export default {
     name: "Header",
     components: {
-        Hamburger,
+        // Hamburger,
     },
     data() {
         return {

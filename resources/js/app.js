@@ -5,8 +5,10 @@
  */
 
 import Vue from "vue";
-require("./bootstrap");
+// require("./bootstrap");
 require("./dropdown");
+require("./select");
+// require("./carousel");
 //import Card from './components/Card';
 
 /**
