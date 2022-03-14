@@ -1,7 +1,7 @@
 <template>
     <section class="page">
         <div class="page-container">
-            <div class="title">La tua selezione</div>
+            <div class="title">I nostri ristoranti</div>
             <div class="page-container-wrapper" v-if=" (filter[0] === '' && filter[1] == null) || filter.length == 0">
                 <div class="page-container-wrapper-class" v-for="(el, id) in mainArray" :key="id">
                     <div class="card-restaurant p-2">

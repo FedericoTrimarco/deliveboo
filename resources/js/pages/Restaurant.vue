@@ -1,5 +1,8 @@
 <template>
     <div>
+        <div class="app-logo">
+                <a @click.prevent="alertMessage"><img src="../images/deliveboo-nl.svg" alt="deliveboo-logo" /></a>
+        </div>
         <section class="custom-section">
             <HeaderRestaurant v-if="restaurant" :image="restaurant.cover" :name="restaurant.user.name" :typologiesArray="restaurant.typologies" :address="restaurant.user.address" class="mb-5"
             />
@@ -8,7 +11,7 @@
             <h1 class="restaurant-title">Il nostro menù</h1>
             <div class="container-fluid mt-5">
                 <div class="row">
-                    <div class="custom-section-wrapper col-12 col-md-6 col-xxl-7">
+                    <div class="custom-section-wrapper col-12  col-md-6  col-xxl-7">
                         <div v-for="(category, index) in categories" :key="index" class="mb-5" v-show="menuCategories.includes(category.name)">
                             <h2 class="restaurant-subtitle">{{ category.name }}</h2>
                             <ul class="card-list list-unstyled d-flex flex-wrap">
@@ -41,11 +44,11 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-6 col-xxl-5 order pt-5">
+                    <div class="col-sm-7 col-md-6 col-xxl-5 order pt-5">
                         <div class="cart-review p-3">
                             <h1 class="restaurant-title">Riepilogo Ordine</h1>
                             <hr />
-                            <div class="d-flex justify-content-between my-4">
+                            <div class="cart-header" >
                                 <span class="fs-5"><strong>Nome</strong></span>
                                 <span class="fs-5"><strong>Quantità</strong></span>
                                 <span class="fs-5"><strong></strong></span>
@@ -253,6 +256,17 @@ export default {
         viewCartResponive() {
             this.maxHeight = !this.maxHeight;
         },
+        alertMessage() {
+            if (Object.keys(this.cart).length > 0) {
+                if (confirm('Sei sicuro di voler uscire? Perderai tutti i prodotti presenti nel carrello!')) {
+                    this.$router.push({ name: 'home' })
+                } else {
+                    console.log('Ok rimango qui');
+                }
+            } else {
+                this.$router.push({ name: 'home' })
+            }
+        }
     },
 };
 </script>
@@ -278,11 +292,18 @@ export default {
     line-height: 2rem;
 }
 
+.cart-header {
+     display: grid;
+     margin-bottom: 0.5rem;
+      grid-template-columns: 2fr 1fr 1fr;
+}
+
 .cart-item {
-    display: flex;
+    display: grid;
     line-height: 28px;
-    align-items: center;
-    justify-content: space-between;
+    margin-bottom: .5rem;
+    align-content: center;
+    grid-template-columns: 2fr 1fr 1fr;
 
     > h4 {
         margin: 0;
@@ -300,6 +321,7 @@ export default {
 
     > div:last-of-type {
         display: flex;
+        justify-content: flex-end;
 
         > span:last-of-type {
             margin-left: 1rem;
@@ -421,7 +443,7 @@ export default {
 RESPONSIVE
 ***********/
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 860px) {
     .order {
         display: none;
     }
@@ -429,7 +451,7 @@ RESPONSIVE
         display: block;
     }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 860px) {
     .order-responsive {
         display: none;
     }

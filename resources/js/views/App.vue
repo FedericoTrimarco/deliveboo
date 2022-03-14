@@ -82,6 +82,19 @@ export default {
         background-color: #ffffff;
     }
 
+    .app-logo {
+        top: 32px;
+        left: 32px;
+        width: 144px;
+        z-index: 999999;
+        position: absolute;
+
+        img {
+            width: 100%;
+            object-fit: fill;
+        }
+    }
+
     .login-button {
         top: 2rem;
         right: 2rem;

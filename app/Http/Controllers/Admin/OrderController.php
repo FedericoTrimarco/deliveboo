@@ -15,22 +15,9 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index() {
-        $orders = Order::where('restaurant_id', Auth::user()->id )->get();
-        $plates = [];
-        $table = [];
-
-        foreach ($orders as $order) {
-            // array_push($plates, $order->plates->id);
-
-            $t;
-            $t['id'] = $order->id;
-            $t['total'] = $order->tot;
-            // $t['quantity'] = $order->plates->pivot->id;
-
-            array_push($table, $t);
-        }
-        dd($table);
+    public function index()
+    {
+        $orders = Order::where('restaurant_id', Auth::user()->id)->get();
 
         $title = 'Piatti';
         $id = Auth::user()->id;
