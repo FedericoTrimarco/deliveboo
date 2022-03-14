@@ -1,10 +1,17 @@
 <template>
-    <div class="lello">
-        <Hero @getTypology="getTypology"/>
-        <main :class="{'d-none' : selectedTypologyVariables == null}">
+    <div class="custom-page">
+        <div class="loader" v-if="!pageLoaded">
+            <div class="loader-spin"></div>
+        </div>
+        <Hero
+            @retriveTypologies="getTypology"
+            v-else
+            :class="{ 'd-none': selectedTypologyVariables != null }"
+        />
+        <main :class="{ 'd-none': selectedTypologyVariables == null }">
             <Restaurant :selectedTypology="selectedTypologyVariables" />
         </main>
-        <Footer :class="{'d-none' : selectedTypologyVariables == null}"/>
+        <Footer :class="{ 'd-none': selectedTypologyVariables == null }" />
     </div>
 </template>
 
@@ -12,7 +19,7 @@
 import Axios from "axios";
 import Hero from "../components/Hero.vue";
 import Restaurant from "../components/Restaurant.vue";
-import Footer from '../components/Footer.vue';
+import Footer from "../components/Footer.vue";
 export default {
     name: "Home",
     components: {
@@ -22,12 +29,12 @@ export default {
     },
     props: {
         selectedTypology: String,
-        
     },
     data() {
         return {
             typologies: null,
             restaurants: null,
+            pageLoaded: false,
             selectedTypologyVariables: null,
         };
     },
@@ -46,6 +53,7 @@ export default {
             Axios.get("http://127.0.0.1:8000/api/typologies")
                 .then((res) => {
                     this.typologies = res.data.splice(0, 4);
+                    this.pageLoaded = true;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -65,7 +73,7 @@ export default {
             // console.log(typology);
             this.selectedTypologyVariables = typology;
         },
-        emptyCart(){
+        emptyCart() {
             localStorage.clear();
         },
     },
@@ -73,16 +81,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.lello{
-    -ms-overflow-style: none;
-    scrollbar-width: none !important;
-    ::-webkit-scrollbar {
-    display: none !important;
-    }
-    ::-webkit-scrollbar-thumb {
-        background: transparent;
-    }
-    
+.custom-page {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
 }
 .custom-section {
     padding: 48px 0 80px;
@@ -223,6 +226,33 @@ export default {
                         font-size: 16px;
                     }
                 }
+            }
+        }
+    }
+}
+
+.loader {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+
+    &-spin {
+        width: 32px;
+        height: 32px;
+        z-index: 200;
+        flex-shrink: 0;
+        position: relative;
+        border-radius: 999999px;
+        border: 3px solid #ffc685;
+        border-right-color: #fb8500;
+        animation: spinner 400ms linear infinite;
+
+        @keyframes spinner {
+            to {
+                transform: rotate(1turn);
             }
         }
     }

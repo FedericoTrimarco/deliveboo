@@ -89,7 +89,7 @@
                     >
                         <!-- <i class="fa-solid fa-bars"></i> -->
 
-                        <Hamburger class="site-primary-btn"/>
+                        <!-- <Hamburger class="site-primary-btn" /> -->
                     </a>
                     <div
                         class="d-md-block site-dropdown"
@@ -192,12 +192,12 @@
 
 <script>
 import axios from "axios";
-import Hamburger from "../components/Hamburger";
+// import Hamburger from "../components/Hamburger";
 
 export default {
     name: "Header",
     components: {
-        Hamburger,
+        // Hamburger,
     },
     data() {
         return {

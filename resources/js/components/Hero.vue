@@ -1,59 +1,90 @@
 <template>
-    <div class="front-hero" ref="hero">
-        <div
-            class="mb-3 d-flex flex-column align-items-start justify-content-center vh-100"
-        >
-            <div
-                v-if="view.topOfPage"
-                class="select-container"
-                id="search-hero"
-            >
+    <!-- <div class="front-hero" ref="hero">
+        <div class="mb-3 d-flex flex-column align-items-start justify-content-center vh-100">
+            <div v-if="view.topOfPage" class="select-container" id="search-hero" >
                 <div class="d-flex justify-content-center">
-                    <!-- <select class="form-control mx-3 flex-shrink-1" name="typology_id" id="typology_id"  v-model="typologyLink">
-                                <option selected disabled value="">Selezionare una tipologia</option>
-                                <option v-for="typology in typologies" :key="`typology-${typology.id}`" :value="typology.id">{{ typology.name }}</option>
-                        </select> -->
                     <div class="position-relative w-75 mr-3">
-                        <div
-                            @click="selectDopdown()"
-                            class="w-100 text-center py-3 site-pointer site-custom-select"
-                        >
-                            <div
-                                class="site-control-select"
-                                v-if="typologyLink === ''"
-                            >
-                                Cos'hai voglia di mangiare oggi?
-                            </div>
+                        <div @click="selectDopdown()" class="w-100 text-center py-3 site-pointer site-custom-select" >
+                            <div class="site-control-select" v-if="typologyLink === ''"> Cos'hai voglia di mangiare oggi? </div>
                             <div class="site-control-select" v-else>
                                 {{ typologies[typologyLink - 1].name }}
                             </div>
                         </div>
-                        <ul
-                            class="position-absolute text-center w-100 list-group overflow-auto select-dropdown"
-                            :class="{ 'd-0': select }"
+                        <ul class="position-absolute text-center w-100 list-group overflow-auto select-dropdown" :class="{ 'd-0': select }" >
+                            <li v-for="typology in typologies" :key="`typology-${typology.id}`" class="list-group-item site-pointer"
+                                @click=" (typologyLink = typology.id), selectDopdown(), (typologyName = typology.name) " >
+                                {{ typology.name }}
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#restaurants" class="site-primary-btn search d-flex align-items-center" @click="getTypology(typologyName)" >Cerca</a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="custom-hero">
+        <div class="custom-search">
+            <div class="custom-search-action">
+                <div class="custom-search-action-input">
+                    <!-- <div class="custom-search-action-input-title">
+                        Cosa vuoi mangiare oggi?
+                    </div>
+                    <div class="custom-search-action-input-icon">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2"
                         >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M19 9l-7 7-7-7"
+                            />
+                        </svg>
+                    </div>
+                    <div class="custom-search-action-input-dropdown">
+                        <ul v-if="typologies">
                             <li
                                 v-for="typology in typologies"
                                 :key="`typology-${typology.id}`"
-                                class="list-group-item site-pointer"
+                            >
+                                {{ typology.name }}
+                            </li>
+                        </ul>
+                    </div> -->
+                    <input
+                        type="text"
+                        placeholder="Cosa vuoi mangiare?"
+                        v-model="input"
+                        @input="getSuggest(input)"
+                    />
+                    <div class="custom-search-action-input-dropdown">
+                        <ul v-if="filterTypology">
+                            <li
+                                v-for="typology in filterTypology"
+                                :key="`typology-${typology.id}`"
                                 @click="
                                     (typologyLink = typology.id),
                                         selectDopdown(),
-                                        (typologyName = typology.name)
+                                        (typologyName = typology.name),
+                                        retriveTypologies(typologyName)
                                 "
                             >
                                 {{ typology.name }}
                             </li>
                         </ul>
                     </div>
-                    <a
-                        href="#restaurants"
-                        class="site-primary-btn search d-flex align-items-center"
-                        @click="getTypology(typologyName)"
-                        >Cerca</a
-                    >
-
                 </div>
+                <a
+                    href="#restaurants"
+                    class="custom-search-action-button"
+                    @click="retriveTypologies(typologyName)"
+                >
+                    Cerca
+                </a>
             </div>
         </div>
     </div>
@@ -61,17 +92,19 @@
 
 <script>
 import axios from "axios";
+import Header from "./Header.vue";
 
 export default {
+    components: { Header },
     name: "Hero",
     data() {
         return {
+            input: "",
             typologies: null,
+            filterTypology: null,
             typologyLink: "",
             typologyName: "",
-            view: {
-                topOfPage: true,
-            },
+            view: { topOfPage: true },
             select: true,
         };
     },
@@ -88,6 +121,17 @@ export default {
         document.removeEventListener("click", this.onClick);
     },
     methods: {
+        getSuggest(string) {
+            if (this.typologies && this.input != "") {
+                this.filterTypology = this.typologies.filter((typology) =>
+                    typology.name.toLowerCase().match(string.toLowerCase())
+                );
+            }
+
+            if (this.input == "") {
+                this.filterTypology = null;
+            }
+        },
         getTypologies() {
             axios
                 .get("http://127.0.0.1:8000/api/typologies")
@@ -97,7 +141,6 @@ export default {
                 .catch(function (error) {
                     console.log(error);
                 });
-                
         },
         handleScroll() {
             if (window.pageYOffset > 250) {
@@ -114,24 +157,121 @@ export default {
                 this.select = true;
             }
         },
-        getTypology(typology) {
-            this.$emit("getTypology", typology);
-            this.fadeOnClick();
+        retriveTypologies(typology) {
+            this.$emit("retriveTypologies", typology);
+            this.input = "";
         },
-        fadeOnClick(){
-            this.$refs.hero.style.opacity = '0';
-            setTimeout(()=> {
-               this.$refs.hero.style.display = 'none';
-            }, 800)
-        }
     },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../../sass/variables.scss";
+.custom-hero {
+    flex-grow: 1;
+    display: flex;
+    overflow: hidden;
+    padding-top: 72px;
+    position: relative;
+    background-position: center;
+    background-image: url("../images/hero-deliveboo.jpg");
 
-.front-hero {
+    .custom-search {
+        top: 40%;
+        left: 2rem;
+        display: flex;
+        padding: 1rem;
+        min-width: 480px;
+        position: absolute;
+        flex-direction: column;
+        transform: translateY(-50%);
+
+        .custom-search-action {
+            display: flex;
+            align-items: center;
+
+            &-input {
+                width: 100%;
+                display: flex;
+                color: #282828;
+                min-width: 320px;
+                cursor: pointer;
+                margin-right: 1rem;
+                position: relative;
+                background-color: #ffffff;
+                justify-content: space-between;
+
+                input {
+                    width: 100%;
+                    outline: none;
+                    padding: 0.5rem;
+                    font-size: 1rem;
+                    color: #282828;
+                    appearance: none;
+                    line-height: 1.5rem;
+                    border: 2px solid #ebebeb;
+
+                    &::placeholder {
+                        color: #c4c4c4;
+                    }
+                }
+
+                &-title {
+                    font-weight: 500;
+                    font-size: 1rem;
+                    color: #545454;
+                    line-height: 1.5rem;
+                }
+
+                &-icon {
+                    width: 24px;
+                    height: 24px;
+                    display: grid;
+                    place-items: center;
+                }
+
+                &-dropdown {
+                    left: 0;
+                    top: 100%;
+                    width: 100%;
+                    overflow: auto;
+                    position: absolute;
+                    max-height: calc(56px * 3);
+                    background-color: #ffffff;
+
+                    ul {
+                        margin: 0;
+                        padding: 0;
+                        display: block;
+
+                        li {
+                            display: flex;
+                            align-items: center;
+                            padding: 1rem;
+
+                            &:hover {
+                                background-color: #f2f2f2;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &-button {
+                display: grid;
+                color: #ffffff;
+                font-size: 1rem;
+                place-items: center;
+                line-height: 1.5rem;
+                padding: 0.5rem 1rem;
+                text-decoration: none;
+                background-color: #fb8500;
+            }
+        }
+    }
+}
+
+/* .front-hero {
     height: 100vh;
     background: url("../images/hero-deliveboo.png") no-repeat center center;
     background-size: cover;
@@ -183,5 +323,5 @@ export default {
 
 .search {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
+} */
 </style>

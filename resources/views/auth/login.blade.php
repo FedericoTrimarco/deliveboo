@@ -107,8 +107,8 @@
                             <h3 class="custom-container-wrapper-panel-form-group-row-label-title">Email
                                 <strong>*</strong>
                             </h3>
-                            <input type="text" name="email" id="email" placeholder="Username" autocomplete="off"
-                                value="{{ old('email') }}" class="@error('password') error @enderror" required>
+                            <input type="email" name="email" id="email" placeholder="Email" autocomplete="off"
+                                value="{{ old('email') }}" class="@error('email') error @enderror" required>
 
                             <span class="custom-container-wrapper-panel-form-group-row-label-error">
                                 @error('email'){{$message}}@enderror
@@ -118,7 +118,7 @@
                     </div>
 
                     <div class="custom-container-wrapper-panel-form-group-row" style="--grid-in-row: 1">
-                        <label class="custom-container-wrapper-panel-form-group-row-label" for="name">
+                        <label class="custom-container-wrapper-panel-form-group-row-label" for="password">
                             <h3 class="custom-container-wrapper-panel-form-group-row-label-title">Password
                                 <strong>*</strong>
                             </h3>

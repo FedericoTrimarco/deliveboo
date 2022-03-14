@@ -1,8 +1,10 @@
 <template>
     <div class="app-wrapper">
-        <Header @getTypology="getTypology" />
-
-        <main>
+        <!-- <Header @getTypology="getTypology" /> -->
+        <div class="loader" v-if="!pageLoaded">
+            <div class="loader-spin"></div>
+        </div>
+        <main v-else>
             <router-view :selectedTypology="selectedTypology"></router-view>
         </main>
     </div>
@@ -20,6 +22,7 @@ export default {
         return {
             typologies: null,
             restaurants: null,
+            pageLoaded: false,
             selectedTypology: null,
         };
     },
@@ -31,6 +34,7 @@ export default {
     created() {
         this.getTypologies();
         this.getRestaurants();
+        this.pageLoaded = true;
     },
     methods: {
         getTypologies() {
@@ -54,7 +58,6 @@ export default {
                 });
         },
         getTypology(typology) {
-            // console.log(typology);
             this.selectedTypology = typology;
         },
     },
@@ -63,18 +66,47 @@ export default {
 
 <style lang="scss">
 @import "../styles/main.scss";
+
 .app-wrapper {
     width: 100%;
     height: 100%;
     display: flex;
     overflow: auto;
+    scrollbar-width: none;
     flex-direction: column;
 
     > main {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        background-color: #f9fafa;
+        background-color: #ffffff;
+    }
+}
+
+.loader {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+
+    &-spin {
+        width: 32px;
+        height: 32px;
+        z-index: 200;
+        flex-shrink: 0;
+        position: relative;
+        border-radius: 999999px;
+        border: 3px solid #ffc685;
+        border-right-color: #fb8500;
+        animation: spinner 400ms linear infinite;
+
+        @keyframes spinner {
+            to {
+                transform: rotate(1turn);
+            }
+        }
     }
 }
 </style>
