@@ -138,7 +138,7 @@ class PlateController extends Controller
             'visible' => 'boolean',
             'ingredients' => 'required',
             'restaurant_id' => 'nullable|exists:restaurants,id',
-            'category_id' => 'nullable|exists:categories,id',
+            'category_id' => 'required|exists:categories,id',
             'image' => 'nullable|file|mimes:png,jpg'
         ];
     }
