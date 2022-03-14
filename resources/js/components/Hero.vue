@@ -211,6 +211,10 @@ export default {
                     line-height: 1.5rem;
                     border: 2px solid #ebebeb;
 
+                    &:focus-within {
+                        border-color: #282828;
+                    }
+
                     &::placeholder {
                         color: #c4c4c4;
                     }

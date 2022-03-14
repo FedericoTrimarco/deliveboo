@@ -125,7 +125,7 @@
                             <input type="password" name="password" id="password" placeholder="Password"
                                 autocomplete="off" class="@error('password') error @enderror" required>
                             <span
-                                class="custom-container-wrapper-panel-form-group-row-label-error">@error('email'){{$message}}@enderror</span>
+                                class="custom-container-wrapper-panel-form-group-row-label-error">@error('password'){{$message}}@enderror</span>
                         </label>
                     </div>
 
