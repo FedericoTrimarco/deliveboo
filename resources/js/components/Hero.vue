@@ -279,8 +279,8 @@ export default {
     height: 100vh;
     background: url("../images/hero-deliveboo.png") no-repeat center center;
     background-size: cover;
-    transition: all .3s ease-in-out;
-    
+    transition: all 0.3s ease-in-out;
+
     // scrollbar-width: none;
     .select-container {
         color: white;
@@ -320,7 +320,7 @@ export default {
 
     @media all and (min-width: 999px) {
         .select-container {
-            width: 50%
+            width: 50%;
         }
     }
 }

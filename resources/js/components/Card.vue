@@ -1,5 +1,5 @@
 <template>
-    <div class="h-100">
+    <div class="card h-100">
         <div class="h-100 card-plate d-flex flex-column">
 
             <!-- plate-img -->
@@ -45,6 +45,10 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/partials/_variables.scss';
+.card {
+    height: fit-content;
+}
+
 .not-visible{
     filter: grayscale(100);
 }
