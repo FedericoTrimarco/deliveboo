@@ -1,17 +1,24 @@
 <template>
-    <div class="sidebar-container">
-        <!-- BIG ASIDE -->
-        <div
-            id="aside"
-            class="aside"
-        >
-            <div @click="sidebarToggle()" class="toggle">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-
-            <aside
-                class="overflow-auto py-5 aside-wrapper h-100 w-100"
+    <div class="sidebar-container hidden">
+        <div @click="sidebarToggle()" class="toggle">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
             >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                />
+            </svg>
+            <span>Filtra</span>
+        </div>
+        <div id="aside" class="aside">
+            <aside class="py-5 aside-wrapper h-100 w-100">
                 <!-- LOGO CONTAINER -->
                 <div class="container">
                     <div class="ps-3">
@@ -29,7 +36,7 @@
                     <h5 class="pt-5 pb-4 ps-3">Filtra per tipologia:</h5>
 
                     <div
-                        class="position-relative"
+                        class="checkbox-list position-relative"
                         v-for="(el, index) in mainArray"
                         :key="`typology-${index}`"
                     >
@@ -109,8 +116,8 @@ export default {
         },
         sidebarToggle() {
             let aside = document.querySelector(".sidebar-container");
-
             aside.classList.toggle("hidden");
+            aside.classList.toggle("show");
         },
     },
 };
@@ -120,15 +127,39 @@ export default {
 @import "../../sass/variables.scss";
 
 .sidebar-container {
-    width: 320px;
+    width: 100%;
     height: 100%;
-    position: relative;
-    border-right: 2px solid #ebebeb;
-    min-width: 320px;
-    &.hidden {
+    max-width: 320px;
+    position: absolute;
+    left: -320px;
+    background-color: #ffffff;
+    border-right: 2px solid #282828;
+    transition: left 0.1s ease-in-out;
+
+    &.show {
+        left: -320px;
         position: absolute;
-        left: calc(-100% + 40px);
-        transition: all 0.4s ease-in-out;
+        transition: left 0.4s ease-in-out;
+        animation: slideIn 200ms linear forwards;
+
+        @keyframes slideIn {
+            to {
+                left: 0px;
+            }
+        }
+    }
+
+    &.hidden {
+        left: 0;
+        position: absolute;
+        transition: left 0.4s ease-in-out;
+        animation: slideOut 200ms linear forwards;
+
+        @keyframes slideOut {
+            to {
+                left: -320px;
+            }
+        }
     }
 }
 
@@ -137,12 +168,47 @@ export default {
 }
 
 .aside {
-    display: flex;
-    flex-direction: column;
-    position: relative;
     width: 100%;
     height: 100%;
+    display: flex;
+    overflow: auto;
+    overflow-x: hidden;
+    position: relative;
+    flex-direction: column;
     transition: all 0.4s ease-in-out;
+}
+
+.toggle {
+    position: absolute;
+    top: 2rem;
+    display: flex;
+    cursor: pointer;
+    left: 318px;
+    justify-content: center;
+    width: 96px;
+    align-items: center;
+    height: 40px;
+    appearance: none;
+    border: 0;
+    background-color: #282828;
+    color: white;
+    z-index: 9999999;
+
+    > svg {
+        width: 20px;
+        height: 20px;
+        display: flex;
+    }
+
+    > span {
+        display: flex;
+        margin-left: 8px;
+    }
+}
+
+.checkbox-list {
+    scrollbar-width: thin;
+    overflow: auto;
 }
 
 .custom-checkbox {
@@ -185,29 +251,14 @@ export default {
     display: none;
 }
 
-.toggle {
-    display: grid;
-    position: absolute;
-    top: 1rem;
-    left: 320px;
-    width: 40px;
-    height: 40px;
-    appearance: none;
-    border: 0;
-    background-color: $site-col-3;
-    place-items: center;
-    color: white;
-    z-index: 9999999;
-}
-
-@media all and (max-width: 767px) {
-    .aside {
-        position: fixed;
-        z-index: 10;
-        background-color: white;
-        height: 100%;
-        box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
-            rgba(17, 17, 26, 0.1) 0px 0px 8px;
-    }
-}
+// @media all and (max-width: 767px) {
+//     .aside {
+//         position: fixed;
+//         z-index: 10;
+//         background-color: white;
+//         height: 100%;
+//         box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
+//             rgba(17, 17, 26, 0.1) 0px 0px 8px;
+//     }
+// }
 </style>

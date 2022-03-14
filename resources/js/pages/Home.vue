@@ -1,10 +1,13 @@
 <template>
     <div class="lello">
-        <Hero @getTypology="getTypology"/>
-        <main :class="{'d-none' : selectedTypologyVariables == null}">
+        <Hero
+            @getTypology="getTypology"
+            :class="{ 'd-none': selectedTypologyVariables != null }"
+        />
+        <main :class="{ 'd-none': selectedTypologyVariables == null }">
             <Restaurant :selectedTypology="selectedTypologyVariables" />
         </main>
-        <Footer :class="{'d-none' : selectedTypologyVariables == null}"/>
+        <Footer :class="{ 'd-none': selectedTypologyVariables == null }" />
     </div>
 </template>
 
@@ -12,7 +15,7 @@
 import Axios from "axios";
 import Hero from "../components/Hero.vue";
 import Restaurant from "../components/Restaurant.vue";
-import Footer from '../components/Footer.vue';
+import Footer from "../components/Footer.vue";
 export default {
     name: "Home",
     components: {
@@ -22,7 +25,6 @@ export default {
     },
     props: {
         selectedTypology: String,
-        
     },
     data() {
         return {
@@ -65,7 +67,7 @@ export default {
             // console.log(typology);
             this.selectedTypologyVariables = typology;
         },
-        emptyCart(){
+        emptyCart() {
             localStorage.clear();
         },
     },
@@ -73,16 +75,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.lello{
+.lello {
     -ms-overflow-style: none;
     scrollbar-width: none !important;
     ::-webkit-scrollbar {
-    display: none !important;
+        display: none !important;
     }
     ::-webkit-scrollbar-thumb {
         background: transparent;
     }
-    
 }
 .custom-section {
     padding: 48px 0 80px;

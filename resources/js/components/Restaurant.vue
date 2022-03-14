@@ -1,16 +1,10 @@
 <template>
-    <section id="restaurants" class="d-flex typology-restaurant vh-100">
+    <section id="restaurants" class="d-flex typology-restaurant">
         <Aside
             :mainArray="typologies"
             :selectedTypology="selectedTypology"
             @getTypologyFromAside="selectedTypologyLello"
         />
-
-        <!-- <SlideSidebar 
-            :mainArray="typologies"
-            :selectedTypology="selectedTypology"
-            @getTypologyFromAside="selectedTypologyLello"
-        /> -->
 
         <TypologyRestaurant
             :filter="checkedTypologies"
@@ -78,4 +72,8 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+#restaurants {
+    position: relative;
+}
+</style>

@@ -52,7 +52,6 @@
                         @click="getTypology(typologyName)"
                         >Cerca</a
                     >
-
                 </div>
             </div>
         </div>
@@ -97,7 +96,6 @@ export default {
                 .catch(function (error) {
                     console.log(error);
                 });
-                
         },
         handleScroll() {
             if (window.pageYOffset > 250) {
@@ -118,12 +116,12 @@ export default {
             this.$emit("getTypology", typology);
             this.fadeOnClick();
         },
-        fadeOnClick(){
-            this.$refs.hero.style.opacity = '0';
-            setTimeout(()=> {
-               this.$refs.hero.style.display = 'none';
-            }, 800)
-        }
+        fadeOnClick() {
+            this.$refs.hero.style.opacity = "0";
+            setTimeout(() => {
+                this.$refs.hero.style.display = "none";
+            }, 800);
+        },
     },
 };
 </script>
@@ -135,8 +133,8 @@ export default {
     height: 100vh;
     background: url("../images/hero-deliveboo.png") no-repeat center center;
     background-size: cover;
-    transition: all .3s ease-in-out;
-    
+    transition: all 0.3s ease-in-out;
+
     // scrollbar-width: none;
     .select-container {
         color: white;
@@ -176,7 +174,7 @@ export default {
 
     @media all and (min-width: 999px) {
         .select-container {
-            width: 50%
+            width: 50%;
         }
     }
 }

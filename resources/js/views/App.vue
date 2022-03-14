@@ -1,12 +1,10 @@
 <template>
     <div class="app-wrapper">
-
         <!-- <Header @getTypology="getTypology"/> -->
 
         <main>
             <router-view :selectedTypology="selectedTypology"></router-view>
         </main>
-
     </div>
 </template>
 
@@ -65,6 +63,11 @@ export default {
 
 <style lang="scss">
 @import "../styles/main.scss";
+
+* {
+    scrollbar-width: thin !important;
+}
+
 .app-wrapper {
     width: 100%;
     height: 100%;
