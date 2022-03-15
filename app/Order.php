@@ -8,11 +8,13 @@ class Order extends Model
 {
     protected $fillable = ['restaurant_id', 'status', 'tot'];
 
-    public function restaurant(){
+    public function restaurant()
+    {
         return $this->belongsTo('App\Restaurant');
     }
 
-    public function plates(){
+    public function plates()
+    {
         return $this->belongsToMany('App\Plate')->withPivot('quantity');
     }
 }

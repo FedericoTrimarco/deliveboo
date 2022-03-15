@@ -14,16 +14,18 @@ use Illuminate\Support\Facades\Mail;
 
 class RestaurantController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $restaurants = Restaurant::with(['user', 'typologies'])->select('restaurants.id', 'restaurants.cover', 'restaurants.user_id')->get();
-        
+
         foreach ($restaurants as $restaurant) {
             $restaurant->cover = url('storage/' . $restaurant->cover);
         }
         return response()->json($restaurants);
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $restaurant = Restaurant::with('user', 'typologies')->find($id);
         $restaurant->cover = url('storage/' . $restaurant->cover);
         return response()->json($restaurant);
@@ -33,25 +35,27 @@ class RestaurantController extends Controller
     //     foreach ($array as $id) {
     //         $restaurants = Typology::find($id)->restaurants()->get();
     //     }
-        
+
     //     return response()->json($restaurants);
     // }
 
-    public function getMenu(Request $request) {
+    public function getMenu(Request $request)
+    {
         $data = $request->all();
         $id = (int)$data['id'];
         $plates = Restaurant::find($id)->plates()->with('category')->get();
         foreach ($plates as $plate) {
-            if($plate->image != null) {
+            if ($plate->image != null) {
                 $plate->image = url('storage/' . $plate->image);
-            } else{
+            } else {
                 $plate->image = url('http://www.persefone.it/blog/wp-content/themes/photobook/images/blank.png');
             }
         }
         return response()->json($plates);
     }
 
-    public function send_email(Request $request) {
+    public function send_email(Request $request)
+    {
         $data = $request->all();
         $name = $data['email'];
         $restaurant_name = User::find($data['id'])->name;
