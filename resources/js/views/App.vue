@@ -88,7 +88,7 @@ export default {
         width: 144px;
         z-index: 999999;
         position: absolute;
-
+        cursor: pointer;
         img {
             width: 100%;
             object-fit: fill;

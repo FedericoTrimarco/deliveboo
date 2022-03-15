@@ -119,7 +119,11 @@
                             <div class="custom-editor-container-content-wrapper-row">
                                 <div class="custom-editor-container-content-wrapper-row-box">
                                     <div class="custom-editor-container-content-wrapper-row-box-image">
-                                        <img src="{{asset('storage/'.$plate->image)}}" alt="plate-image">
+                                        @if ($plate->image)
+                                            <img src="{{asset('storage/'.$plate->image)}}" alt="plate-image">
+                                        @else
+                                            <img src="https://lightwidget.com/wp-content/uploads/local-file-not-found.png" alt="img-not-found">
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="custom-editor-container-content-wrapper-row-box">
