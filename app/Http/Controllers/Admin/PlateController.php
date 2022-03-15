@@ -26,7 +26,7 @@ class PlateController extends Controller
         $categories = Category::all();
         $user = User::where('id', $id)->first();
         $restaurant = Restaurant::where('user_id', $user->id)->first();
-        $plates = Plate::where('restaurant_id', $restaurant->id)->orderBy('created_at', 'DESC')->get();
+        $plates = Plate::where('restaurant_id', $restaurant->id)->orderBy('name', 'ASC')->get();
         return view('admin.plates.index', compact('user', 'plates', 'title', 'categories'));
     }
 

@@ -136,39 +136,46 @@
                                     <div class="custom-editor-container-table-container-header-row">
                                         <div class="custom-editor-container-table-container-header-row-data">#</div>
                                         <div class="custom-editor-container-table-container-header-row-data selected">
-                                            <span>Nome</span>
+                                            <span>Acquirente</span>
                                             <div class="custom-editor-container-table-container-body-row-data-icon"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg></span></div>
                                         </div>
-                                        <div class="custom-editor-container-table-container-header-row-data"><span>Visibile</span></div>
-                                        <div class="custom-editor-container-table-container-header-row-data"><span>Prezzo</span></div>
-                                        <div class="custom-editor-container-table-container-header-row-data"><span>Categoria</span></div>
+                                        <div class="custom-editor-container-table-container-header-row-data"><span>Stato</span></div>
+                                        <div class="custom-editor-container-table-container-header-row-data"><span>Totale</span></div>
                                         <div class="custom-editor-container-table-container-header-row-data"><span>Creato il</span></div>
-                                        <div class="custom-editor-container-table-container-header-row-data"></div>
                                     </div>
                                 </div>
                                 <div class="custom-editor-container-table-container-body">
-                                    @foreach ($plates as $plate)                
+
                                     <div class="custom-editor-container-table-container-body-row">
-                                        <div class="custom-editor-container-table-container-body-row-data"><span>#{{$plate->id}}</span></div>
-                                        <div class="custom-editor-container-table-container-body-row-data"><span>{{$plate->name}}</span></div>
-                                        <div class="custom-editor-container-table-container-body-row-data @if ($plate->visible === 1) status-success @else status-error @endif" >
-                                            @if ($plate->visible === 1)
+                                        <div class="custom-editor-container-table-container-body-row-data"><span>#1</span></div>
+                                        <div class="custom-editor-container-table-container-body-row-data"><span>luigiragusa@gmail.com</span></div>
+                                        <div class="custom-editor-container-table-container-body-row-data status-success">
                                             <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span>
-                                            @else 
-                                            <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                            @endif
                                         </span>
                                         </div>
-                                        <div class="custom-editor-container-table-container-body-row-data" id="field-price"><span>{{$plate->price}}</span></div>
-                                        <div class="custom-editor-container-table-container-body-row-data"><span>{{$plate->category->name}}</span></div>
-                                        <div class="custom-editor-container-table-container-body-row-data" id="field-date"><span>{{$plate->created_at}}</span></div>
-                                        <div class="custom-editor-container-table-container-body-row-data">
-                                            <a href="{{route('admin.plates.show', $plate->id)}}" class="custom-editor-container-table-container-body-row-data-button">
-                                                <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg></span>
-                                            </a>
-                                        </div>
+                                        <div class="custom-editor-container-table-container-body-row-data" id="field-price"><span>98.00 €</span></div>
+                                        <div class="custom-editor-container-table-container-body-row-data" id="field-date"><span>12/03/2022</span></div>
                                     </div>
-                                    @endforeach
+
+                                    <div class="custom-editor-container-table-container-body-row">
+                                        <div class="custom-editor-container-table-container-body-row-data"><span>#2</span></div>
+                                        <div class="custom-editor-container-table-container-body-row-data"><span>email@prova.com</span></div>
+                                        <div class="custom-editor-container-table-container-body-row-data success status-error" >
+                                            <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span>
+                                        </div>
+                                        <div class="custom-editor-container-table-container-body-row-data" id="field-price"><span>120,00 €</span></div>
+                                        <div class="custom-editor-container-table-container-body-row-data" id="field-date"><span>04/12/2021</span></div>
+                                    </div>
+
+                                    <div class="custom-editor-container-table-container-body-row">
+                                        <div class="custom-editor-container-table-container-body-row-data"><span>#3</span></div>
+                                        <div class="custom-editor-container-table-container-body-row-data"><span>altra@prova.com</span></div>
+                                        <div class="custom-editor-container-table-container-body-row-data success status-error" >
+                                            <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></span>
+                                        </div>
+                                        <div class="custom-editor-container-table-container-body-row-data" id="field-price"><span>80,00 €</span></div>
+                                        <div class="custom-editor-container-table-container-body-row-data" id="field-date"><span>02/02/2021</span></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>  
