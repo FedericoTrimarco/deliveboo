@@ -6,10 +6,9 @@ window.onload = () => {
     const fileFieldInput = document.querySelector(".custom-file input");
 
     const customSelect = document.querySelector(".custom-select");
-
     if (customSelect) {
-        const select = customSelect.querySelector("select");
         const dropDown = document.querySelector(".custom-select-dropdown");
+        const select = customSelect.querySelector("select");
         const realSelectLabel = customSelect.querySelector(
             ".custom-select-label"
         );
@@ -58,23 +57,23 @@ window.onload = () => {
             fileFieldLabel.textContent = fileFieldInput.files[0].name;
             fileFieldLabel.style.color = "#545454";
         });
+    }
 
-        const sidebtn = document.getElementById("sidebtn");
-        const customForm = document.querySelector(".custom-form");
-        const customFormBtn = customForm.querySelector(".close-button");
+    const sidebtn = document.getElementById("sidebtn");
+    const customForm = document.querySelector(".custom-form");
+    const customFormBtn = document.querySelector(".close-button");
 
-        if (sidebtn && customForm && customFormBtn) {
-            sidebtn.addEventListener("click", (event) =>
-                customForm.classList.toggle("open")
-            );
-            customFormBtn.addEventListener("click", (event) =>
-                customForm.classList.toggle("open")
-            );
+    if (sidebtn && customForm && customFormBtn) {
+        sidebtn.addEventListener("click", (event) =>
+            customForm.classList.toggle("open")
+        );
+        customFormBtn.addEventListener("click", (event) =>
+            customForm.classList.toggle("open")
+        );
 
-            window.addEventListener("resize", (event) =>
-                customForm.classList.remove("open")
-            );
-        }
+        window.addEventListener("resize", (event) =>
+            customForm.classList.remove("open")
+        );
     }
 
     const fieldDate = document.querySelectorAll("#field-date");
@@ -100,12 +99,8 @@ window.onload = () => {
         });
     }
 
-    const label = document.querySelector(
-        ".custom-container-wrapper-panel-quotes-text-quote-sentence"
-    );
-    const name = document.querySelector(
-        ".custom-container-wrapper-panel-quotes-user-name"
-    );
+    const label = document.querySelector(".custom-container-wrapper-panel-quotes-text-quote-sentence");
+    const name = document.querySelector(".custom-container-wrapper-panel-quotes-user-name");
     if (label) {
         const users = [
             {
@@ -149,5 +144,50 @@ window.onload = () => {
             label.textContent = user.sentence;
             index < users.length - 1 ? index++ : (index = 0);
         }
+    }
+
+    let isOpen = false;
+    let checkedItems = [];
+    const cselect = document.querySelector(".custom-select-register");
+    const csLabel = document.querySelector(".custom-select-register-label");
+    const csDropdown = document.querySelector(".custom-select-register-dropdown");
+
+    if (cselect && csDropdown) {
+        document.addEventListener("click", (event) => {
+            if (!cselect.contains(event.target)) {
+                csDropdown.classList.remove("visible");
+                isOpen = false;
+            }
+        });
+
+        cselect.addEventListener("click", (event) => {
+            if (!isOpen) {
+                csDropdown.classList.add("visible");
+                isOpen = true;
+            } else {
+                csDropdown.classList.remove("visible");
+                isOpen = false;
+            }
+        });
+
+        cselect.addEventListener("click", (event) => {
+            console.log('click');
+            if (event.target.tagName === "INPUT") {
+                if (event.target.checked) checkedItems.push(event.target);
+                else checkedItems.splice(checkedItems.indexOf(event.target), 1);
+
+                if (checkedItems.length > 0)
+                    (csLabel.textContent = `${checkedItems.length} tipologia selezionata`),
+                        (csLabel.style.color = "#282828");
+                else
+                    (csLabel.textContent = `Seleziona una tipologia`),
+                        (csLabel.style.color = "#c4c4c4");
+            }
+        });
+
+        window.addEventListener("resize", (event) => {
+            csDropdown.classList.remove("visible");
+            isOpen = false;
+        });
     }
 };

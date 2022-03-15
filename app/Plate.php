@@ -20,6 +20,6 @@ class Plate extends Model
 
     public function orders()
     {
-        return $this->belongsToMany('App\Order')->withPivot('quantity');
+        return $this->belongsToMany('App\Order', 'order_plate');
     }
 }

@@ -148,7 +148,9 @@ export default {
     overflow: hidden;
     padding-top: 72px;
     position: relative;
+    background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     background-image: url("../images/hero-deliveboo.jpg");
 
     .custom-search {
