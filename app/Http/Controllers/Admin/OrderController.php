@@ -19,6 +19,8 @@ class OrderController extends Controller
     {
         $orders = Order::where('restaurant_id', Auth::user()->id)->get();
 
+        dd($orders);
+
         $title = 'Piatti';
         $id = Auth::user()->id;
         $categories = Category::all();

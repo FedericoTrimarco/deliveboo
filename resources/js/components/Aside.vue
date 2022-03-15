@@ -129,9 +129,10 @@ export default {
 .sidebar-container {
     width: 100%;
     height: 100%;
+    left: -320px;
+    z-index: 999;
     max-width: 320px;
     position: absolute;
-    left: -320px;
     background-color: #ffffff;
     border-right: 2px solid #282828;
     transition: left 0.1s ease-in-out;

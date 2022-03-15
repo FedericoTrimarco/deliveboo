@@ -66,51 +66,5 @@
 //     }
 // };
 window.onload = () => {
-    let isOpen = false;
-    let checkedItems = [];
-    const customSelect = document.querySelector(".custom-select");
-    const customSelectLabel = document.querySelector(".custom-select-label");
-    const customSelectDropdown = document.querySelector(
-        ".custom-select-dropdown"
-    );
-
-    const cs = document.querySelector(".custom-select");
-
-    if (customSelect && customSelectDropdown) {
-        document.addEventListener("click", (event) => {
-            if (!customSelect.contains(event.target)) {
-                customSelectDropdown.classList.remove("visible");
-                isOpen = false;
-            }
-        });
-
-        customSelect.addEventListener("click", (event) => {
-            if (!isOpen) {
-                customSelectDropdown.classList.add("visible");
-                isOpen = true;
-            } else {
-                customSelectDropdown.classList.remove("visible");
-                isOpen = false;
-            }
-        });
-
-        customSelect.addEventListener("click", (event) => {
-            if (event.target.tagName === "INPUT") {
-                if (event.target.checked) checkedItems.push(event.target);
-                else checkedItems.splice(checkedItems.indexOf(event.target), 1);
-
-                if (checkedItems.length > 0)
-                    (customSelectLabel.textContent = `${checkedItems.length} tipologia selezionata`),
-                        (customSelectLabel.style.color = "#282828");
-                else
-                    (customSelectLabel.textContent = `Seleziona una tipologia`),
-                        (customSelectLabel.style.color = "#c4c4c4");
-            }
-        });
-
-        window.addEventListener("resize", (event) => {
-            customSelectDropdown.classList.remove("visible");
-            isOpen = false;
-        });
-    }
+    
 };
