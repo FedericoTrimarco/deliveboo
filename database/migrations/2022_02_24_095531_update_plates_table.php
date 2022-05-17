@@ -24,7 +24,7 @@ class UpdatePlatesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
+     * bonjour
      * @return void
      */
     public function down()
